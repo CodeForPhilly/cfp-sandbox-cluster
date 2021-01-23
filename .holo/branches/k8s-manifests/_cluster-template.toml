@@ -1,0 +1,4 @@
+[holomapping]
+holosource = "=>k8s-blueprint"
+files = "**"
+before = "*"
