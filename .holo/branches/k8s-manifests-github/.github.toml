@@ -1,0 +1,8 @@
+[holomapping]
+holosource = "cfp-sandbox-cluster"
+root = ".github"
+files = [
+    # workflows triggered by target branch must be included within it
+    "workflows/prepare-k8s-manifests.yml",
+    "workflows/deploy-k8s-manifests.yml",
+]

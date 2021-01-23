@@ -1,0 +1,3 @@
+[holomapping]
+holosource = "=>k8s-manifests"
+files = "**"
