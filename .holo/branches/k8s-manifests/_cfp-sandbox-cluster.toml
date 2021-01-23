@@ -1,0 +1,6 @@
+[holomapping]
+files = [
+    "**",
+    "!README.md"
+]
+after = "*"
