@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
+  name: echo-http
+  namespace: echo-http
+spec:
+  rules:
+    - host: echo-http.sandbox.k8s.phl.io
+      http:
+        paths:
+          - backend:
+              serviceName: echo-http
+              servicePort: 80
+            path: /
+  tls:
+    - hosts:
+        - echo-http.sandbox.k8s.phl.io
+      secretName: echo-http-tls
