@@ -1,0 +1,12 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: hairpin-proxy-controller-crb
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: hairpin-proxy-controller-cr
+subjects:
+  - kind: ServiceAccount
+    name: hairpin-proxy-controller-sa
+    namespace: hairpin-proxy

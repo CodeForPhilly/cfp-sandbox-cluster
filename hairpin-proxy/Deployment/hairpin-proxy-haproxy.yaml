@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hairpin-proxy-haproxy
+  name: hairpin-proxy-haproxy
+  namespace: hairpin-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hairpin-proxy-haproxy
+  template:
+    metadata:
+      labels:
+        app: hairpin-proxy-haproxy
+    spec:
+      containers:
+        - image: 'compumike/hairpin-proxy-haproxy:0.1.1'
+          name: main

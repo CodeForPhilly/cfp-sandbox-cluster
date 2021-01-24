@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations: {}
+  labels:
+    app: prometheus
+    chart: prometheus-13.0.0
+    component: alertmanager
+    heritage: Helm
+    release: prometheus
+  name: prometheus-alertmanager
+  namespace: prometheus
