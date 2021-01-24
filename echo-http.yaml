@@ -23,6 +23,10 @@ spec:
       containers:
         - name: echo-http
           image: mendhak/http-https-echo:17
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
 
 ---
 
@@ -36,7 +40,7 @@ spec:
     - name: http
       protocol: TCP
       port: 80
-      targetPort: 8080
+      targetPort: http
   selector:
     app: echo-http
 
