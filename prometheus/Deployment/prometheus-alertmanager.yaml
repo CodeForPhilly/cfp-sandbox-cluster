@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: prometheus
+    chart: prometheus-13.0.0
+    component: alertmanager
+    heritage: Helm
+    release: prometheus
+  name: prometheus-alertmanager
+  namespace: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+      component: alertmanager
+      release: prometheus
+  template:
+    metadata:
+      labels:
+        app: prometheus
+        chart: prometheus-13.0.0
+        component: alertmanager
+        heritage: Helm
+        release: prometheus
+    spec:
+      containers:
+        - args:
+            - '--config.file=/etc/config/alertmanager.yml'
+            - '--storage.path=/data'
+            - '--cluster.advertise-address=$(POD_IP):6783'
+            - '--web.external-url=http://localhost:9093'
+          env:
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  apiVersion: v1
+                  fieldPath: status.podIP
+          image: 'quay.io/prometheus/alertmanager:v0.21.0'
+          imagePullPolicy: IfNotPresent
+          name: prometheus-alertmanager
+          ports:
+            - containerPort: 9093
+          readinessProbe:
+            httpGet:
+              path: /-/ready
+              port: 9093
+            initialDelaySeconds: 30
+            timeoutSeconds: 30
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/config
+              name: config-volume
+            - mountPath: /data
+              name: storage-volume
+              subPath: ''
+        - args:
+            - '--volume-dir=/etc/config'
+            - '--webhook-url=http://127.0.0.1:9093/-/reload'
+          image: 'jimmidyson/configmap-reload:v0.4.0'
+          imagePullPolicy: IfNotPresent
+          name: prometheus-alertmanager-configmap-reload
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/config
+              name: config-volume
+              readOnly: true
+      securityContext:
+        fsGroup: 65534
+        runAsGroup: 65534
+        runAsNonRoot: true
+        runAsUser: 65534
+      serviceAccountName: prometheus-alertmanager
+      volumes:
+        - configMap:
+            name: prometheus-alertmanager
+          name: config-volume
+        - name: storage-volume
+          persistentVolumeClaim:
+            claimName: prometheus-alertmanager
