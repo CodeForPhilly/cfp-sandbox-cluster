@@ -7,20 +7,19 @@ on:
 env:
   BRANCH_RELEASE: releases/k8s-manifests
   BRANCH_DEPLOY: deploys/k8s-manifests
-  REGCRED_NAMESPACES: |
+
 
 jobs:
   deploy-k8s-manifests:
     runs-on: ubuntu-latest
     steps:
+
     - uses: actions/checkout@v2
       with:
         ref: ${{ env.BRANCH_DEPLOY }}
 
     - name: Configure .kube/config
       run: |
-        set -e
-
         test -e ~/.kube || mkdir ~/.kube
 
         echo "${{ secrets.KUBECONFIG_BASE64 }}" | base64 -d > ~/.kube/config
@@ -65,15 +64,10 @@ jobs:
     - name: 'Apply manifests: generated regcred secrets'
       run: |
 
+        # apply a copy of regcred secret for every deployed namespace
         while IFS= read -r namespace; do
+          namespace="$(basename "${namespace}")"
           cat <<EOF | kubectl apply -f - | tee -a /tmp/kube.log
-        apiVersion: v1
-        kind: Namespace
-        metadata:
-          namespace: ${namespace}
-
-        ---
-
         apiVersion: v1
         kind: Secret
         metadata:
@@ -83,22 +77,21 @@ jobs:
         data:
           .dockerconfigjson: ${{ secrets.DOCKER_CONFIG_BASE64 }}
         EOF
-        done <<< "${REGCRED_NAMESPACES}"
+        done <<< "$(find . -maxdepth 1 -type d -not -name '_' -not -name '.*')"
 
     - name: Add comment to PR
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        set -e
-
         # format comment
-        cat <<EOF > /tmp/pr-comment.txt
+        pr_comment="$(cat <<EOF
         \`kubectl apply\` output (excluding unchanged) for $(git describe --always --tag) was:
 
         \`\`\`
         $(cat /tmp/kube.log | grep -v ' unchanged$')
         \`\`\`
         EOF
+        )"
 
         # get last PR
         last_pr_number=$(hub pr list -s merged -b "${BRANCH_DEPLOY}" -h "${BRANCH_RELEASE}" -f '%I' -L 1)
@@ -106,7 +99,7 @@ jobs:
         # post comment
         if [ -n "${last_pr_number}" ]; then
           echo "Adding comment to PR #${last_pr_number}"
-          hub api "/repos/${GITHUB_REPOSITORY}/issues/${last_pr_number}/comments" -f body="$(cat /tmp/pr-comment.txt)"
+          hub api "/repos/${GITHUB_REPOSITORY}/issues/${last_pr_number}/comments" -f body="${pr_comment}"
         fi
 
     # - uses: mxschmitt/action-tmate@v3
