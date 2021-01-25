@@ -1,0 +1,4 @@
+[holomapping]
+holosource = "=>docs-blueprint"
+files = "**"
+before = "*"
