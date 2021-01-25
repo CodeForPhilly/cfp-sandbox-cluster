@@ -1,0 +1,9 @@
+site_name: Philly (sandbox) Civic Cloud
+repo_url: https://github.com/CodeForPhilly/cfp-sandbox-cluster
+site_url: https://codeforphilly.github.io/cfp-sandbox-cluster
+edit_uri: edit/main/docs
+
+extra:
+  cluster:
+    wildcard_hostname: sandbox.k8s.phl.io
+    
