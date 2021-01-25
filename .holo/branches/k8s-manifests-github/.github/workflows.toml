@@ -1,0 +1,7 @@
+[holomapping]
+holosource = "civic-cloud=>github-workflows"
+files = [
+    # workflows triggered by target branch must be included within it
+    "prepare-k8s-manifests.yml",
+    "deploy-k8s-manifests.yml",
+]
