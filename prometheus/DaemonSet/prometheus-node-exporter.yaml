@@ -57,6 +57,9 @@ spec:
         runAsNonRoot: true
         runAsUser: 65534
       serviceAccountName: prometheus-node-exporter
+      tolerations:
+        - effect: NoSchedule
+          operator: Exists
       volumes:
         - hostPath:
             path: /proc

@@ -1,0 +1,125 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: grafana
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: grafana
+    app.kubernetes.io/version: 7.3.5
+    helm.sh/chart: grafana-6.2.1
+  name: grafana
+  namespace: grafana
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: grafana
+      app.kubernetes.io/name: grafana
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        checksum/config: 96870e551807f3e70a3e09081f979c4cc6962704aaa316077fb14f20ed06f080
+        checksum/dashboards-json-config: c30d3530f73e57774fa12744aa7cbbc2485b9a2a0ae0f44c68b514cd3239805b
+        checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+      labels:
+        app.kubernetes.io/instance: grafana
+        app.kubernetes.io/name: grafana
+    spec:
+      containers:
+        - env:
+            - name: GF_SECURITY_ADMIN_USER
+              valueFrom:
+                secretKeyRef:
+                  key: admin-user
+                  name: grafana
+            - name: GF_SECURITY_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: admin-password
+                  name: grafana
+          image: 'grafana/grafana:7.3.5'
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            failureThreshold: 10
+            httpGet:
+              path: /api/health
+              port: 3000
+            initialDelaySeconds: 60
+            timeoutSeconds: 30
+          name: grafana
+          ports:
+            - containerPort: 80
+              name: service
+              protocol: TCP
+            - containerPort: 3000
+              name: grafana
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: 3000
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/grafana/grafana.ini
+              name: config
+              subPath: grafana.ini
+            - mountPath: /var/lib/grafana
+              name: storage
+            - mountPath: /etc/grafana/provisioning/datasources/datasources.yaml
+              name: config
+              subPath: datasources.yaml
+            - mountPath: /etc/grafana/provisioning/dashboards/dashboardproviders.yaml
+              name: config
+              subPath: dashboardproviders.yaml
+      initContainers:
+        - command:
+            - chown
+            - '-R'
+            - '472:472'
+            - /var/lib/grafana
+          image: 'busybox:1.31.1'
+          imagePullPolicy: IfNotPresent
+          name: init-chown-data
+          resources: {}
+          securityContext:
+            runAsNonRoot: false
+            runAsUser: 0
+          volumeMounts:
+            - mountPath: /var/lib/grafana
+              name: storage
+        - args:
+            - '-c'
+            - >-
+              mkdir -p /var/lib/grafana/dashboards/default && /bin/sh
+              /etc/grafana/download_dashboards.sh
+          command:
+            - /bin/sh
+          env: null
+          image: 'curlimages/curl:7.73.0'
+          imagePullPolicy: IfNotPresent
+          name: download-dashboards
+          resources: {}
+          volumeMounts:
+            - mountPath: /etc/grafana/download_dashboards.sh
+              name: config
+              subPath: download_dashboards.sh
+            - mountPath: /var/lib/grafana
+              name: storage
+      securityContext:
+        fsGroup: 472
+        runAsGroup: 472
+        runAsUser: 472
+      serviceAccountName: grafana
+      volumes:
+        - configMap:
+            name: grafana
+          name: config
+        - configMap:
+            name: grafana-dashboards-default
+          name: dashboards-default
+        - name: storage
+          persistentVolumeClaim:
+            claimName: grafana
