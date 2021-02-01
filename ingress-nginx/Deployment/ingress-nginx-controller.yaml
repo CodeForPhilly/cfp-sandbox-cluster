@@ -6,8 +6,8 @@ metadata:
     app.kubernetes.io/instance: ingress-nginx
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/version: 0.34.1
-    helm.sh/chart: ingress-nginx-2.11.1
+    app.kubernetes.io/version: 0.43.0
+    helm.sh/chart: ingress-nginx-3.22.0
   name: ingress-nginx-controller
   namespace: ingress-nginx
 spec:
@@ -29,10 +29,10 @@ spec:
       containers:
         - args:
             - /nginx-ingress-controller
-            - '--publish-service=ingress-nginx/ingress-nginx-controller'
+            - '--publish-service=$(POD_NAMESPACE)/ingress-nginx-controller'
             - '--election-id=ingress-controller-leader'
             - '--ingress-class=nginx'
-            - '--configmap=ingress-nginx/ingress-nginx-controller'
+            - '--configmap=$(POD_NAMESPACE)/ingress-nginx-controller'
             - '--validating-webhook=:8443'
             - '--validating-webhook-certificate=/usr/local/certificates/cert'
             - '--validating-webhook-key=/usr/local/certificates/key'
@@ -45,8 +45,10 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
+            - name: LD_PRELOAD
+              value: /usr/local/lib/libmimalloc.so
           image: >-
-            us.gcr.io/k8s-artifacts-prod/ingress-nginx/controller:v0.34.1@sha256:0e072dddd1f7f8fc8909a2ca6f65e76c5f0d2fcfb8be47935ae3457e8bbceb20
+            k8s.gcr.io/ingress-nginx/controller:v0.43.0@sha256:9bba603b99bf25f6d117cf1235b6598c16033ad027b143c90fa5b3cc583c5713
           imagePullPolicy: IfNotPresent
           lifecycle:
             preStop:
@@ -101,6 +103,8 @@ spec:
               name: webhook-cert
               readOnly: true
       dnsPolicy: ClusterFirst
+      nodeSelector:
+        kubernetes.io/os: linux
       serviceAccountName: ingress-nginx
       terminationGracePeriodSeconds: 300
       volumes:
