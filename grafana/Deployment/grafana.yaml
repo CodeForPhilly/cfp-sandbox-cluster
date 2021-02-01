@@ -34,12 +34,12 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: admin-user
-                  name: grafana
+                  name: grafana-initial-admin
             - name: GF_SECURITY_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: admin-password
-                  name: grafana
+                  name: grafana-initial-admin
           image: 'grafana/grafana:7.3.5'
           imagePullPolicy: IfNotPresent
           livenessProbe:
