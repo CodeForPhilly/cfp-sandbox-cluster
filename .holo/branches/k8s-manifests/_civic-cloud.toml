@@ -1,4 +1,4 @@
 [holomapping]
-holosource = "=>k8s-blueprint"
+holosource = "=>k8s-blueprint-lke"
 files = "**"
 before = "*"
