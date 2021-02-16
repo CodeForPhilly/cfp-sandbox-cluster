@@ -1,6 +1,9 @@
-image:
-  tag: 0.2.0
-
+backend:
+  image:
+    tag: 0.2.0
+frontend:
+  image:
+    tag: 0.2.0
 ingress:
   hosts:
     - host: prevention-point.sandbox.k8s.phl.io
