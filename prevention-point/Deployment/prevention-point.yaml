@@ -65,6 +65,7 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/postgresql/data
               name: prevention-point-postgresql-data
+              subPath: postgresql-data
       hostAliases:
         - hostnames:
             - app
