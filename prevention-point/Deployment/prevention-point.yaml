@@ -1,0 +1,79 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: prevention-point
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: prevention-point
+    app.kubernetes.io/version: 1.16.0
+    helm.sh/chart: prevention-point-0.1.0
+  name: prevention-point
+  namespace: prevention-point
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: prevention-point
+      app.kubernetes.io/name: prevention-point
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: prevention-point
+        app.kubernetes.io/name: prevention-point
+    spec:
+      containers:
+        - env:
+            - name: DJANGO_SETTINGS_MODULE
+              value: core.settings.docker
+          image: 'ghcr.io/codeforphilly/prevention-point/backend:0.2.0'
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          name: prevention-point-backend
+          ports:
+            - containerPort: 8000
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+        - image: 'ghcr.io/codeforphilly/prevention-point/frontend:0.2.0'
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          name: prevention-point-frontend
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+        - image: 'postgres:11.3-alpine'
+          imagePullPolicy: IfNotPresent
+          name: prevention-point-database
+          ports:
+            - containerPort: 5432
+              name: postgresql
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: prevention-point-postgresql-data
+      hostAliases:
+        - hostnames:
+            - app
+            - db
+          ip: 127.0.0.1
+      imagePullSecrets:
+        - name: regcred
+      securityContext: {}
+      volumes:
+        - name: prevention-point-postgresql-data
+          persistentVolumeClaim:
+            claimName: prevention-point-postgresql-data
