@@ -1,0 +1,11 @@
+image:
+  tag: 0.2.0
+
+ingress:
+  hosts:
+    - host: prevention-point.sandbox.k8s.phl.io
+      paths: [ '/' ]
+  tls:
+    - secretName: prevention-point-tls
+      hosts:
+        - prevention-point.sandbox.k8s.phl.io

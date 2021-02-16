@@ -1,0 +1,3 @@
+[holomapping]
+holosource = "prevention-point=>helm-chart"
+files = "**"
