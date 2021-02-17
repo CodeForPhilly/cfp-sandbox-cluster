@@ -15,6 +15,8 @@ spec:
     matchLabels:
       app.kubernetes.io/instance: prevention-point
       app.kubernetes.io/name: prevention-point
+  strategy:
+    type: Recreate
   template:
     metadata:
       labels:
@@ -27,19 +29,10 @@ spec:
               value: core.settings.docker
           image: 'ghcr.io/codeforphilly/prevention-point/backend:0.2.0'
           imagePullPolicy: Always
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
           name: prevention-point-backend
           ports:
             - containerPort: 8000
-              name: http
               protocol: TCP
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
         - image: 'ghcr.io/codeforphilly/prevention-point/frontend:0.2.0'
           imagePullPolicy: Always
           livenessProbe:
