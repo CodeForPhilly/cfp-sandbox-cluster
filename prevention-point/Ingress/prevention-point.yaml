@@ -19,8 +19,20 @@ spec:
         paths:
           - backend:
               serviceName: prevention-point
-              servicePort: 80
+              servicePort: frontend-http
             path: /
+          - backend:
+              serviceName: prevention-point
+              servicePort: backend-http
+            path: /api/
+          - backend:
+              serviceName: prevention-point
+              servicePort: backend-http
+            path: /admin/
+          - backend:
+              serviceName: prevention-point
+              servicePort: backend-http
+            path: /static/admin/
   tls:
     - hosts:
         - prevention-point.sandbox.k8s.phl.io
