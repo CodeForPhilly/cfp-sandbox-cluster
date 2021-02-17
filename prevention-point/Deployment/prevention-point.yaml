@@ -27,13 +27,21 @@ spec:
         - env:
             - name: DJANGO_SETTINGS_MODULE
               value: core.settings.docker
-          image: 'ghcr.io/codeforphilly/prevention-point/backend:0.2.0'
+          image: 'ghcr.io/codeforphilly/prevention-point/backend:0.3.0'
           imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /admin/
+              port: 8000
           name: prevention-point-backend
           ports:
             - containerPort: 8000
               protocol: TCP
-        - image: 'ghcr.io/codeforphilly/prevention-point/frontend:0.2.0'
+          readinessProbe:
+            httpGet:
+              path: /admin/
+              port: 8000
+        - image: 'ghcr.io/codeforphilly/prevention-point/frontend:0.3.0'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
@@ -61,7 +69,6 @@ spec:
               subPath: postgresql-data
       hostAliases:
         - hostnames:
-            - app
             - db
           ip: 127.0.0.1
       imagePullSecrets:

@@ -11,10 +11,14 @@ metadata:
   namespace: prevention-point
 spec:
   ports:
-    - name: http
+    - name: frontend-http
       port: 80
       protocol: TCP
       targetPort: http
+    - name: backend-http
+      port: 8000
+      protocol: TCP
+      targetPort: 8000
   selector:
     app.kubernetes.io/instance: prevention-point
     app.kubernetes.io/name: prevention-point
