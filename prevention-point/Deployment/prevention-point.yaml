@@ -24,7 +24,7 @@ spec:
         app.kubernetes.io/name: prevention-point
     spec:
       containers:
-        - image: 'ghcr.io/codeforphilly/prevention-point/backend:0.3.2'
+        - image: 'ghcr.io/codeforphilly/prevention-point/backend:0.3.3'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
@@ -38,7 +38,7 @@ spec:
             httpGet:
               path: /admin/
               port: 8000
-        - image: 'ghcr.io/codeforphilly/prevention-point/frontend:0.3.2'
+        - image: 'ghcr.io/codeforphilly/prevention-point/frontend:0.3.3'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
