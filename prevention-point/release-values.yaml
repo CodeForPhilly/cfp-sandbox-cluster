@@ -1,9 +1,9 @@
 backend:
   image:
-    tag: 0.3.1
+    tag: 0.3.2
 frontend:
   image:
-    tag: 0.3.1
+    tag: 0.3.2
 ingress:
   enabled: true
   annotations:
