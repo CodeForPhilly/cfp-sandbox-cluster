@@ -24,10 +24,7 @@ spec:
         app.kubernetes.io/name: prevention-point
     spec:
       containers:
-        - env:
-            - name: DJANGO_SETTINGS_MODULE
-              value: core.settings.docker
-          image: 'ghcr.io/codeforphilly/prevention-point/backend:0.3.0'
+        - image: 'ghcr.io/codeforphilly/prevention-point/backend:0.3.1'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
@@ -41,7 +38,7 @@ spec:
             httpGet:
               path: /admin/
               port: 8000
-        - image: 'ghcr.io/codeforphilly/prevention-point/frontend:0.3.0'
+        - image: 'ghcr.io/codeforphilly/prevention-point/frontend:0.3.1'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
