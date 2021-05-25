@@ -17,5 +17,6 @@ rules:
     resources:
       - pods/exec
       - pods/portforward
+      - pods/log
     verbs:
       - create
