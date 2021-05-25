@@ -8,6 +8,7 @@ metadata:
     app.kubernetes.io/version: 0.8.0
     helm.sh/chart: paws-datapipeline-0.1.0
   name: paws-dp-chart
+  namespace: paws-data-pipeline
 spec:
   replicas: 1
   selector:
