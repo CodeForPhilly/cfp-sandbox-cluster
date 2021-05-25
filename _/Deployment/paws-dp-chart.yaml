@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: paws-data-pipeline
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: paws-datapipeline
+    app.kubernetes.io/version: 0.8.0
+    helm.sh/chart: paws-datapipeline-0.1.0
+  name: paws-dp-chart
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: paws-data-pipeline
+      app.kubernetes.io/name: paws-datapipeline
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: paws-data-pipeline
+        app.kubernetes.io/name: paws-datapipeline
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_DB
+              value: paws
+          envFrom:
+            - secretRef:
+                name: db-pass
+          image: 'postgres:13.2-alpine'
+          imagePullPolicy: IfNotPresent
+          name: paws-datapipeline-db
+          ports:
+            - containerPort: 5432
+              name: postgresql
+              protocol: TCP
+        - envFrom:
+            - secretRef:
+                name: api-server-pws
+            - secretRef:
+                name: db-pass
+          image: 'ghcr.io/codeforphilly/paws-data-pipeline/server:2.21'
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /api/user/test
+              port: 5000
+          name: paws-datapipeline-server
+          ports:
+            - containerPort: 5000
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /api/user/test
+              port: 5000
+        - image: 'ghcr.io/codeforphilly/paws-data-pipeline/client:2.21'
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          name: paws-datapipeline-client
+          ports:
+            - containerPort: 80
+              name: http
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+      hostAliases:
+        - hostnames:
+            - server
+            - paws-compose-db
+            - client
+          ip: 127.0.0.1
+      imagePullSecrets:
+        - name: regcred
+      securityContext: {}
+      serviceAccountName: paws-dp-chart
