@@ -11,6 +11,7 @@ merge = "replace"
 [hololens.helm]
 namespace = "paws-data-pipeline"
 release_name = "paws-data-pipeline"
+namespace_fill = true
 
 chart_path = "helm-chart"
 value_files = [
