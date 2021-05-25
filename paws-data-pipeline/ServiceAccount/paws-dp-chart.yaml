@@ -1,21 +1,11 @@
 apiVersion: v1
-kind: Pod
+kind: ServiceAccount
 metadata:
-  annotations:
-    helm.sh/hook: test
   labels:
     app.kubernetes.io/instance: paws-data-pipeline
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: paws-datapipeline
     app.kubernetes.io/version: 0.8.0
     helm.sh/chart: paws-datapipeline-0.1.0
-  name: paws-dp-chart-test-connection
-spec:
-  containers:
-    - args:
-        - 'paws-dp-chart:80'
-      command:
-        - wget
-      image: busybox
-      name: wget
-  restartPolicy: Never
+  name: paws-dp-chart
+  namespace: paws-data-pipeline
