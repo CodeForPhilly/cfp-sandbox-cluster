@@ -1,0 +1,3 @@
+[holosource]
+url = "https://github.com/CodeForPhilly/paws-data-pipeline.git"
+ref = "refs/heads/k8s-helm"

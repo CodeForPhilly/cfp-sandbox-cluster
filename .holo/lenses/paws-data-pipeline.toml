@@ -1,0 +1,18 @@
+[hololens]
+package = "holo/lens-helm3/1.3"
+
+[hololens.input]
+root = "paws-data-pipeline"
+files = "**"
+
+[hololens.output]
+merge = "replace"
+
+[hololens.helm]
+namespace = "paws-data-pipeline"
+release_name = "paws-data-pipeline"
+
+chart_path = "helm-chart"
+value_files = [
+    "release-values.yaml"
+]

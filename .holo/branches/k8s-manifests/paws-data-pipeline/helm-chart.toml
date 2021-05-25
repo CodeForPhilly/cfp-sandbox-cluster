@@ -1,0 +1,3 @@
+[holomapping]
+holosource = "paws-data-pipeline=>helm-chart"
+files = "**"
