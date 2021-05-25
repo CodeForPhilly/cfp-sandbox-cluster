@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  name: deployment-admin
+  namespace: paws-data-pipeline
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: deployment-admin
+subjects:
+  - kind: ServiceAccount
+    name: deployment-admin
+    namespace: paws-data-pipeline
