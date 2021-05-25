@@ -12,6 +12,7 @@ merge = "replace"
 namespace = "paws-data-pipeline"
 release_name = "paws-data-pipeline"
 namespace_fill = true
+namespace_override = true
 
 chart_path = "helm-chart"
 value_files = [
