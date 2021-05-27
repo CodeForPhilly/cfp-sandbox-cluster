@@ -6,7 +6,10 @@ ingress:
   hosts:
     - host: paws-data-pipeline.sandbox.k8s.phl.io
       paths: [ '/' ]
+    - host: test.pawsdp.org
+      paths: [ '/' ]
   tls:
     - secretName: paws-data-pipeline-tls
       hosts:
         - paws-data-pipeline.sandbox.k8s.phl.io
+        - test.pawsdp.org
