@@ -4,6 +4,7 @@ ingress:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/proxy-body-size: '50m'
+    nginx.ingress.kubernetes.io/proxy-read-timeout: 300
   hosts:
     - host: paws-data-pipeline.sandbox.k8s.phl.io
       paths: [ '/' ]
