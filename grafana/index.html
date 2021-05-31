@@ -9,19 +9,21 @@
       
       
       
-      <link rel="icon" href="/cfp-sandbox-cluster/assets/images/favicon.png">
+        <link rel="canonical" href="https://codeforphilly.github.io/cfp-sandbox-cluster/grafana/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.1.6">
     
     
       
-        <title>Philly (sandbox) Civic Cloud</title>
+        <title>Grafana - Philly (sandbox) Civic Cloud</title>
       
     
     
-      <link rel="stylesheet" href="/cfp-sandbox-cluster/assets/stylesheets/main.875de78c.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.875de78c.min.css">
       
         
-        <link rel="stylesheet" href="/cfp-sandbox-cluster/assets/stylesheets/palette.f1a3b89f.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
         
           
           
@@ -57,12 +59,17 @@
     <body dir="ltr" data-md-color-scheme="" data-md-color-primary="light-blue" data-md-color-accent="amber">
   
     
-    <script>function __prefix(e){return new URL("/cfp-sandbox-cluster",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
+      
+        
+        <a href="#grafana" class="md-skip">
+          Skip to content
+        </a>
       
     </div>
     <div data-md-component="announce">
@@ -71,7 +78,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/cfp-sandbox-cluster/." title="Philly (sandbox) Civic Cloud" class="md-header__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
+    <a href=".." title="Philly (sandbox) Civic Cloud" class="md-header__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -90,7 +97,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Grafana
             
           </span>
         </div>
@@ -161,7 +168,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="/cfp-sandbox-cluster/." class="md-tabs__link">
+    <a href=".." class="md-tabs__link">
       Civic Cloud Documentation
     </a>
   </li>
@@ -173,7 +180,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="/cfp-sandbox-cluster/echo-service/" class="md-tabs__link">
+    <a href="../echo-service/" class="md-tabs__link">
       Echo service
     </a>
   </li>
@@ -182,10 +189,12 @@
         
   
   
+    
+  
 
 
   <li class="md-tabs__item">
-    <a href="/cfp-sandbox-cluster/grafana/" class="md-tabs__link">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
       Grafana
     </a>
   </li>
@@ -197,7 +206,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="/cfp-sandbox-cluster/ingress/" class="md-tabs__link">
+    <a href="../ingress/" class="md-tabs__link">
       Ingress
     </a>
   </li>
@@ -223,7 +232,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/cfp-sandbox-cluster/." title="Philly (sandbox) Civic Cloud" class="md-nav__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
+    <a href=".." title="Philly (sandbox) Civic Cloud" class="md-nav__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
@@ -255,7 +264,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         Civic Cloud Documentation
       </a>
     </li>
@@ -270,7 +279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/echo-service/" class="md-nav__link">
+      <a href="../echo-service/" class="md-nav__link">
         Echo service
       </a>
     </li>
@@ -283,11 +292,51 @@
 
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/grafana/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Grafana
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Grafana
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creating-grafana-admin-secret" class="md-nav__link">
+    Creating grafana-admin-secret
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -300,7 +349,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/ingress/" class="md-nav__link">
+      <a href="../ingress/" class="md-nav__link">
         Ingress
       </a>
     </li>
@@ -314,11 +363,62 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creating-grafana-admin-secret" class="md-nav__link">
+    Creating grafana-admin-secret
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content" data-md-component="content">
             <article class="md-content__inner md-typeset">
               
-  <h1>404 - Not found</h1>
+                
+                  <a href="https://github.com/CodeForPhilly/cfp-sandbox-cluster/edit/main/docs/grafana.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="grafana">Grafana<a class="headerlink" href="#grafana" title="Permanent link"> ¶</a></h1>
+<p>New clusters will start with the <code>grafana</code> deployment blocked from starting a pod for lack of the <code>grafana-initial-admin</code> secret existing.</p>
+<p>Creating this secret will enable <code>grafana</code> to start up and create an initial admin login. The secret should be left on the cluster after that as the deployment requires it, but making changes to it will not update any Grafana login unless Grafana&rsquo;s persistent storage is reset.</p>
+<h2 id="creating-grafana-admin-secret">Creating <code>grafana-admin-secret</code><a class="headerlink" href="#creating-grafana-admin-secret" title="Permanent link"> ¶</a></h2>
+<p>Use this command to generate a usable secret with a random password:</p>
+<div class="highlight"><pre><span></span><code>kubectl -n grafana create secret generic grafana-initial-admin <span class="se">\</span>
+    --from-literal<span class="o">=</span>admin-user<span class="o">=</span>admin <span class="se">\</span>
+    --from-literal<span class="o">=</span>admin-password<span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>cat /dev/urandom <span class="p">|</span> tr -dc <span class="s1">&#39;a-zA-Z0-9&#39;</span> <span class="p">|</span> fold -w <span class="m">32</span> <span class="p">|</span> head -n <span class="m">1</span><span class="k">)</span><span class="s2">&quot;</span>
+</code></pre></div>
+                
+              
+              
+                
+
 
               
             </article>
@@ -329,6 +429,39 @@
       
         
 <footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../echo-service/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Echo service
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../ingress/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Ingress
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
@@ -349,10 +482,10 @@
     <div class="md-dialog" data-md-component="dialog">
       <div class="md-dialog__inner md-typeset"></div>
     </div>
-    <script id="__config" type="application/json">{"base": "/cfp-sandbox-cluster", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "/cfp-sandbox-cluster/assets/javascripts/workers/search.d351de03.min.js", "version": null}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../assets/javascripts/workers/search.d351de03.min.js", "version": null}</script>
     
     
-      <script src="/cfp-sandbox-cluster/assets/javascripts/bundle.34eae1b6.min.js"></script>
+      <script src="../assets/javascripts/bundle.34eae1b6.min.js"></script>
       
         <script src="https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js"></script>
       
