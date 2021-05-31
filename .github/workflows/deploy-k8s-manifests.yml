@@ -17,6 +17,7 @@ jobs:
     - uses: actions/checkout@v2
       with:
         ref: ${{ env.BRANCH_DEPLOY }}
+        fetch-depth: 2 # need parent commit to detect deletions
 
     - name: Configure .kube/config
       run: |
@@ -79,6 +80,22 @@ jobs:
         EOF
         done <<< "$(find . -maxdepth 1 -type d -not -name '_' -not -name '.*')"
 
+    - name: 'Apply manifests: deleted resources'
+      run: |
+        for manifest_path in $(git diff-tree --name-only --diff-filter=D -r HEAD^ HEAD); do
+          manifest_path="${manifest_path%.yaml}"
+          namespace="${manifest_path%%/*}"
+          kind_name="${manifest_path#*/}"
+          kind="${kind_name%%/*}"
+          name="${kind_name##*/}"
+
+          if [ "${namespace}" == "_" ]; then
+            kubectl delete $kind $name | tee -a /tmp/kube.log
+          else
+            kubectl -n $namespace delete $kind $name | tee -a /tmp/kube.log
+          fi
+        done
+
     - name: Add comment to PR
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -93,8 +110,10 @@ jobs:
         EOF
         )"
 
+
         # get last PR
         last_pr_number=$(hub pr list -s merged -b "${BRANCH_DEPLOY}" -h "${BRANCH_RELEASE}" -f '%I' -L 1)
+
 
         # post comment
         if [ -n "${last_pr_number}" ]; then

@@ -24,6 +24,12 @@ jobs:
 
         echo "${{ secrets.KUBECONFIG_BASE64 }}" | base64 -d > ~/.kube/config
 
+    - name: Install kubectl-neat-diff
+      run: |
+        sudo wget https://github.com/sh0rez/kubectl-neat-diff/releases/download/v0.1.0/kubectl-neat-diff-linux-amd64 -O /usr/local/bin/kubectl-neat-diff
+        sudo chmod +x /usr/local/bin/kubectl-neat-diff
+        echo "KUBECTL_EXTERNAL_DIFF=kubectl-neat-diff" >> $GITHUB_ENV
+
     - name: Generate diff
       run: |
         (
@@ -41,6 +47,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         # build PR description body
+        diff_size=$(stat -c%s /tmp/kube.diff)
         pr_head_describe="$(git describe --always --tag)"
 
         pr_body="$(cat <<EOF
@@ -49,7 +56,7 @@ jobs:
         \`kubectl diff\` reports that applying ${pr_head_describe} will change:
 
         \`\`\`diff
-        $(cat /tmp/kube.diff)
+        $(if (( diff_size > 50000)); then echo 'diff too big; review locally'; else cat /tmp/kube.diff; fi)
         \`\`\`
         EOF
         )"

@@ -23,3 +23,12 @@ rules:
       - get
       - list
       - watch
+  - apiGroups:
+      - acme.cert-manager.io
+    resources:
+      - challenges
+      - orders
+    verbs:
+      - get
+      - list
+      - watch
