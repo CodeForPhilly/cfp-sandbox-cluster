@@ -1,4 +1,4 @@
-apiVersion: admissionregistration.k8s.io/v1beta1
+apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
 metadata:
   annotations:
@@ -12,7 +12,10 @@ metadata:
     helm.sh/chart: cert-manager-v0.1.0
   name: cert-manager-webhook
 webhooks:
-  - clientConfig:
+  - admissionReviewVersions:
+      - v1
+      - v1beta1
+    clientConfig:
       service:
         name: cert-manager-webhook
         namespace: cert-manager
@@ -31,3 +34,4 @@ webhooks:
         resources:
           - '*/*'
     sideEffects: None
+    timeoutSeconds: 10

@@ -24,3 +24,12 @@ rules:
       - deletecollection
       - patch
       - update
+  - apiGroups:
+      - acme.cert-manager.io
+    resources:
+      - challenges
+      - orders
+    verbs:
+      - get
+      - list
+      - watch
