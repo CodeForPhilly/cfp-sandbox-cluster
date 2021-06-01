@@ -40,7 +40,7 @@ spec:
                 name: api-server-pws
             - secretRef:
                 name: db-pass
-          image: 'ghcr.io/codeforphilly/paws-data-pipeline/server:2.24'
+          image: 'ghcr.io/codeforphilly/paws-data-pipeline/server:2.27'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
@@ -54,7 +54,7 @@ spec:
             httpGet:
               path: /api/user/test
               port: 5000
-        - image: 'ghcr.io/codeforphilly/paws-data-pipeline/client:2.24'
+        - image: 'ghcr.io/codeforphilly/paws-data-pipeline/client:2.27'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
