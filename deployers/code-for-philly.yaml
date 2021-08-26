@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: code-for-philly
+
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: deployer
+  namespace: code-for-philly
+
+---
+
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: deployer
+  namespace: code-for-philly
+rules:
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["*"]
+
+---
+
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: deployer
+  namespace: code-for-philly
+subjects:
+- kind: ServiceAccount
+  name: deployer
+  namespace: code-for-philly
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: deployer
