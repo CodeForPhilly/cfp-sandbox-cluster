@@ -16,6 +16,8 @@ jobs:
 
     - name: 'Update holobranch: releases/k8s-manifests'
       uses: JarvusInnovations/hologit@actions/projector/v1
+      env:
+        HOLO_SOURCE_PAWS_DATA_PIPELINE: https://codeforphilly-bot:${{ secrets.BOT_GITHUB_TOKEN }}@github.com/CodeForPhilly/paws-data-pipeline.git
       with:
         holobranch: k8s-manifests-github
         commit-to: releases/k8s-manifests
