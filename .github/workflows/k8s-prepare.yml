@@ -1,4 +1,4 @@
-name: Prepare k8s-manifests Deploy PR
+name: 'K8s: Prepare k8s-manifests Deploy PR'
 
 on:
   push:
@@ -10,7 +10,8 @@ env:
 
 
 jobs:
-  prepare-k8s-manifests:
+
+  k8s-prepare:
     runs-on: ubuntu-latest
     steps:
 

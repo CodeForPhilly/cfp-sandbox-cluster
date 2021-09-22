@@ -1,6 +1,5 @@
-apiVersion: v1
-automountServiceAccountToken: true
-kind: ServiceAccount
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
 metadata:
   labels:
     app: webhook
@@ -9,5 +8,11 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: webhook
     helm.sh/chart: cert-manager-v0.1.0
-  name: cert-manager-webhook
-  namespace: cert-manager
+  name: 'cert-manager-webhook:subjectaccessreviews'
+rules:
+  - apiGroups:
+      - authorization.k8s.io
+    resources:
+      - subjectaccessreviews
+    verbs:
+      - create

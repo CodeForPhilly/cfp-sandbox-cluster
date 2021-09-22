@@ -6,18 +6,17 @@ metadata:
     app.kubernetes.io/instance: ingress-nginx
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/version: 0.44.0
-    helm.sh/chart: ingress-nginx-3.23.0
+    app.kubernetes.io/version: 1.0.0
+    helm.sh/chart: ingress-nginx-4.0.1
   name: ingress-nginx-admission
 webhooks:
   - admissionReviewVersions:
       - v1
-      - v1beta1
     clientConfig:
       service:
         name: ingress-nginx-controller-admission
         namespace: ingress-nginx
-        path: /networking/v1beta1/ingresses
+        path: /networking/v1/ingresses
     failurePolicy: Fail
     matchPolicy: Equivalent
     name: validate.nginx.ingress.kubernetes.io
@@ -25,7 +24,7 @@ webhooks:
       - apiGroups:
           - networking.k8s.io
         apiVersions:
-          - v1beta1
+          - v1
         operations:
           - CREATE
           - UPDATE

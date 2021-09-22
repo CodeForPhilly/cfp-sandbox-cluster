@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: prometheus
-    chart: prometheus-13.0.0
+    chart: prometheus-14.6.1
     component: pushgateway
     heritage: Helm
     release: prometheus
@@ -20,14 +20,14 @@ spec:
     metadata:
       labels:
         app: prometheus
-        chart: prometheus-13.0.0
+        chart: prometheus-14.6.1
         component: pushgateway
         heritage: Helm
         release: prometheus
     spec:
       containers:
         - args: null
-          image: 'prom/pushgateway:v1.3.0'
+          image: 'prom/pushgateway:v1.3.1'
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:

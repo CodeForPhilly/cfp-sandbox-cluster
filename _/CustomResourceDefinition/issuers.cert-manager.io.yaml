@@ -1700,7 +1700,7 @@ spec:
                         The OCSP server list is an X.509 v3 extension that
                         defines a list of URLs of OCSP responders. The OCSP
                         responders can be queried for the revocation status of
-                        an issued certificate. If not set, the certificate wil
+                        an issued certificate. If not set, the certificate will
                         be issued with no OCSP servers set. For example, an OCSP
                         server URL could be
                         "http://ocsp.int-x3.letsencrypt.org".
@@ -2024,6 +2024,16 @@ spec:
                           Message is a human readable description of the details
                           of the last transition, complementing reason.
                         type: string
+                      observedGeneration:
+                        description: >-
+                          If set, this represents the .metadata.generation that
+                          the condition was set based upon. For instance, if
+                          .metadata.generation is currently 12, but the
+                          .status.condition[x].observedGeneration is 9, the
+                          condition is out of date with respect to the current
+                          state of the Issuer.
+                        format: int64
+                        type: integer
                       reason:
                         description: >-
                           Reason is a brief machine readable explanation for the
@@ -3720,7 +3730,7 @@ spec:
                         The OCSP server list is an X.509 v3 extension that
                         defines a list of URLs of OCSP responders. The OCSP
                         responders can be queried for the revocation status of
-                        an issued certificate. If not set, the certificate wil
+                        an issued certificate. If not set, the certificate will
                         be issued with no OCSP servers set. For example, an OCSP
                         server URL could be
                         "http://ocsp.int-x3.letsencrypt.org".
@@ -4044,6 +4054,16 @@ spec:
                           Message is a human readable description of the details
                           of the last transition, complementing reason.
                         type: string
+                      observedGeneration:
+                        description: >-
+                          If set, this represents the .metadata.generation that
+                          the condition was set based upon. For instance, if
+                          .metadata.generation is currently 12, but the
+                          .status.condition[x].observedGeneration is 9, the
+                          condition is out of date with respect to the current
+                          state of the Issuer.
+                        format: int64
+                        type: integer
                       reason:
                         description: >-
                           Reason is a brief machine readable explanation for the
@@ -5740,7 +5760,7 @@ spec:
                         The OCSP server list is an X.509 v3 extension that
                         defines a list of URLs of OCSP responders. The OCSP
                         responders can be queried for the revocation status of
-                        an issued certificate. If not set, the certificate wil
+                        an issued certificate. If not set, the certificate will
                         be issued with no OCSP servers set. For example, an OCSP
                         server URL could be
                         "http://ocsp.int-x3.letsencrypt.org".
@@ -6064,6 +6084,16 @@ spec:
                           Message is a human readable description of the details
                           of the last transition, complementing reason.
                         type: string
+                      observedGeneration:
+                        description: >-
+                          If set, this represents the .metadata.generation that
+                          the condition was set based upon. For instance, if
+                          .metadata.generation is currently 12, but the
+                          .status.condition[x].observedGeneration is 9, the
+                          condition is out of date with respect to the current
+                          state of the Issuer.
+                        format: int64
+                        type: integer
                       reason:
                         description: >-
                           Reason is a brief machine readable explanation for the
@@ -7762,7 +7792,7 @@ spec:
                         The OCSP server list is an X.509 v3 extension that
                         defines a list of URLs of OCSP responders. The OCSP
                         responders can be queried for the revocation status of
-                        an issued certificate. If not set, the certificate wil
+                        an issued certificate. If not set, the certificate will
                         be issued with no OCSP servers set. For example, an OCSP
                         server URL could be
                         "http://ocsp.int-x3.letsencrypt.org".
@@ -8086,6 +8116,16 @@ spec:
                           Message is a human readable description of the details
                           of the last transition, complementing reason.
                         type: string
+                      observedGeneration:
+                        description: >-
+                          If set, this represents the .metadata.generation that
+                          the condition was set based upon. For instance, if
+                          .metadata.generation is currently 12, but the
+                          .status.condition[x].observedGeneration is 9, the
+                          condition is out of date with respect to the current
+                          state of the Issuer.
+                        format: int64
+                        type: integer
                       reason:
                         description: >-
                           Reason is a brief machine readable explanation for the

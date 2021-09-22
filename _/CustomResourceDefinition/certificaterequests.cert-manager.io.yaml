@@ -36,12 +36,20 @@ spec:
   scope: Namespaced
   versions:
     - additionalPrinterColumns:
+        - jsonPath: '.status.conditions[?(@.type=="Approved")].status'
+          name: Approved
+          type: string
+        - jsonPath: '.status.conditions[?(@.type=="Denied")].status'
+          name: Denied
+          type: string
         - jsonPath: '.status.conditions[?(@.type=="Ready")].status'
           name: Ready
           type: string
         - jsonPath: .spec.issuerRef.name
           name: Issuer
-          priority: 1
+          type: string
+        - jsonPath: .spec.username
+          name: Requestor
           type: string
         - jsonPath: '.status.conditions[?(@.type=="Ready")].message'
           name: Status
@@ -96,6 +104,25 @@ spec:
                     The requested 'duration' (i.e. lifetime) of the Certificate.
                     This option may be ignored/overridden by some issuer types.
                   type: string
+                extra:
+                  additionalProperties:
+                    items:
+                      type: string
+                    type: array
+                  description: >-
+                    Extra contains extra attributes of the user that created the
+                    CertificateRequest. Populated by the cert-manager webhook on
+                    creation and immutable.
+                  type: object
+                groups:
+                  description: >-
+                    Groups contains group membership of the user that created
+                    the CertificateRequest. Populated by the cert-manager
+                    webhook on creation and immutable.
+                  items:
+                    type: string
+                  type: array
+                  x-kubernetes-list-type: atomic
                 isCA:
                   description: >-
                     IsCA will request to mark the certificate as valid for
@@ -127,6 +154,12 @@ spec:
                   required:
                     - name
                   type: object
+                uid:
+                  description: >-
+                    UID contains the uid of the user that created the
+                    CertificateRequest. Populated by the cert-manager webhook on
+                    creation and immutable.
+                  type: string
                 usages:
                   description: >-
                     Usages is the set of x509 usages that are requested for the
@@ -171,6 +204,12 @@ spec:
                       - netscape sgc
                     type: string
                   type: array
+                username:
+                  description: >-
+                    Username contains the name of the user that created the
+                    CertificateRequest. Populated by the cert-manager webhook on
+                    creation and immutable.
+                  type: string
               required:
                 - csr
                 - issuerRef
@@ -235,7 +274,7 @@ spec:
                       type:
                         description: >-
                           Type of the condition, known values are (`Ready`,
-                          `InvalidRequest`).
+                          `InvalidRequest`, `Approved`, `Denied`).
                         type: string
                     required:
                       - status
@@ -256,12 +295,20 @@ spec:
       subresources:
         status: {}
     - additionalPrinterColumns:
+        - jsonPath: '.status.conditions[?(@.type=="Approved")].status'
+          name: Approved
+          type: string
+        - jsonPath: '.status.conditions[?(@.type=="Denied")].status'
+          name: Denied
+          type: string
         - jsonPath: '.status.conditions[?(@.type=="Ready")].status'
           name: Ready
           type: string
         - jsonPath: .spec.issuerRef.name
           name: Issuer
-          priority: 1
+          type: string
+        - jsonPath: .spec.username
+          name: Requestor
           type: string
         - jsonPath: '.status.conditions[?(@.type=="Ready")].message'
           name: Status
@@ -316,6 +363,25 @@ spec:
                     The requested 'duration' (i.e. lifetime) of the Certificate.
                     This option may be ignored/overridden by some issuer types.
                   type: string
+                extra:
+                  additionalProperties:
+                    items:
+                      type: string
+                    type: array
+                  description: >-
+                    Extra contains extra attributes of the user that created the
+                    CertificateRequest. Populated by the cert-manager webhook on
+                    creation and immutable.
+                  type: object
+                groups:
+                  description: >-
+                    Groups contains group membership of the user that created
+                    the CertificateRequest. Populated by the cert-manager
+                    webhook on creation and immutable.
+                  items:
+                    type: string
+                  type: array
+                  x-kubernetes-list-type: atomic
                 isCA:
                   description: >-
                     IsCA will request to mark the certificate as valid for
@@ -347,6 +413,12 @@ spec:
                   required:
                     - name
                   type: object
+                uid:
+                  description: >-
+                    UID contains the uid of the user that created the
+                    CertificateRequest. Populated by the cert-manager webhook on
+                    creation and immutable.
+                  type: string
                 usages:
                   description: >-
                     Usages is the set of x509 usages that are requested for the
@@ -391,6 +463,12 @@ spec:
                       - netscape sgc
                     type: string
                   type: array
+                username:
+                  description: >-
+                    Username contains the name of the user that created the
+                    CertificateRequest. Populated by the cert-manager webhook on
+                    creation and immutable.
+                  type: string
               required:
                 - csr
                 - issuerRef
@@ -455,7 +533,7 @@ spec:
                       type:
                         description: >-
                           Type of the condition, known values are (`Ready`,
-                          `InvalidRequest`).
+                          `InvalidRequest`, `Approved`, `Denied`).
                         type: string
                     required:
                       - status
@@ -476,12 +554,20 @@ spec:
       subresources:
         status: {}
     - additionalPrinterColumns:
+        - jsonPath: '.status.conditions[?(@.type=="Approved")].status'
+          name: Approved
+          type: string
+        - jsonPath: '.status.conditions[?(@.type=="Denied")].status'
+          name: Denied
+          type: string
         - jsonPath: '.status.conditions[?(@.type=="Ready")].status'
           name: Ready
           type: string
         - jsonPath: .spec.issuerRef.name
           name: Issuer
-          priority: 1
+          type: string
+        - jsonPath: .spec.username
+          name: Requestor
           type: string
         - jsonPath: '.status.conditions[?(@.type=="Ready")].message'
           name: Status
@@ -530,6 +616,25 @@ spec:
                     The requested 'duration' (i.e. lifetime) of the Certificate.
                     This option may be ignored/overridden by some issuer types.
                   type: string
+                extra:
+                  additionalProperties:
+                    items:
+                      type: string
+                    type: array
+                  description: >-
+                    Extra contains extra attributes of the user that created the
+                    CertificateRequest. Populated by the cert-manager webhook on
+                    creation and immutable.
+                  type: object
+                groups:
+                  description: >-
+                    Groups contains group membership of the user that created
+                    the CertificateRequest. Populated by the cert-manager
+                    webhook on creation and immutable.
+                  items:
+                    type: string
+                  type: array
+                  x-kubernetes-list-type: atomic
                 isCA:
                   description: >-
                     IsCA will request to mark the certificate as valid for
@@ -566,6 +671,12 @@ spec:
                     The PEM-encoded x509 certificate signing request to be
                     submitted to the CA for signing.
                   format: byte
+                  type: string
+                uid:
+                  description: >-
+                    UID contains the uid of the user that created the
+                    CertificateRequest. Populated by the cert-manager webhook on
+                    creation and immutable.
                   type: string
                 usages:
                   description: >-
@@ -611,6 +722,12 @@ spec:
                       - netscape sgc
                     type: string
                   type: array
+                username:
+                  description: >-
+                    Username contains the name of the user that created the
+                    CertificateRequest. Populated by the cert-manager webhook on
+                    creation and immutable.
+                  type: string
               required:
                 - issuerRef
                 - request
@@ -675,7 +792,7 @@ spec:
                       type:
                         description: >-
                           Type of the condition, known values are (`Ready`,
-                          `InvalidRequest`).
+                          `InvalidRequest`, `Approved`, `Denied`).
                         type: string
                     required:
                       - status
@@ -698,12 +815,20 @@ spec:
       subresources:
         status: {}
     - additionalPrinterColumns:
+        - jsonPath: '.status.conditions[?(@.type=="Approved")].status'
+          name: Approved
+          type: string
+        - jsonPath: '.status.conditions[?(@.type=="Denied")].status'
+          name: Denied
+          type: string
         - jsonPath: '.status.conditions[?(@.type=="Ready")].status'
           name: Ready
           type: string
         - jsonPath: .spec.issuerRef.name
           name: Issuer
-          priority: 1
+          type: string
+        - jsonPath: .spec.username
+          name: Requestor
           type: string
         - jsonPath: '.status.conditions[?(@.type=="Ready")].message'
           name: Status
@@ -752,6 +877,25 @@ spec:
                     The requested 'duration' (i.e. lifetime) of the Certificate.
                     This option may be ignored/overridden by some issuer types.
                   type: string
+                extra:
+                  additionalProperties:
+                    items:
+                      type: string
+                    type: array
+                  description: >-
+                    Extra contains extra attributes of the user that created the
+                    CertificateRequest. Populated by the cert-manager webhook on
+                    creation and immutable.
+                  type: object
+                groups:
+                  description: >-
+                    Groups contains group membership of the user that created
+                    the CertificateRequest. Populated by the cert-manager
+                    webhook on creation and immutable.
+                  items:
+                    type: string
+                  type: array
+                  x-kubernetes-list-type: atomic
                 isCA:
                   description: >-
                     IsCA will request to mark the certificate as valid for
@@ -788,6 +932,12 @@ spec:
                     The PEM-encoded x509 certificate signing request to be
                     submitted to the CA for signing.
                   format: byte
+                  type: string
+                uid:
+                  description: >-
+                    UID contains the uid of the user that created the
+                    CertificateRequest. Populated by the cert-manager webhook on
+                    creation and immutable.
                   type: string
                 usages:
                   description: >-
@@ -834,6 +984,12 @@ spec:
                       - netscape sgc
                     type: string
                   type: array
+                username:
+                  description: >-
+                    Username contains the name of the user that created the
+                    CertificateRequest. Populated by the cert-manager webhook on
+                    creation and immutable.
+                  type: string
               required:
                 - issuerRef
                 - request
@@ -898,7 +1054,7 @@ spec:
                       type:
                         description: >-
                           Type of the condition, known values are (`Ready`,
-                          `InvalidRequest`).
+                          `InvalidRequest`, `Approved`, `Denied`).
                         type: string
                     required:
                       - status
