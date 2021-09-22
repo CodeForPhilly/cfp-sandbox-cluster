@@ -12,6 +12,3 @@ ingress:
     - secretName: sealed-secrets-tls
       hosts:
         - sealed-secrets.sandbox.k8s.phl.io
-
-dashboards:
-  create: true
