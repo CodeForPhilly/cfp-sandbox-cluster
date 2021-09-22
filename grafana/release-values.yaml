@@ -1,0 +1,11 @@
+# These values as applied last as downstream overrides
+# See https://github.com/grafana/helm-charts/blob/grafana-6.2.1/charts/grafana/values.yaml
+ingress:
+
+  enabled: true
+  hosts:
+    - metrics.sandbox.k8s.phl.io
+  tls:
+    - secretName: grafana-tls
+      hosts:
+        - metrics.sandbox.k8s.phl.io
