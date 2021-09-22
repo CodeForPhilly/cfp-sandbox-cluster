@@ -16,6 +16,9 @@ spec:
       app: prometheus
       component: alertmanager
       release: prometheus
+  strategy:
+    rollingUpdate: null
+    type: Recreate
   template:
     metadata:
       labels:
