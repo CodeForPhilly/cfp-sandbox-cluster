@@ -17,7 +17,7 @@ spec:
       app.kubernetes.io/instance: grafana
       app.kubernetes.io/name: grafana
   strategy:
-    type: RollingUpdate
+    type: Recreate
   template:
     metadata:
       annotations:
