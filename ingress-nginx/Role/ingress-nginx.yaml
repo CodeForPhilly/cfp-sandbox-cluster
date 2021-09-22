@@ -6,8 +6,8 @@ metadata:
     app.kubernetes.io/instance: ingress-nginx
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/version: 0.44.0
-    helm.sh/chart: ingress-nginx-3.23.0
+    app.kubernetes.io/version: 1.0.0
+    helm.sh/chart: ingress-nginx-4.0.1
   name: ingress-nginx
   namespace: ingress-nginx
 rules:
@@ -37,7 +37,6 @@ rules:
       - list
       - watch
   - apiGroups:
-      - extensions
       - networking.k8s.io
     resources:
       - ingresses
@@ -46,7 +45,6 @@ rules:
       - list
       - watch
   - apiGroups:
-      - extensions
       - networking.k8s.io
     resources:
       - ingresses/status
@@ -63,7 +61,7 @@ rules:
   - apiGroups:
       - ''
     resourceNames:
-      - ingress-controller-leader-nginx
+      - ingress-controller-leader
     resources:
       - configmaps
     verbs:

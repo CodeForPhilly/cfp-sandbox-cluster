@@ -3,7 +3,7 @@ kind: ClusterRole
 metadata:
   labels:
     app: prometheus
-    chart: prometheus-13.0.0
+    chart: prometheus-14.6.1
     component: alertmanager
     heritage: Helm
     release: prometheus

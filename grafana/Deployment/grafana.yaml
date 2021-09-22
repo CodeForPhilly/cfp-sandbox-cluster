@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: grafana
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: grafana
-    app.kubernetes.io/version: 7.3.5
-    helm.sh/chart: grafana-6.2.1
+    app.kubernetes.io/version: 8.1.2
+    helm.sh/chart: grafana-6.16.6
   name: grafana
   namespace: grafana
 spec:
@@ -21,13 +21,14 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 96870e551807f3e70a3e09081f979c4cc6962704aaa316077fb14f20ed06f080
-        checksum/dashboards-json-config: c30d3530f73e57774fa12744aa7cbbc2485b9a2a0ae0f44c68b514cd3239805b
+        checksum/config: 9ca0429dc7d331b20224018e3e033418d93b5bfa21ddc7d6ade6fbca3c1ec56f
+        checksum/dashboards-json-config: 674bcee55d42bd14f651e518943c1c1c2103b24d94485a527b73911f3ca429ac
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
       labels:
         app.kubernetes.io/instance: grafana
         app.kubernetes.io/name: grafana
     spec:
+      automountServiceAccountToken: true
       containers:
         - env:
             - name: GF_SECURITY_ADMIN_USER
@@ -40,7 +41,15 @@ spec:
                 secretKeyRef:
                   key: admin-password
                   name: grafana-initial-admin
-          image: 'grafana/grafana:7.3.5'
+            - name: GF_PATHS_DATA
+              value: /var/lib/grafana/
+            - name: GF_PATHS_LOGS
+              value: /var/log/grafana
+            - name: GF_PATHS_PLUGINS
+              value: /var/lib/grafana/plugins
+            - name: GF_PATHS_PROVISIONING
+              value: /etc/grafana/provisioning
+          image: 'grafana/grafana:8.1.2'
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 10
@@ -74,6 +83,7 @@ spec:
             - mountPath: /etc/grafana/provisioning/dashboards/dashboardproviders.yaml
               name: config
               subPath: dashboardproviders.yaml
+      enableServiceLinks: true
       initContainers:
         - command:
             - chown
@@ -93,7 +103,7 @@ spec:
         - args:
             - '-c'
             - >-
-              mkdir -p /var/lib/grafana/dashboards/default && /bin/sh
+              mkdir -p /var/lib/grafana/dashboards/default && /bin/sh -x
               /etc/grafana/download_dashboards.sh
           command:
             - /bin/sh

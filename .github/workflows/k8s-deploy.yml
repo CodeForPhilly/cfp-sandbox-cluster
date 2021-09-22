@@ -1,4 +1,4 @@
-name: Deploy k8s-manifests
+name: 'K8s: Deploy k8s-manifests'
 
 on:
   push:
@@ -10,7 +10,8 @@ env:
 
 
 jobs:
-  deploy-k8s-manifests:
+
+  k8s-deploy:
     runs-on: ubuntu-latest
     steps:
 

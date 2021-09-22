@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: prometheus
-    chart: prometheus-13.0.0
+    chart: prometheus-14.6.1
     component: alertmanager
     heritage: Helm
     release: prometheus
@@ -20,7 +20,7 @@ spec:
     metadata:
       labels:
         app: prometheus
-        chart: prometheus-13.0.0
+        chart: prometheus-14.6.1
         component: alertmanager
         heritage: Helm
         release: prometheus
@@ -29,7 +29,7 @@ spec:
         - args:
             - '--config.file=/etc/config/alertmanager.yml'
             - '--storage.path=/data'
-            - '--cluster.advertise-address=$(POD_IP):6783'
+            - '--cluster.advertise-address=[$(POD_IP)]:6783'
             - '--web.external-url=http://localhost:9093'
           env:
             - name: POD_IP
@@ -58,7 +58,7 @@ spec:
         - args:
             - '--volume-dir=/etc/config'
             - '--webhook-url=http://127.0.0.1:9093/-/reload'
-          image: 'jimmidyson/configmap-reload:v0.4.0'
+          image: 'jimmidyson/configmap-reload:v0.5.0'
           imagePullPolicy: IfNotPresent
           name: prometheus-alertmanager-configmap-reload
           resources: {}

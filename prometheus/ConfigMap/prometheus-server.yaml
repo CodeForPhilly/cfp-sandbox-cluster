@@ -196,6 +196,11 @@ data:
         source_labels:
         - __meta_kubernetes_pod_annotation_prometheus_io_scrape
       - action: replace
+        regex: (https?)
+        source_labels:
+        - __meta_kubernetes_pod_annotation_prometheus_io_scheme
+        target_label: __scheme__
+      - action: replace
         regex: (.+)
         source_labels:
         - __meta_kubernetes_pod_annotation_prometheus_io_path
@@ -218,7 +223,7 @@ data:
         - __meta_kubernetes_pod_name
         target_label: kubernetes_pod_name
       - action: drop
-        regex: Pending|Succeeded|Failed
+        regex: Pending|Succeeded|Failed|Completed
         source_labels:
         - __meta_kubernetes_pod_phase
     - job_name: kubernetes-pods-slow
@@ -230,6 +235,11 @@ data:
         source_labels:
         - __meta_kubernetes_pod_annotation_prometheus_io_scrape_slow
       - action: replace
+        regex: (https?)
+        source_labels:
+        - __meta_kubernetes_pod_annotation_prometheus_io_scheme
+        target_label: __scheme__
+      - action: replace
         regex: (.+)
         source_labels:
         - __meta_kubernetes_pod_annotation_prometheus_io_path
@@ -252,7 +262,7 @@ data:
         - __meta_kubernetes_pod_name
         target_label: kubernetes_pod_name
       - action: drop
-        regex: Pending|Succeeded|Failed
+        regex: Pending|Succeeded|Failed|Completed
         source_labels:
         - __meta_kubernetes_pod_phase
       scrape_interval: 5m
@@ -288,7 +298,7 @@ kind: ConfigMap
 metadata:
   labels:
     app: prometheus
-    chart: prometheus-13.0.0
+    chart: prometheus-14.6.1
     component: server
     heritage: Helm
     release: prometheus
