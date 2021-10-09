@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://codeforphilly.github.io/cfp-sandbox-cluster/development/features/ingress/">
+        <link rel="canonical" href="https://codeforphilly.github.io/cfp-sandbox-cluster/getting-started/service-setup/sealed-secrets/">
       
       <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.2.2, mkdocs-material-7.3.2">
     
     
       
-        <title>Ingress - Philly (sandbox) Civic Cloud</title>
+        <title>Sealed Secrets - Philly (sandbox) Civic Cloud</title>
       
     
     
@@ -69,7 +69,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ingress" class="md-skip">
+        <a href="#sealed-secrets" class="md-skip">
           Skip to content
         </a>
       
@@ -101,7 +101,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Ingress
+              Sealed Secrets
             
           </span>
         </div>
@@ -187,22 +187,6 @@
         
   
   
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../getting-started/" class="md-tabs__link">
-        Getting started
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
     
   
 
@@ -212,6 +196,22 @@
   
     <li class="md-tabs__item">
       <a href="../../" class="md-tabs__link md-tabs__link--active">
+        Getting started
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../development/" class="md-tabs__link">
         Development
       </a>
     </li>
@@ -284,12 +284,14 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
       
       
       
@@ -312,7 +314,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         Getting Started
       </a>
     </li>
@@ -324,12 +326,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" checked>
       
       
       
@@ -352,7 +356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/service-setup/grafana/" class="md-nav__link">
+      <a href="../grafana/" class="md-nav__link">
         Grafana
       </a>
     </li>
@@ -364,11 +368,51 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../getting-started/service-setup/sealed-secrets/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Sealed Secrets
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Sealed Secrets
       </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#back-up-generated-keys" class="md-nav__link">
+    Back up generated keys
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -393,14 +437,12 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
       
       
       
@@ -423,7 +465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../../../development/" class="md-nav__link">
         Development
       </a>
     </li>
@@ -435,14 +477,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
       
       
       
@@ -463,51 +503,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Ingress
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../development/features/ingress/" class="md-nav__link">
         Ingress
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#exposing-services" class="md-nav__link">
-    Exposing services
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -552,8 +552,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#exposing-services" class="md-nav__link">
-    Exposing services
+  <a href="#back-up-generated-keys" class="md-nav__link">
+    Back up generated keys
   </a>
   
 </li>
@@ -570,22 +570,27 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/CodeForPhilly/cfp-sandbox-cluster/edit/main/docs/development/features/ingress.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/CodeForPhilly/cfp-sandbox-cluster/edit/main/docs/getting-started/service-setup/sealed-secrets.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
                 
-                <h1 id="ingress">Ingress<a class="headerlink" href="#ingress" title="Permanent link"> ¶</a></h1>
-<h2 id="exposing-services">Exposing services<a class="headerlink" href="#exposing-services" title="Permanent link"> ¶</a></h2>
-<p><code>*.sandbox.k8s.phl.io</code> should be configured to resolve to the cluster&rsquo;s <code>ingress-nginx</code> service.</p>
-<p>To route a public hostname to a service in the cluster:</p>
-<ol>
-<li>Create an Ingress</li>
-<li>Apply the annotation <code>kubernetes.io/ingress.class: nginx</code> to associate with the cluster&rsquo;s main ingress service</li>
-<li>Apply the annotation <code>cert-manager.io/cluster-issuer: letsencrypt-prod</code> to enable automatic setup of an SSL certificate</li>
-<li>Assign an unused hostname under <code>.sandbox.k8s.phl.io</code> (every public service should start with one of these)</li>
-<li>Optionally, CNAME a custom hostname to the <code>.sandbox.k8s.phl.io</code> hostname and add it to the same ingress</li>
-</ol>
+                <h1 id="sealed-secrets">Sealed Secrets<a class="headerlink" href="#sealed-secrets" title="Permanent link"> ¶</a></h1>
+<p>The <a href="https://github.com/bitnami-labs/sealed-secrets">sealed-secrets</a> controller will automatically generate a public+private keypair for each cluster that will be used to encrypt and decrypt secrets.</p>
+<p>After any new cluster is provisioned, the generated keypair should be backed up externally (i.e. to a shared VaultWarden/BitWarden collection). With the keypair backed up, secrets can be <a href="https://github.com/bitnami-labs/sealed-secrets#can-i-decrypt-my-secrets-offline-with-a-backup-key">decrypted locally</a> or <a href="https://github.com/bitnami-labs/sealed-secrets#can-i-bring-my-own-pre-generated-certificates">restored to a new cluster</a> in the future.</p>
+<h2 id="back-up-generated-keys">Back up generated keys<a class="headerlink" href="#back-up-generated-keys" title="Permanent link"> ¶</a></h2>
+<p><a href="https://github.com/bitnami-labs/sealed-secrets#can-i-decrypt-my-secrets-offline-with-a-backup-key">From the <code>sealed-secrets</code> README.md</a>:</p>
+<div class="highlight"><pre><span></span><code>kubectl get secret <span class="se">\</span>
+    -n sealed-secrets <span class="se">\</span>
+    -l sealedsecrets.bitnami.com/sealed-secrets-key <span class="se">\</span>
+    -o yaml <span class="se">\</span>
+&gt; cluster-sealed-secrets-master.key
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Sensitive data!</p>
+<p>Be sure to keep this file secure and delete from your working directory after uploading it to a secure credentials vault for backup.</p>
+<p><strong>Do not commit this file to source control</strong></p>
+</div>
                 
               
               
@@ -605,7 +610,7 @@
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Development" rel="prev">
+        <a href="../grafana/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Grafana" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -614,11 +619,26 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Development
+              Grafana
             </div>
           </div>
         </a>
       
+      
+        
+        <a href="../../../development/" class="md-footer__link md-footer__link--next" aria-label="Next: Development" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Development
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
       
     </nav>
   
