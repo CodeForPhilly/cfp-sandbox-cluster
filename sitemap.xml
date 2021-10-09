@@ -21,6 +21,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/development/features/sealed-secrets/</loc>
+         <lastmod>2021-10-09</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/getting-started/</loc>
          <lastmod>2021-10-09</lastmod>
          <changefreq>daily</changefreq>

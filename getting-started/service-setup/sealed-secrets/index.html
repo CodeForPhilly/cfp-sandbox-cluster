@@ -409,6 +409,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#enable-ingress" class="md-nav__link">
+    Enable ingress
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -513,6 +520,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../development/features/sealed-secrets/" class="md-nav__link">
+        Sealed Secrets
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -558,6 +579,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#enable-ingress" class="md-nav__link">
+    Enable ingress
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -591,6 +619,27 @@
 <p>Be sure to keep this file secure and delete from your working directory after uploading it to a secure credentials vault for backup.</p>
 <p><strong>Do not commit this file to source control</strong></p>
 </div>
+<h2 id="enable-ingress">Enable ingress<a class="headerlink" href="#enable-ingress" title="Permanent link"> ¶</a></h2>
+<p>The <code>sealed-secrets</code> helm chart includes an ingress that can be configured to provide a public URL to the cluster&rsquo;s public certificate that can be used for local <code>kubeseal</code> client operations.</p>
+<p>To enable the ingress, configure and deploy <code>sealed-secrets/release-values.yaml</code>:</p>
+<div class="tabbed-set" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">sealed-secrets/release-values.yaml</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nt">ingress</span><span class="p">:</span>
+<span class="nt">enabled</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">annotations</span><span class="p">:</span>
+    <span class="nt">kubernetes.io/ingress.class</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">nginx</span>
+    <span class="nt">cert-manager.io/cluster-issuer</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">letsencrypt-prod</span>
+<span class="nt">hosts</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">sealed-secrets.sandbox.k8s.phl.io</span>
+<span class="nt">tls</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">secretName</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">sealed-secrets-tls</span>
+    <span class="nt">hosts</span><span class="p">:</span>
+        <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">sealed-secrets.sandbox.k8s.phl.io</span>
+</code></pre></div>
+</div>
+</div>
+<p>Once deployed, local <code>kubeseal</code> clients can be configured to use it by setting the <code>SEALED_SECRETS_CERT</code> environment variable:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">SEALED_SECRETS_CERT</span><span class="o">=</span>https://sealed-secrets.sandbox.k8s.phl.io/v1/cert.pem
+</code></pre></div>
                 
               
               
