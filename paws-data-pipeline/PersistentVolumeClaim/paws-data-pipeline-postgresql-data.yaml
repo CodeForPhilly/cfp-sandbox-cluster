@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app.kubernetes.io/instance: paws-data-pipeline
+    app.kubernetes.io/name: paws-datapipeline
+  name: paws-data-pipeline-postgresql-data
+  namespace: paws-data-pipeline
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

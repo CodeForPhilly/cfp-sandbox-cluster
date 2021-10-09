@@ -35,12 +35,16 @@ spec:
             - containerPort: 5432
               name: postgresql
               protocol: TCP
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: paws-data-pipeline-postgresql-data
+              subPath: postgresql-data
         - envFrom:
             - secretRef:
                 name: api-server-pws
             - secretRef:
                 name: db-pass
-          image: 'ghcr.io/codeforphilly/paws-data-pipeline/server:2.27'
+          image: 'ghcr.io/codeforphilly/paws-data-pipeline/server:2.29'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
@@ -54,7 +58,11 @@ spec:
             httpGet:
               path: /api/user/test
               port: 5000
-        - image: 'ghcr.io/codeforphilly/paws-data-pipeline/client:2.27'
+          volumeMounts:
+            - mountPath: /var/lib/server/data
+              name: paws-data-pipeline-server-data
+              subPath: server-data
+        - image: 'ghcr.io/codeforphilly/paws-data-pipeline/client:2.29'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
@@ -79,3 +87,10 @@ spec:
         - name: regcred
       securityContext: {}
       serviceAccountName: paws-dp-chart
+      volumes:
+        - name: paws-data-pipeline-postgresql-data
+          persistentVolumeClaim:
+            claimName: paws-data-pipeline-postgresql-data
+        - name: paws-data-pipeline-server-data
+          persistentVolumeClaim:
+            claimName: paws-data-pipeline-server-data
