@@ -44,7 +44,7 @@ spec:
                 name: api-server-pws
             - secretRef:
                 name: db-pass
-          image: 'ghcr.io/codeforphilly/paws-data-pipeline/server:2.33'
+          image: 'ghcr.io/codeforphilly/paws-data-pipeline/server:2.34'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
@@ -62,7 +62,7 @@ spec:
             - mountPath: /var/lib/server/data
               name: paws-data-pipeline-server-data
               subPath: server-data
-        - image: 'ghcr.io/codeforphilly/paws-data-pipeline/client:2.33'
+        - image: 'ghcr.io/codeforphilly/paws-data-pipeline/client:2.34'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
