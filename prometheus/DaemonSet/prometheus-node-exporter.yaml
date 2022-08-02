@@ -3,7 +3,7 @@ kind: DaemonSet
 metadata:
   labels:
     app: prometheus
-    chart: prometheus-14.6.1
+    chart: prometheus-15.6.0
     component: node-exporter
     heritage: Helm
     release: prometheus
@@ -19,7 +19,7 @@ spec:
     metadata:
       labels:
         app: prometheus
-        chart: prometheus-14.6.1
+        chart: prometheus-15.6.0
         component: node-exporter
         heritage: Helm
         release: prometheus
@@ -30,7 +30,7 @@ spec:
             - '--path.sysfs=/host/sys'
             - '--path.rootfs=/host/root'
             - '--web.listen-address=:9100'
-          image: 'quay.io/prometheus/node-exporter:v1.1.2'
+          image: 'quay.io/prometheus/node-exporter:v1.3.0'
           imagePullPolicy: IfNotPresent
           name: prometheus-node-exporter
           ports:

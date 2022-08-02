@@ -16,8 +16,15 @@ spec:
         app: hairpin-proxy-controller
     spec:
       containers:
-        - image: 'compumike/hairpin-proxy-controller:0.1.1'
+        - image: 'compumike/hairpin-proxy-controller:0.2.1'
           name: main
+          resources:
+            limits:
+              cpu: 50m
+              memory: 100Mi
+            requests:
+              cpu: 10m
+              memory: 50Mi
       securityContext:
         runAsGroup: 65533
         runAsUser: 405

@@ -7,14 +7,16 @@ metadata:
     app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: webhook
-    helm.sh/chart: cert-manager-v0.1.0
+    app.kubernetes.io/version: v1.7.2
+    helm.sh/chart: cert-manager-v1.7.2
   name: cert-manager-webhook
   namespace: cert-manager
 spec:
   ports:
     - name: https
       port: 443
-      targetPort: 10250
+      protocol: TCP
+      targetPort: https
   selector:
     app.kubernetes.io/component: webhook
     app.kubernetes.io/instance: cert-manager

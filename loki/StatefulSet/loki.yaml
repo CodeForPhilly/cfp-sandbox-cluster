@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  annotations: {}
+  labels:
+    app: loki
+    chart: loki-2.10.1
+    heritage: Helm
+    release: loki
+  name: loki
+  namespace: loki
+spec:
+  podManagementPolicy: OrderedReady
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loki
+      release: loki
+  serviceName: loki-headless
+  template:
+    metadata:
+      annotations:
+        checksum/config: a1107578e230f48915ab9547c8ec9afbed4174dad76174c68aef8480e965a88e
+        prometheus.io/port: http-metrics
+        prometheus.io/scrape: 'true'
+      labels:
+        app: loki
+        name: loki
+        release: loki
+    spec:
+      affinity: {}
+      containers:
+        - args:
+            - '-config.file=/etc/loki/loki.yaml'
+          env: null
+          image: 'grafana/loki:2.4.2'
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /ready
+              port: http-metrics
+            initialDelaySeconds: 45
+          name: loki
+          ports:
+            - containerPort: 3100
+              name: http-metrics
+              protocol: TCP
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: http-metrics
+            initialDelaySeconds: 45
+          resources: {}
+          securityContext:
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - mountPath: /tmp
+              name: tmp
+            - mountPath: /etc/loki
+              name: config
+            - mountPath: /data
+              name: storage
+              subPath: null
+      initContainers: []
+      nodeSelector: {}
+      securityContext:
+        fsGroup: 10001
+        runAsGroup: 10001
+        runAsNonRoot: true
+        runAsUser: 10001
+      serviceAccountName: loki
+      terminationGracePeriodSeconds: 4800
+      tolerations: []
+      volumes:
+        - emptyDir: {}
+          name: tmp
+        - name: config
+          secret:
+            secretName: loki
+        - emptyDir: {}
+          name: storage
+  updateStrategy:
+    type: RollingUpdate

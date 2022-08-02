@@ -5,7 +5,7 @@ metadata:
     prometheus.io/probe: pushgateway
   labels:
     app: prometheus
-    chart: prometheus-14.6.1
+    chart: prometheus-15.6.0
     component: pushgateway
     heritage: Helm
     release: prometheus
