@@ -21,28 +21,28 @@ spec:
               service:
                 name: prevention-point
                 port:
-                  number: frontend-http
+                  name: frontend-http
             path: /
             pathType: Prefix
           - backend:
               service:
                 name: prevention-point
                 port:
-                  number: backend-http
+                  name: backend-http
             path: /api/
             pathType: Prefix
           - backend:
               service:
                 name: prevention-point
                 port:
-                  number: backend-http
+                  name: backend-http
             path: /admin/
             pathType: Prefix
           - backend:
               service:
                 name: prevention-point
                 port:
-                  number: backend-http
+                  name: backend-http
             path: /static/admin/
             pathType: Prefix
   tls:
