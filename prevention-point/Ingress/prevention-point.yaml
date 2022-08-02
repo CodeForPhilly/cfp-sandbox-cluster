@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -18,21 +18,33 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: prevention-point
-              servicePort: frontend-http
+              service:
+                name: prevention-point
+                port:
+                  number: frontend-http
             path: /
+            pathType: Prefix
           - backend:
-              serviceName: prevention-point
-              servicePort: backend-http
+              service:
+                name: prevention-point
+                port:
+                  number: backend-http
             path: /api/
+            pathType: Prefix
           - backend:
-              serviceName: prevention-point
-              servicePort: backend-http
+              service:
+                name: prevention-point
+                port:
+                  number: backend-http
             path: /admin/
+            pathType: Prefix
           - backend:
-              serviceName: prevention-point
-              servicePort: backend-http
+              service:
+                name: prevention-point
+                port:
+                  number: backend-http
             path: /static/admin/
+            pathType: Prefix
   tls:
     - hosts:
         - prevention-point.sandbox.k8s.phl.io
