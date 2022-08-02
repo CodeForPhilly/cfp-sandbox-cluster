@@ -6,9 +6,5 @@ ingress:
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
-  hosts:
-    - sealed-secrets.sandbox.k8s.phl.io
-  tls:
-    - secretName: sealed-secrets-tls
-      hosts:
-        - sealed-secrets.sandbox.k8s.phl.io
+  hostname: sealed-secrets.sandbox.k8s.phl.io
+  tls: true
