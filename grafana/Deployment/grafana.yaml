@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: grafana
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: grafana
-    app.kubernetes.io/version: 8.1.2
-    helm.sh/chart: grafana-6.16.6
+    app.kubernetes.io/version: 8.4.2
+    helm.sh/chart: grafana-6.24.1
   name: grafana
   namespace: grafana
 spec:
@@ -21,8 +21,8 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 9ca0429dc7d331b20224018e3e033418d93b5bfa21ddc7d6ade6fbca3c1ec56f
-        checksum/dashboards-json-config: 674bcee55d42bd14f651e518943c1c1c2103b24d94485a527b73911f3ca429ac
+        checksum/config: 7dbe3813c0c051a9d839143ebc889683637a307aefcb974d5da9fbcd2f0ff110
+        checksum/dashboards-json-config: 7291c07fc833a633c18588cc185f47c83ce744835e257c4615b0b777432910ea
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
       labels:
         app.kubernetes.io/instance: grafana
@@ -49,7 +49,7 @@ spec:
               value: /var/lib/grafana/plugins
             - name: GF_PATHS_PROVISIONING
               value: /etc/grafana/provisioning
-          image: 'grafana/grafana:8.1.2'
+          image: 'grafana/grafana:8.4.2'
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 10

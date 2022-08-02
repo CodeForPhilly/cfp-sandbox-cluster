@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
@@ -12,9 +12,12 @@ spec:
       http:
         paths:
           - backend:
-              serviceName: echo-http
-              servicePort: 80
+              service:
+                name: echo-http
+                port:
+                  number: 80
             path: /
+            pathType: Prefix
   tls:
     - hosts:
         - echo-http.sandbox.k8s.phl.io

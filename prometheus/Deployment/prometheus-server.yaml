@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     app: prometheus
-    chart: prometheus-14.6.1
+    chart: prometheus-15.6.0
     component: server
     heritage: Helm
     release: prometheus
@@ -23,7 +23,7 @@ spec:
     metadata:
       labels:
         app: prometheus
-        chart: prometheus-14.6.1
+        chart: prometheus-15.6.0
         component: server
         heritage: Helm
         release: prometheus
@@ -47,13 +47,14 @@ spec:
             - '--web.console.libraries=/etc/prometheus/console_libraries'
             - '--web.console.templates=/etc/prometheus/consoles'
             - '--web.enable-lifecycle'
-          image: 'quay.io/prometheus/prometheus:v2.26.0'
+          image: 'quay.io/prometheus/prometheus:v2.34.0'
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 3
             httpGet:
               path: /-/healthy
               port: 9090
+              scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 15
             successThreshold: 1
@@ -66,6 +67,7 @@ spec:
             httpGet:
               path: /-/ready
               port: 9090
+              scheme: HTTP
             initialDelaySeconds: 30
             periodSeconds: 5
             successThreshold: 1

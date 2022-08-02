@@ -4,7 +4,7 @@ metadata:
   annotations: {}
   labels:
     app: prometheus
-    chart: prometheus-14.6.1
+    chart: prometheus-15.6.0
     component: node-exporter
     heritage: Helm
     release: prometheus

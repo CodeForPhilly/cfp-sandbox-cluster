@@ -7,7 +7,8 @@ metadata:
     app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: webhook
-    helm.sh/chart: cert-manager-v0.1.0
+    app.kubernetes.io/version: v1.7.2
+    helm.sh/chart: cert-manager-v1.7.2
   name: 'cert-manager-webhook:subjectaccessreviews'
 roleRef:
   apiGroup: rbac.authorization.k8s.io

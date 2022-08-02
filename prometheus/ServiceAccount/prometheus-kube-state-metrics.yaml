@@ -3,9 +3,12 @@ imagePullSecrets: []
 kind: ServiceAccount
 metadata:
   labels:
+    app.kubernetes.io/component: metrics
     app.kubernetes.io/instance: prometheus
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: kube-state-metrics
-    helm.sh/chart: kube-state-metrics-3.4.2
+    app.kubernetes.io/part-of: kube-state-metrics
+    app.kubernetes.io/version: 2.3.0
+    helm.sh/chart: kube-state-metrics-4.4.3
   name: prometheus-kube-state-metrics
   namespace: prometheus
