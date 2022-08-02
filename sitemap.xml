@@ -2,42 +2,52 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/</loc>
-         <lastmod>2021-10-09</lastmod>
+         <lastmod>2022-08-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/echo-service/</loc>
-         <lastmod>2021-10-09</lastmod>
+         <lastmod>2022-08-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/development/</loc>
-         <lastmod>2021-10-09</lastmod>
+         <lastmod>2022-08-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/development/features/ingress/</loc>
-         <lastmod>2021-10-09</lastmod>
+         <lastmod>2022-08-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/development/features/sealed-secrets/</loc>
-         <lastmod>2021-10-09</lastmod>
+         <lastmod>2022-08-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/getting-started/</loc>
-         <lastmod>2021-10-09</lastmod>
+         <lastmod>2022-08-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/getting-started/service-setup/grafana/</loc>
-         <lastmod>2021-10-09</lastmod>
+         <lastmod>2022-08-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/getting-started/service-setup/sealed-secrets/</loc>
-         <lastmod>2021-10-09</lastmod>
+         <lastmod>2022-08-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/operations/</loc>
+         <lastmod>2022-08-02</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/operations/upgrades/to-0.20/</loc>
+         <lastmod>2022-08-02</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
