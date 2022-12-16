@@ -3,7 +3,7 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     app: prometheus
-    chart: prometheus-15.6.0
+    chart: prometheus-15.18.0
     component: server
     heritage: Helm
     release: prometheus

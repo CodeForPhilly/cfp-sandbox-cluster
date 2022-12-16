@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: promtail
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: promtail
-    app.kubernetes.io/version: 2.4.2
-    helm.sh/chart: promtail-3.11.0
+    app.kubernetes.io/version: 2.6.1
+    helm.sh/chart: promtail-6.6.2
   name: promtail
   namespace: loki
 spec:
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: ae268d82ce5d5a302331180fa8a569e1afc5cbfd6ca2e95de8caaed16a21f90c
+        checksum/config: 2550ba16c8cfeb63175bf3359b69761b656f90e0c0da95615f880abe89bcf6d7
       labels:
         app.kubernetes.io/instance: promtail
         app.kubernetes.io/name: promtail
@@ -30,7 +30,7 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.nodeName
-          image: 'docker.io/grafana/promtail:2.4.2'
+          image: 'docker.io/grafana/promtail:2.6.1'
           imagePullPolicy: IfNotPresent
           name: promtail
           ports:
@@ -63,6 +63,7 @@ spec:
             - mountPath: /var/log/pods
               name: pods
               readOnly: true
+      enableServiceLinks: true
       securityContext:
         runAsGroup: 0
         runAsUser: 0

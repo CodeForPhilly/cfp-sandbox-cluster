@@ -3,7 +3,7 @@ kind: RoleBinding
 metadata:
   labels:
     app: loki
-    chart: loki-2.10.1
+    chart: loki-2.16.0
     heritage: Helm
     release: loki
   name: loki

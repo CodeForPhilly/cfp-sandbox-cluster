@@ -4,7 +4,7 @@ metadata:
   annotations: {}
   labels:
     app: loki
-    chart: loki-2.10.1
+    chart: loki-2.16.0
     heritage: Helm
     release: loki
   name: loki
@@ -20,7 +20,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: a1107578e230f48915ab9547c8ec9afbed4174dad76174c68aef8480e965a88e
+        checksum/config: f7c516d64b976f04d4c31a243b6c2091ced173f942f6315d3ee2ba37ca7c0bd9
         prometheus.io/port: http-metrics
         prometheus.io/scrape: 'true'
       labels:
@@ -33,7 +33,7 @@ spec:
         - args:
             - '-config.file=/etc/loki/loki.yaml'
           env: null
-          image: 'grafana/loki:2.4.2'
+          image: 'grafana/loki:2.6.1'
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
@@ -44,6 +44,12 @@ spec:
           ports:
             - containerPort: 3100
               name: http-metrics
+              protocol: TCP
+            - containerPort: 9095
+              name: grpc
+              protocol: TCP
+            - containerPort: 7946
+              name: memberlist-port
               protocol: TCP
           readinessProbe:
             httpGet:

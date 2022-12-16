@@ -7,8 +7,8 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: ingress-nginx
     app.kubernetes.io/part-of: ingress-nginx
-    app.kubernetes.io/version: 1.1.2
-    helm.sh/chart: ingress-nginx-4.0.18
+    app.kubernetes.io/version: 1.5.1
+    helm.sh/chart: ingress-nginx-4.4.0
   name: ingress-nginx
   namespace: ingress-nginx
 rules:
@@ -62,7 +62,7 @@ rules:
   - apiGroups:
       - ''
     resourceNames:
-      - ingress-controller-leader
+      - ingress-nginx-leader
     resources:
       - configmaps
     verbs:
@@ -75,9 +75,32 @@ rules:
     verbs:
       - create
   - apiGroups:
+      - coordination.k8s.io
+    resourceNames:
+      - ingress-nginx-leader
+    resources:
+      - leases
+    verbs:
+      - get
+      - update
+  - apiGroups:
+      - coordination.k8s.io
+    resources:
+      - leases
+    verbs:
+      - create
+  - apiGroups:
       - ''
     resources:
       - events
     verbs:
       - create
       - patch
+  - apiGroups:
+      - discovery.k8s.io
+    resources:
+      - endpointslices
+    verbs:
+      - list
+      - watch
+      - get

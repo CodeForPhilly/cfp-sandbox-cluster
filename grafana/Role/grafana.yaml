@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: grafana
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: grafana
-    app.kubernetes.io/version: 8.4.2
-    helm.sh/chart: grafana-6.24.1
+    app.kubernetes.io/version: 9.2.5
+    helm.sh/chart: grafana-6.44.10
   name: grafana
   namespace: grafana
 rules:

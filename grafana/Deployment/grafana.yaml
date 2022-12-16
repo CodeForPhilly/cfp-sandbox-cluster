@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: grafana
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: grafana
-    app.kubernetes.io/version: 8.4.2
-    helm.sh/chart: grafana-6.24.1
+    app.kubernetes.io/version: 9.2.5
+    helm.sh/chart: grafana-6.44.10
   name: grafana
   namespace: grafana
 spec:
@@ -21,8 +21,8 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 7dbe3813c0c051a9d839143ebc889683637a307aefcb974d5da9fbcd2f0ff110
-        checksum/dashboards-json-config: 7291c07fc833a633c18588cc185f47c83ce744835e257c4615b0b777432910ea
+        checksum/config: 72c936e8e1ff007758598b923885b11f3001441e27b8b2f9b2c466de0def2f1e
+        checksum/dashboards-json-config: 4f1a6849aba728c6f66b9b27a78f020f7f74b2cb327597cec42eedc8ab62986a
         checksum/sc-dashboard-provider-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
       labels:
         app.kubernetes.io/instance: grafana
@@ -49,7 +49,7 @@ spec:
               value: /var/lib/grafana/plugins
             - name: GF_PATHS_PROVISIONING
               value: /etc/grafana/provisioning
-          image: 'grafana/grafana:8.4.2'
+          image: 'grafana/grafana:9.2.5'
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 10
@@ -60,9 +60,6 @@ spec:
             timeoutSeconds: 30
           name: grafana
           ports:
-            - containerPort: 80
-              name: service
-              protocol: TCP
             - containerPort: 3000
               name: grafana
               protocol: TCP
@@ -70,7 +67,6 @@ spec:
             httpGet:
               path: /api/health
               port: 3000
-          resources: {}
           volumeMounts:
             - mountPath: /etc/grafana/grafana.ini
               name: config
@@ -93,7 +89,6 @@ spec:
           image: 'busybox:1.31.1'
           imagePullPolicy: IfNotPresent
           name: init-chown-data
-          resources: {}
           securityContext:
             runAsNonRoot: false
             runAsUser: 0
@@ -108,10 +103,9 @@ spec:
           command:
             - /bin/sh
           env: null
-          image: 'curlimages/curl:7.73.0'
+          image: 'curlimages/curl:7.85.0'
           imagePullPolicy: IfNotPresent
           name: download-dashboards
-          resources: {}
           volumeMounts:
             - mountPath: /etc/grafana/download_dashboards.sh
               name: config
