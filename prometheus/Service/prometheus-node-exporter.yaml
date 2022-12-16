@@ -5,14 +5,13 @@ metadata:
     prometheus.io/scrape: 'true'
   labels:
     app: prometheus
-    chart: prometheus-15.6.0
+    chart: prometheus-15.18.0
     component: node-exporter
     heritage: Helm
     release: prometheus
   name: prometheus-node-exporter
   namespace: prometheus
 spec:
-  clusterIP: None
   ports:
     - name: metrics
       port: 9100

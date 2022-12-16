@@ -4,6 +4,7 @@ data:
     {}
   alerts: |
     {}
+  allow-snippet-annotations: 'false'
   prometheus.yml: |
     global:
       evaluation_interval: 1m
@@ -70,7 +71,8 @@ data:
       tls_config:
         ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
         insecure_skip_verify: true
-    - job_name: kubernetes-service-endpoints
+    - honor_labels: true
+      job_name: kubernetes-service-endpoints
       kubernetes_sd_configs:
       - role: endpoints
       relabel_configs:
@@ -93,7 +95,7 @@ data:
         - __meta_kubernetes_service_annotation_prometheus_io_path
         target_label: __metrics_path__
       - action: replace
-        regex: ([^:]+)(?::\d+)?;(\d+)
+        regex: (.+?)(?::\d+)?;(\d+)
         replacement: $1:$2
         source_labels:
         - __address__
@@ -116,7 +118,8 @@ data:
         source_labels:
         - __meta_kubernetes_pod_node_name
         target_label: node
-    - job_name: kubernetes-service-endpoints-slow
+    - honor_labels: true
+      job_name: kubernetes-service-endpoints-slow
       kubernetes_sd_configs:
       - role: endpoints
       relabel_configs:
@@ -135,7 +138,7 @@ data:
         - __meta_kubernetes_service_annotation_prometheus_io_path
         target_label: __metrics_path__
       - action: replace
-        regex: ([^:]+)(?::\d+)?;(\d+)
+        regex: (.+?)(?::\d+)?;(\d+)
         replacement: $1:$2
         source_labels:
         - __address__
@@ -169,7 +172,8 @@ data:
         regex: pushgateway
         source_labels:
         - __meta_kubernetes_service_annotation_prometheus_io_probe
-    - job_name: kubernetes-services
+    - honor_labels: true
+      job_name: kubernetes-services
       kubernetes_sd_configs:
       - role: service
       metrics_path: /probe
@@ -197,7 +201,8 @@ data:
       - source_labels:
         - __meta_kubernetes_service_name
         target_label: service
-    - job_name: kubernetes-pods
+    - honor_labels: true
+      job_name: kubernetes-pods
       kubernetes_sd_configs:
       - role: pod
       relabel_configs:
@@ -220,7 +225,7 @@ data:
         - __meta_kubernetes_pod_annotation_prometheus_io_path
         target_label: __metrics_path__
       - action: replace
-        regex: ([^:]+)(?::\d+)?;(\d+)
+        regex: (.+?)(?::\d+)?;(\d+)
         replacement: $1:$2
         source_labels:
         - __address__
@@ -243,7 +248,8 @@ data:
         regex: Pending|Succeeded|Failed|Completed
         source_labels:
         - __meta_kubernetes_pod_phase
-    - job_name: kubernetes-pods-slow
+    - honor_labels: true
+      job_name: kubernetes-pods-slow
       kubernetes_sd_configs:
       - role: pod
       relabel_configs:
@@ -262,7 +268,7 @@ data:
         - __meta_kubernetes_pod_annotation_prometheus_io_path
         target_label: __metrics_path__
       - action: replace
-        regex: ([^:]+)(?::\d+)?;(\d+)
+        regex: (.+?)(?::\d+)?;(\d+)
         replacement: $1:$2
         source_labels:
         - __address__
@@ -318,7 +324,7 @@ kind: ConfigMap
 metadata:
   labels:
     app: prometheus
-    chart: prometheus-15.6.0
+    chart: prometheus-15.18.0
     component: server
     heritage: Helm
     release: prometheus

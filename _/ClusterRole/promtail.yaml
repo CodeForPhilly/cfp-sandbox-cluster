@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: promtail
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: promtail
-    app.kubernetes.io/version: 2.4.2
-    helm.sh/chart: promtail-3.11.0
+    app.kubernetes.io/version: 2.6.1
+    helm.sh/chart: promtail-6.6.2
   name: promtail
 rules:
   - apiGroups:

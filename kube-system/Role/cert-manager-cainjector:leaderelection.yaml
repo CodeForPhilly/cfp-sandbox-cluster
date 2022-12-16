@@ -7,28 +7,11 @@ metadata:
     app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: cainjector
-    app.kubernetes.io/version: v1.7.2
-    helm.sh/chart: cert-manager-v1.7.2
+    app.kubernetes.io/version: v1.10.1
+    helm.sh/chart: cert-manager-v1.10.1
   name: 'cert-manager-cainjector:leaderelection'
   namespace: kube-system
 rules:
-  - apiGroups:
-      - ''
-    resourceNames:
-      - cert-manager-cainjector-leader-election
-      - cert-manager-cainjector-leader-election-core
-    resources:
-      - configmaps
-    verbs:
-      - get
-      - update
-      - patch
-  - apiGroups:
-      - ''
-    resources:
-      - configmaps
-    verbs:
-      - create
   - apiGroups:
       - coordination.k8s.io
     resourceNames:
