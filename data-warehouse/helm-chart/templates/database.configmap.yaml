@@ -1,0 +1,13 @@
+{{- if .Values.postgresql.config }}
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "data-warehouse.fullname" . }}-postgresql
+  labels:
+    {{- include "data-warehouse.labels" . | nindent 4 }}
+    component: postgresql
+data:
+  {{- toYaml .Values.postgresql.config | nindent 2 }}
+
+{{- end }}

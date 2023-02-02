@@ -1,0 +1,19 @@
+[hololens]
+package = "holo/lens-helm3/1.22"
+
+[hololens.input]
+root = "data-warehouse"
+files = "**"
+
+[hololens.output]
+merge = "replace"
+
+[hololens.helm]
+release_name = "data-warehouse"
+namespace = "data-warehouse"
+namespace_fill = true
+
+chart_path = "helm-chart"
+value_files = [
+    "release-values.yaml"
+]

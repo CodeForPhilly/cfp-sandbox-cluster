@@ -1,0 +1,25 @@
+postgresql:
+  image:
+    repository: postgres
+    tag: 13
+  imagePullSecrets: {}
+  replicas: 1
+  volumes:
+    data:
+      size: 5Gi
+  existingSecret: postgresql
+  config: {}
+  podAnnotations: {}
+  nodeSelector: {}
+  affinity: {}
+  tolerations: []
+
+backups:
+  enabled: true
+  snitchUrl: ~
+  schedule: "40 * * * *"
+  secretName: "restic"
+  prune:
+    keepLast: 3
+    keepDaily: 7
+    keepWeekly: 52
