@@ -8,27 +8,27 @@
       
       
       
-        <link rel="canonical" href="https://codeforphilly.github.io/cfp-sandbox-cluster/development/features/ingress/">
+        <link rel="canonical" href="https://codeforphilly.github.io/cfp-sandbox-cluster/data-warehouse/add-user/">
       
       
-        <link rel="prev" href="../../">
+        <link rel="prev" href="../">
       
       
-        <link rel="next" href="../sealed-secrets/">
+        <link rel="next" href="../initial-setup/">
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.12">
     
     
       
-        <title>Ingress - Philly (sandbox) Civic Cloud</title>
+        <title>Add a user - Philly (sandbox) Civic Cloud</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.0d440cfe.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0d440cfe.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
       
       
 
@@ -46,7 +46,7 @@
     
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -71,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#ingress" class="md-skip">
+        <a href="#add-a-user" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Philly (sandbox) Civic Cloud" class="md-header__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
+    <a href="../.." title="Philly (sandbox) Civic Cloud" class="md-header__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Ingress
+              Add a user
             
           </span>
         </div>
@@ -179,7 +179,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../.." class="md-tabs__link">
+    <a href="../.." class="md-tabs__link">
       Cluster Documentation
     </a>
   </li>
@@ -194,11 +194,39 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../getting-started/" class="md-tabs__link">
+      <a href="../../getting-started/" class="md-tabs__link">
         Getting started
       </a>
     </li>
   
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../development/" class="md-tabs__link">
+        Development
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../echo-service/" class="md-tabs__link">
+      Echo service
+    </a>
+  </li>
 
       
         
@@ -212,35 +240,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../" class="md-tabs__link md-tabs__link--active">
-        Development
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
-  <li class="md-tabs__item">
-    <a href="../../../echo-service/" class="md-tabs__link">
-      Echo service
-    </a>
-  </li>
-
-      
-        
-  
-  
-
-
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../../data-warehouse/" class="md-tabs__link">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
         Data warehouse
       </a>
     </li>
@@ -256,7 +256,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../operations/" class="md-tabs__link">
+      <a href="../../operations/" class="md-tabs__link">
         Operations
       </a>
     </li>
@@ -284,7 +284,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Philly (sandbox) Civic Cloud" class="md-nav__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
+    <a href="../.." title="Philly (sandbox) Civic Cloud" class="md-nav__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -315,7 +315,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         Cluster Documentation
       </a>
     </li>
@@ -357,7 +357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/" class="md-nav__link">
+      <a href="../../getting-started/" class="md-nav__link">
         Getting Started
       </a>
     </li>
@@ -398,7 +398,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/service-setup/grafana/" class="md-nav__link">
+      <a href="../../getting-started/service-setup/grafana/" class="md-nav__link">
         Grafana
       </a>
     </li>
@@ -412,7 +412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/service-setup/sealed-secrets/" class="md-nav__link">
+      <a href="../../getting-started/service-setup/sealed-secrets/" class="md-nav__link">
         Sealed Secrets
       </a>
     </li>
@@ -429,177 +429,6 @@
           
         </ul>
       </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-    
-  
-  
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-          Development
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
-        <label class="md-nav__title" for="__nav_3">
-          <span class="md-nav__icon md-icon"></span>
-          Development
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
-        Development
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-    
-  
-  
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-      
-      
-      
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
-      
-      
-      
-        <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
-          Features
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
-        <label class="md-nav__title" for="__nav_3_2">
-          <span class="md-nav__icon md-icon"></span>
-          Features
-        </label>
-        <ul class="md-nav__list" data-md-scrollfix>
-          
-            
-              
-  
-  
-    
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Ingress
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        Ingress
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#exposing-services" class="md-nav__link">
-    Exposing services
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../sealed-secrets/" class="md-nav__link">
-        Sealed Secrets
-      </a>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../echo-service/" class="md-nav__link">
-        Echo service
-      </a>
     </li>
   
 
@@ -617,7 +446,135 @@
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          Development
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/" class="md-nav__link">
+        Development
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          Features
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Features
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/features/ingress/" class="md-nav__link">
+        Ingress
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/features/sealed-secrets/" class="md-nav__link">
+        Sealed Secrets
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../echo-service/" class="md-nav__link">
+        Echo service
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
       
       
       
@@ -626,7 +583,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
         <label class="md-nav__title" for="__nav_5">
           <span class="md-nav__icon md-icon"></span>
           Data warehouse
@@ -639,7 +596,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../data-warehouse/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         Data Warehouse
       </a>
     </li>
@@ -651,11 +608,21 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../../data-warehouse/add-user/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Add a user
       </a>
+      
     </li>
   
 
@@ -667,7 +634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../data-warehouse/initial-setup/" class="md-nav__link">
+      <a href="../initial-setup/" class="md-nav__link">
         Initial setup
       </a>
     </li>
@@ -716,7 +683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../operations/" class="md-nav__link">
+      <a href="../../operations/" class="md-nav__link">
         Operations
       </a>
     </li>
@@ -757,7 +724,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../operations/upgrades/to-0.20/" class="md-nav__link">
+      <a href="../../operations/upgrades/to-0.20/" class="md-nav__link">
         To 0.20.x
       </a>
     </li>
@@ -798,21 +765,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#exposing-services" class="md-nav__link">
-    Exposing services
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -830,16 +782,20 @@
 
 
 
-<h1 id="ingress">Ingress<a class="headerlink" href="#ingress" title="Permanent link"> ¶</a></h1>
-<h2 id="exposing-services">Exposing services<a class="headerlink" href="#exposing-services" title="Permanent link"> ¶</a></h2>
-<p><code>*.sandbox.k8s.phl.io</code> should be configured to resolve to the cluster&rsquo;s <code>ingress-nginx</code> service.</p>
-<p>To route a public hostname to a service in the cluster:</p>
+<h1 id="add-a-user">Add a user<a class="headerlink" href="#add-a-user" title="Permanent link"> ¶</a></h1>
+<p>To add a new PostgreSQL user to the warehouse:</p>
 <ol>
-<li>Create an Ingress</li>
-<li>Apply the annotation <code>kubernetes.io/ingress.class: nginx</code> to associate with the cluster&rsquo;s main ingress service</li>
-<li>Apply the annotation <code>cert-manager.io/cluster-issuer: letsencrypt-prod</code> to enable automatic setup of an SSL certificate</li>
-<li>Assign an unused hostname under <code>.sandbox.k8s.phl.io</code> (every public service should start with one of these)</li>
-<li>Optionally, CNAME a custom hostname to the <code>.sandbox.k8s.phl.io</code> hostname and add it to the same ingress</li>
+<li><a href="../#access-via-psql">Connect via the <code>admin</code> user</a></li>
+<li>
+<p>Create a new user:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">myusername</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">ENCRYPTED</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="s1">&#39;generate_a_password&#39;</span><span class="p">;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Assign <code>readonly</code> role:</p>
+<div class="highlight"><pre><span></span><code><span class="k">GRANT</span><span class="w"> </span><span class="n">readonly</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">myusername</span><span class="p">;</span>
+</code></pre></div>
+</li>
 </ol>
 
 
@@ -878,10 +834,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.4b2c34cd.min.js"></script>
+      <script src="../../assets/javascripts/bundle.4b2c34cd.min.js"></script>
       
         <script src="https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js"></script>
       

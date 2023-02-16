@@ -16,6 +16,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/data-warehouse/add-user/</loc>
+         <lastmod>2023-02-16</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/data-warehouse/initial-setup/</loc>
          <lastmod>2023-02-16</lastmod>
          <changefreq>daily</changefreq>
