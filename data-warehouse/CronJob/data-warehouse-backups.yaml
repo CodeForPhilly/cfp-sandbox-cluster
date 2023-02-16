@@ -1,0 +1,100 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  labels:
+    app.kubernetes.io/instance: data-warehouse
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: data-warehouse
+    app.kubernetes.io/version: 1.16.0
+    helm.sh/chart: data-warehouse-0.1.0
+  name: data-warehouse-backups
+  namespace: data-warehouse
+spec:
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      activeDeadlineSeconds: 2700
+      template:
+        spec:
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - labelSelector:
+                    matchExpressions:
+                      - key: app.kubernetes.io/name
+                        operator: In
+                        values:
+                          - data-warehouse
+                      - key: app.kubernetes.io/instance
+                        operator: In
+                        values:
+                          - data-warehouse
+                  topologyKey: kubernetes.io/hostname
+          containers:
+            - args:
+                - |
+                  set -o pipefail
+
+                  echo "Snapshotting Database"
+                  pg_dumpall --clean \
+                    | gzip --rsyncable \
+                    | restic backup \
+                      --host 'data-warehouse' \
+                      --stdin \
+                      --stdin-filename 'data-warehouse.sql.gz'
+
+                  sql_snapshot_status=$?
+
+
+                  echo "Snapshotting Data Volume"
+                  restic backup /data \
+                    --host 'data-warehouse' \
+                    --exclude='/data/icon_cache/**'
+
+                  volume_snapshot_status=$?
+
+
+                  echo "Pruning snapshots"
+                  restic forget \
+                    --host 'data-warehouse' \
+                    --keep-last 3 \
+                    --keep-daily 7 \
+                    --keep-weekly 52
+
+                  prune_status=$?
+              command:
+                - /bin/bash
+                - '-c'
+              env:
+                - name: PGHOST
+                  value: data-warehouse-postgresql
+                - name: PGPORT
+                  value: '5432'
+                - name: PGDATABASE
+                  value: vaultwarden
+                - name: PGUSER
+                  valueFrom:
+                    secretKeyRef:
+                      key: POSTGRES_USER
+                      name: postgresql
+                - name: PGPASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: POSTGRES_PASSWORD
+                      name: postgresql
+              envFrom:
+                - secretRef:
+                    name: restic
+              image: 'ghcr.io/jarvusinnovations/restic-toolkit:1.3.0'
+              imagePullPolicy: IfNotPresent
+              name: restic-toolkit
+              volumeMounts:
+                - mountPath: /data
+                  name: vaultwarden
+          restartPolicy: Never
+          volumes:
+            - name: vaultwarden
+              persistentVolumeClaim:
+                claimName: vaultwarden
+                readOnly: true
+  schedule: 40 * * * *

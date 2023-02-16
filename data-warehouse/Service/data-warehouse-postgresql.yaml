@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/instance: data-warehouse
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: data-warehouse
+    app.kubernetes.io/version: 1.16.0
+    component: postgresql
+    helm.sh/chart: data-warehouse-0.1.0
+  name: data-warehouse-postgresql
+  namespace: data-warehouse
+spec:
+  ports:
+    - name: postgresql
+      port: 5432
+  selector:
+    app.kubernetes.io/instance: data-warehouse
+    app.kubernetes.io/name: data-warehouse-postgresql
+  type: ClusterIP
