@@ -13,6 +13,7 @@ metadata:
 spec:
   ports:
     - name: postgresql
+      nodePort: 30432
       port: 5432
   selector:
     app.kubernetes.io/instance: data-warehouse
