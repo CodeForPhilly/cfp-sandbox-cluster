@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  POSTGRES_DB: metabase
+  POSTGRES_PASSWORD: Qp8VX7I3rbFRs3s58ubi0rM9GQilaYFP
+  POSTGRES_USER: metabase
+kind: ConfigMap
+metadata:
+  name: database-config
+  namespace: metabase

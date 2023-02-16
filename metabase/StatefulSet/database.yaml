@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  labels:
+    name: database
+  name: database
+  namespace: metabase
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: database
+  serviceName: database
+  template:
+    metadata:
+      annotations:
+        prometheus.io/port: '9187'
+        prometheus.io/scrape: 'true'
+      labels:
+        name: database
+    spec:
+      containers:
+        - envFrom:
+            - configMapRef:
+                name: database-config
+          image: 'postgres:12'
+          livenessProbe:
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            tcpSocket:
+              port: 5432
+          name: database
+          ports:
+            - containerPort: 5432
+              name: postgresql
+          readinessProbe:
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            tcpSocket:
+              port: 5432
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: data
+              subPath: postgresql-data
+      imagePullSecrets:
+        - name: regcred
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 10Gi
