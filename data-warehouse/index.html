@@ -8,27 +8,27 @@
       
       
       
-        <link rel="canonical" href="https://codeforphilly.github.io/cfp-sandbox-cluster/development/features/sealed-secrets/">
+        <link rel="canonical" href="https://codeforphilly.github.io/cfp-sandbox-cluster/data-warehouse/">
       
       
-        <link rel="prev" href="../ingress/">
+        <link rel="prev" href="../development/features/sealed-secrets/">
       
       
-        <link rel="next" href="../../../data-warehouse/">
+        <link rel="next" href="../echo-service/">
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.12">
     
     
       
-        <title>Sealed Secrets - Philly (sandbox) Civic Cloud</title>
+        <title>Data Warehouse - Philly (sandbox) Civic Cloud</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.0d440cfe.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.0d440cfe.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
       
       
 
@@ -46,7 +46,7 @@
     
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -71,7 +71,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sealed-secrets" class="md-skip">
+        <a href="#data-warehouse" class="md-skip">
           Skip to content
         </a>
       
@@ -85,7 +85,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="Philly (sandbox) Civic Cloud" class="md-header__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
+    <a href=".." title="Philly (sandbox) Civic Cloud" class="md-header__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sealed Secrets
+              Data Warehouse
             
           </span>
         </div>
@@ -179,7 +179,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../.." class="md-tabs__link">
+    <a href=".." class="md-tabs__link">
       Cluster Documentation
     </a>
   </li>
@@ -194,8 +194,24 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../getting-started/" class="md-tabs__link">
+      <a href="../getting-started/" class="md-tabs__link">
         Getting started
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../development/" class="md-tabs__link">
+        Development
       </a>
     </li>
   
@@ -208,24 +224,8 @@
   
 
 
-  
-  
-  
-    <li class="md-tabs__item">
-      <a href="../../" class="md-tabs__link md-tabs__link--active">
-        Development
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-
-
   <li class="md-tabs__item">
-    <a href="../../../data-warehouse/" class="md-tabs__link">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
       Data Warehouse
     </a>
   </li>
@@ -237,7 +237,7 @@
 
 
   <li class="md-tabs__item">
-    <a href="../../../echo-service/" class="md-tabs__link">
+    <a href="../echo-service/" class="md-tabs__link">
       Echo service
     </a>
   </li>
@@ -252,7 +252,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../operations/" class="md-tabs__link">
+      <a href="../operations/" class="md-tabs__link">
         Operations
       </a>
     </li>
@@ -280,7 +280,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="Philly (sandbox) Civic Cloud" class="md-nav__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
+    <a href=".." title="Philly (sandbox) Civic Cloud" class="md-nav__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
@@ -311,7 +311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../.." class="md-nav__link">
+      <a href=".." class="md-nav__link">
         Cluster Documentation
       </a>
     </li>
@@ -353,7 +353,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/" class="md-nav__link">
+      <a href="../getting-started/" class="md-nav__link">
         Getting Started
       </a>
     </li>
@@ -394,7 +394,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/service-setup/grafana/" class="md-nav__link">
+      <a href="../getting-started/service-setup/grafana/" class="md-nav__link">
         Grafana
       </a>
     </li>
@@ -408,7 +408,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../getting-started/service-setup/sealed-secrets/" class="md-nav__link">
+      <a href="../getting-started/service-setup/sealed-secrets/" class="md-nav__link">
         Sealed Secrets
       </a>
     </li>
@@ -435,16 +435,14 @@
 
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
       
       
       
@@ -453,7 +451,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3">
           <span class="md-nav__icon md-icon"></span>
           Development
@@ -466,7 +464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../development/" class="md-nav__link">
         Development
       </a>
     </li>
@@ -478,16 +476,14 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
       
       
-      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
       
       
       
@@ -496,7 +492,7 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
         <label class="md-nav__title" for="__nav_3_2">
           <span class="md-nav__icon md-icon"></span>
           Features
@@ -509,7 +505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ingress/" class="md-nav__link">
+      <a href="../development/features/ingress/" class="md-nav__link">
         Ingress
       </a>
     </li>
@@ -519,6 +515,35 @@
           
             
               
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/features/sealed-secrets/" class="md-nav__link">
+        Sealed Secrets
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
   
   
     
@@ -533,12 +558,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Sealed Secrets
+          Data Warehouse
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Sealed Secrets
+        Data Warehouse
       </a>
       
         
@@ -557,22 +582,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
+  <a href="#access" class="md-nav__link">
+    Access
   </a>
+  
+    <nav class="md-nav" aria-label="Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metabase" class="md-nav__link">
+    Metabase
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-admin" class="md-nav__link">
+    PostgreSQL Admin
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#configure-public-certificate" class="md-nav__link">
-    Configure public certificate
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#encrypt-secrets-to-cluster-repository" class="md-nav__link">
-    Encrypt secrets to cluster repository
+  <a href="#initial-setup" class="md-nav__link">
+    Initial setup
   </a>
   
 </li>
@@ -584,20 +622,6 @@
     </li>
   
 
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
-            
-          
-        </ul>
-      </nav>
-    </li>
-  
-
     
       
       
@@ -607,22 +631,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../data-warehouse/" class="md-nav__link">
-        Data Warehouse
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../echo-service/" class="md-nav__link">
+      <a href="../echo-service/" class="md-nav__link">
         Echo service
       </a>
     </li>
@@ -664,7 +673,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../operations/" class="md-nav__link">
+      <a href="../operations/" class="md-nav__link">
         Operations
       </a>
     </li>
@@ -705,7 +714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../operations/upgrades/to-0.20/" class="md-nav__link">
+      <a href="../operations/upgrades/to-0.20/" class="md-nav__link">
         To 0.20.x
       </a>
     </li>
@@ -753,22 +762,35 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    Prerequisites
+  <a href="#access" class="md-nav__link">
+    Access
   </a>
+  
+    <nav class="md-nav" aria-label="Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metabase" class="md-nav__link">
+    Metabase
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#postgresql-admin" class="md-nav__link">
+    PostgreSQL Admin
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#configure-public-certificate" class="md-nav__link">
-    Configure public certificate
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#encrypt-secrets-to-cluster-repository" class="md-nav__link">
-    Encrypt secrets to cluster repository
+  <a href="#initial-setup" class="md-nav__link">
+    Initial setup
   </a>
   
 </li>
@@ -792,23 +814,43 @@
 
 
 
-<h1 id="sealed-secrets">Sealed Secrets<a class="headerlink" href="#sealed-secrets" title="Permanent link"> ¶</a></h1>
-<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link"> ¶</a></h2>
-<ul>
-<li><a href="../../../getting-started/service-setup/sealed-secrets/">Configure and deploy a public ingress for sealed-secrets on the cluster</a></li>
-<li>Install the <code>kubeseal</code> client command on your local workstation from the latest stable release: <a href="https://github.com/bitnami-labs/sealed-secrets/releases">https://github.com/bitnami-labs/sealed-secrets/releases</a></li>
-</ul>
-<h2 id="configure-public-certificate">Configure public certificate<a class="headerlink" href="#configure-public-certificate" title="Permanent link"> ¶</a></h2>
-<p>Place the public URL for the target cluster&rsquo;s sealed secret&rsquo;s certificate into the <code>SEALED_SECRETS_CERT</code> environment variable:</p>
-<div class="highlight"><pre><span></span><code><span class="nb">export</span><span class="w"> </span><span class="nv">SEALED_SECRETS_CERT</span><span class="o">=</span>https://sealed-secrets.sandbox.k8s.phl.io/v1/cert.pem
+<h1 id="data-warehouse">Data Warehouse<a class="headerlink" href="#data-warehouse" title="Permanent link"> ¶</a></h1>
+<h2 id="access">Access<a class="headerlink" href="#access" title="Permanent link"> ¶</a></h2>
+<h3 id="metabase">Metabase<a class="headerlink" href="#metabase" title="Permanent link"> ¶</a></h3>
+<p>Metabase is available at <a href="https://metabase.sandbox.k8s.phl.io/">https://metabase.sandbox.k8s.phl.io/</a></p>
+<p>To be invited, post a request including your email address to the <a href="https://codeforphilly.org/chat/cfp-data-pipeline"><code>#cfp-data-pipeline</code> Slack channel</a></p>
+<h3 id="postgresql-admin">PostgreSQL Admin<a class="headerlink" href="#postgresql-admin" title="Permanent link"> ¶</a></h3>
+<p>The PostgreSQL database port is exposed publically via a <code>NodePort</code> service, which means that port number is open on all nodes in the cluster and automatically proxied to PostgreSQL&rsquo;s port regardless of which node it is actually running on.</p>
+<p>As of this writing, one such IP is <code>45.33.79.76</code> but this is subject to change when that node is eventually recycled, so the warehouse could be connected to for administration with a command like:</p>
+<div class="highlight"><pre><span></span><code>psql<span class="w"> </span>-h<span class="w"> </span><span class="m">45</span>.33.79.76<span class="w"> </span>-p<span class="w"> </span><span class="m">30432</span><span class="w"> </span>-U<span class="w"> </span>admin<span class="w"> </span>-d<span class="w"> </span>warehouse
 </code></pre></div>
-<h2 id="encrypt-secrets-to-cluster-repository">Encrypt secrets to cluster repository<a class="headerlink" href="#encrypt-secrets-to-cluster-repository" title="Permanent link"> ¶</a></h2>
-<p>Create a Kubernetes <code>Secret</code> manifest containing one or more key+value pair, and then use the <code>kubeseal</code> client to encrypt it into a <code>SealedSecret</code> manifest. The target namespace must be provided and will become part of the encryption such that the secret can only be loaded into that namespace. Commit the sealed secret to the cluster&rsquo;s repository under the path <code>${project_namespace}.secrets/</code> where it will be added to the cluster&rsquo;s deployed manifests:</p>
-<div class="highlight"><pre><span></span><code>kubeseal<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--namespace<span class="w"> </span><span class="s2">&quot;my-project&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-f<span class="w"> </span>my-secret.yaml<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-w<span class="w"> </span>~/Repositories/my-cluster/my-project.secrets/my-secret.yaml
+<p>The password can be found in VaultWarden under the <code>cfp-data-pipeline</code> organization within the item <code>admin @ postgresql database</code>.</p>
+<h2 id="initial-setup">Initial setup<a class="headerlink" href="#initial-setup" title="Permanent link"> ¶</a></h2>
+<ol>
+<li>
+<p>Create <code>warehouse</code> database in PostgreSQL:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">warehouse</span><span class="p">;</span>
 </code></pre></div>
+</li>
+<li>
+<p>Create <code>readonly</code> warehouse role:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">ROLE</span><span class="w"> </span><span class="n">readonly</span><span class="p">;</span>
+
+<span class="c1">-- Grant access to existing tables</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">USAGE</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">readonly</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">readonly</span><span class="p">;</span>
+
+<span class="c1">-- Grant access to future tables</span>
+<span class="k">ALTER</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">TABLES</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">readonly</span><span class="p">;</span>
+</code></pre></div>
+</li>
+<li>
+<p>Set up user for <code>metabase</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="n">metabase</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">ENCRYPTED</span><span class="w"> </span><span class="n">PASSWORD</span><span class="w"> </span><span class="s1">&#39;GENERATE_A_PASSWORD_AND_SAVE_IN_VAULT&#39;</span><span class="p">;</span>
+<span class="k">GRANT</span><span class="w"> </span><span class="n">readonly</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="n">metabase</span><span class="p">;</span>
+</code></pre></div>
+</li>
+</ol>
 
 
 
@@ -846,10 +888,10 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "search": "../assets/javascripts/workers/search.db81ec45.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.4b2c34cd.min.js"></script>
+      <script src="../assets/javascripts/bundle.4b2c34cd.min.js"></script>
       
         <script src="https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js"></script>
       
