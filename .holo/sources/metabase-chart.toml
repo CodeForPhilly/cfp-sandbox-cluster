@@ -1,0 +1,3 @@
+[holosource]
+url = "https://github.com/JarvusInnovations/infra-components.git"
+ref = "refs/tags/charts/metabase/r2"

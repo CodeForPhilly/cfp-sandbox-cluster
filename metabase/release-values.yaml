@@ -1,0 +1,45 @@
+images:
+  # pin metabase version for deliberate upgrades
+  metabase:
+    src: metabase/metabase:v0.45.2.1
+  database:
+    src: postgres:12
+  # databaseExporter:
+  #   src: quay.io/prometheuscommunity/postgres-exporter:latest
+
+workloads:
+  # metabase:
+  #   replicas: 1
+  database:
+    useExporter: false
+
+configs:
+  database:
+    POSTGRES_DB: metabase
+    POSTGRES_USER: metabase
+    POSTGRES_PASSWORD: Qp8VX7I3rbFRs3s58ubi0rM9GQilaYFP
+  metabase:
+    MB_DB_TYPE: postgres
+    MB_DB_DBNAME: metabase
+    MB_DB_PORT: "5432"
+    MB_DB_USER: metabase
+    MB_DB_PASS: Qp8VX7I3rbFRs3s58ubi0rM9GQilaYFP
+    MB_DB_HOST: database
+
+volumes:
+  database:
+    data:
+      size: 10Gi
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: metabase.sandbox.k8s.phl.io
+      paths: [ '/' ]
+  tls:
+    - secretName: metabase-tls
+      hosts:
+        - metabase.sandbox.k8s.phl.io

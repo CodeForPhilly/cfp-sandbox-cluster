@@ -1,0 +1,3 @@
+[holomapping]
+holosource = "metabase-chart"
+files = "**"

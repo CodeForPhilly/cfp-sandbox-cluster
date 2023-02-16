@@ -1,0 +1,18 @@
+[hololens]
+package = "holo/lens-helm3/1.22"
+
+[hololens.input]
+root = "metabase"
+files = "**"
+
+[hololens.output]
+merge = "replace"
+
+[hololens.helm]
+namespace = "metabase"
+release_name = "metabase"
+
+chart_path = "helm-chart"
+value_files = [
+    "release-values.yaml"
+]
