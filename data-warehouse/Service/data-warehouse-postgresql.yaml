@@ -17,4 +17,4 @@ spec:
   selector:
     app.kubernetes.io/instance: data-warehouse
     app.kubernetes.io/name: data-warehouse-postgresql
-  type: ClusterIP
+  type: NodePort
