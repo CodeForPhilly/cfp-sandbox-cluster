@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    name: metabase
+  name: metabase
+  namespace: metabase
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: metabase
+  template:
+    metadata:
+      labels:
+        name: metabase
+    spec:
+      containers:
+        - envFrom:
+            - configMapRef:
+                name: metabase-config
+          image: 'metabase/metabase:v0.45.2.1'
+          livenessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 1
+          name: metabase
+          ports:
+            - containerPort: 3000
+              name: metabase
+          readinessProbe:
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            timeoutSeconds: 1
+          startupProbe:
+            failureThreshold: 30
+            httpGet:
+              path: /
+              port: 3000
+            periodSeconds: 10
