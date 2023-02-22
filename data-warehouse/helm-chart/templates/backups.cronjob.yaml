@@ -14,11 +14,6 @@ spec:
       template:
         spec:
           restartPolicy: Never
-          volumes:
-          - name: vaultwarden
-            persistentVolumeClaim:
-              claimName: vaultwarden
-              readOnly: true
           affinity:
             podAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
@@ -57,9 +52,6 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.postgresql.existingSecret }}
                   key: POSTGRES_PASSWORD
-            volumeMounts:
-              - name: vaultwarden
-                mountPath: /data
             command: ["/bin/bash", "-c"]
             args:
               - |
