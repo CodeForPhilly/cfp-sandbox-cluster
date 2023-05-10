@@ -1,0 +1,153 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: choose-native-plants
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: choose-native-plants
+    app.kubernetes.io/version: 0.1.0
+    helm.sh/chart: choose-native-plants-0.1.0
+  name: choose-native-plants
+  namespace: choose-native-plants
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: choose-native-plants
+      app.kubernetes.io/name: choose-native-plants
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: choose-native-plants
+        app.kubernetes.io/name: choose-native-plants
+    spec:
+      containers:
+        - env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: mongo
+                  optional: false
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: mongo
+                  optional: false
+          image: 'mongo:5.0.6'
+          imagePullPolicy: IfNotPresent
+          name: choose-native-plants-db
+          ports:
+            - containerPort: 27017
+              name: mongo
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /data/db
+              name: choose-native-plants-mongo-data
+              subPath: mongo-data
+        - env:
+            - name: PORT
+              value: '3000'
+            - name: DB_HOST
+              value: choose-native-plants
+            - name: DB_POST
+              value: '27017'
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: mongo
+                  optional: false
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: mongo
+                  optional: false
+            - name: DB_NAME
+              value: pa-wildflower-selector
+            - name: MASTER_CSV_URL
+              valueFrom:
+                secretKeyRef:
+                  key: MASTER_CSV_URL
+                  name: app
+                  optional: false
+            - name: ARTICLES_CSV_URL
+              valueFrom:
+                secretKeyRef:
+                  key: ARTICLES_CSV_URL
+                  name: app
+                  optional: false
+            - name: IMAGE_URLS_SHEET_ID
+              valueFrom:
+                secretKeyRef:
+                  key: IMAGE_URLS_SHEET_ID
+                  name: app
+                  optional: false
+            - name: SUPERPLANTS_CSV_URL
+              valueFrom:
+                secretKeyRef:
+                  key: SUPERPLANTS_CSV_URL
+                  name: app
+                  optional: false
+            - name: LOCAL_MAP_CSV_URL
+              valueFrom:
+                secretKeyRef:
+                  key: LOCAL_MAP_CSV_URL
+                  name: app
+                  optional: false
+            - name: CONTACT_SHEET_ID
+              valueFrom:
+                secretKeyRef:
+                  key: CONTACT_SHEET_ID
+                  name: app
+                  optional: false
+            - name: CONTACT_FILES_FOLDER_ID
+              valueFrom:
+                secretKeyRef:
+                  key: CONTACT_FILES_FOLDER_ID
+                  name: app
+                  optional: false
+            - name: ONLINE_STORES_CSV_URL
+              valueFrom:
+                secretKeyRef:
+                  key: ONLINE_STORES_CSV_URL
+                  name: app
+                  optional: false
+            - name: SERVICE_ACCOUNT
+              valueFrom:
+                secretKeyRef:
+                  key: SERVICE_ACCOUNT
+                  name: app
+                  optional: false
+          envFrom:
+            - configMapRef:
+                name: app-config
+                optional: true
+          image: 'ghcr.io/codeforphilly/pa-wildflower-selector/app:1.0.3'
+          imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 5
+          name: choose-native-plants-app
+          ports:
+            - containerPort: 3000
+              name: http
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /app/images
+              name: choose-native-plants-app-images
+              subPath: app-images
+      securityContext: {}
+      volumes:
+        - name: choose-native-plants-app-images
+          persistentVolumeClaim:
+            claimName: choose-native-plants-app-images
+        - name: choose-native-plants-mongo-data
+          persistentVolumeClaim:
+            claimName: choose-native-plants-mongo-data

@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: deployment-admin
+  namespace: choose-native-plants
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: deployment-admin
+subjects:
+  - kind: ServiceAccount
+    name: deployment-admin
+    namespace: choose-native-plants
