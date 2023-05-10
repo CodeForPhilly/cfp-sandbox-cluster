@@ -1,0 +1,16 @@
+app:
+  image:
+    tag: "1.0.3"
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  hosts:
+    - host: choose-native-plants.sandbox.k8s.phl.io
+      paths: [ '/' ]
+  tls:
+    - secretName: choose-native-plants-tls
+      hosts:
+        - choose-native-plants.sandbox.k8s.phl.io

@@ -1,0 +1,19 @@
+[hololens]
+package = "holo/lens-helm3/1.22"
+
+[hololens.input]
+root = "choose-native-plants"
+files = "**"
+
+[hololens.output]
+merge = "replace"
+
+[hololens.helm]
+namespace = "choose-native-plants"
+release_name = "choose-native-plants"
+namespace_fill = true
+
+chart_path = "helm-chart"
+value_files = [
+    "release-values.yaml"
+]

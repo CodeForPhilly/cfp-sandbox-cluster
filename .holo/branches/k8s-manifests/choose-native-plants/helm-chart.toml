@@ -1,0 +1,3 @@
+[holomapping]
+holosource = "choose-native-plants=>helm-chart"
+files = "**"
