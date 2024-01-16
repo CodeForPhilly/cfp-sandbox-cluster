@@ -30,7 +30,7 @@ spec:
           envFrom:
             - secretRef:
                 name: db-pass
-          image: 'postgres:13.2-alpine'
+          image: 'postgres:15.4-alpine'
           imagePullPolicy: IfNotPresent
           name: paws-datapipeline-db
           ports:
@@ -46,7 +46,7 @@ spec:
                 name: api-server-pws
             - secretRef:
                 name: db-pass
-          image: 'ghcr.io/codeforphilly/paws-data-pipeline/server:2.34'
+          image: 'ghcr.io/codeforphilly/paws-data-pipeline/server:2.5'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
@@ -64,7 +64,7 @@ spec:
             - mountPath: /var/lib/server/data
               name: paws-data-pipeline-server-data
               subPath: server-data
-        - image: 'ghcr.io/codeforphilly/paws-data-pipeline/client:2.34'
+        - image: 'ghcr.io/codeforphilly/paws-data-pipeline/client:2.5'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
