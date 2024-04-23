@@ -8,6 +8,8 @@ rules:
       - ''
     resourceNames:
       - coredns
+      - coredns-base
+      - coredns-custom
     resources:
       - configmaps
     verbs:

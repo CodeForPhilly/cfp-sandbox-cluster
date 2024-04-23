@@ -29,10 +29,6 @@ webhooks:
           operator: NotIn
           values:
             - 'true'
-        - key: name
-          operator: NotIn
-          values:
-            - cert-manager
     rules:
       - apiGroups:
           - cert-manager.io

@@ -50,7 +50,7 @@ jobs:
         ## build PR description body
         echo
         echo "Builing PR title+body content..."
-        diff_size=$(du -k '/tmp/kube.diff' | cut -f1)
+        diff_size=$(wc -c /tmp/kube.diff | awk '{print $1}')
         pr_head_describe="$(git describe --always --tag)"
 
         pr_title="Deploy ${BRANCH_RELEASE} ${pr_head_describe}"

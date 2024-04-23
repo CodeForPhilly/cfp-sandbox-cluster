@@ -38,6 +38,9 @@ spec:
             - '--v=2'
             - '--cluster-resource-namespace=$(POD_NAMESPACE)'
             - '--leader-election-namespace=kube-system'
+            - >-
+              --acme-http01-solver-image=quay.io/jetstack/cert-manager-acmesolver:v1.10.1
+            - '--max-concurrent-challenges=60'
           env:
             - name: POD_NAMESPACE
               valueFrom:
@@ -50,6 +53,9 @@ spec:
             - containerPort: 9402
               name: http-metrics
               protocol: TCP
+            - containerPort: 9403
+              name: http-healthz
+              protocol: TCP
           resources:
             requests:
               cpu: 10m
@@ -59,6 +65,7 @@ spec:
             capabilities:
               drop:
                 - ALL
+      enableServiceLinks: false
       nodeSelector:
         kubernetes.io/os: linux
       securityContext:

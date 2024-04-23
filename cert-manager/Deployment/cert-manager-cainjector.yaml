@@ -46,6 +46,7 @@ spec:
             capabilities:
               drop:
                 - ALL
+      enableServiceLinks: false
       nodeSelector:
         kubernetes.io/os: linux
       securityContext:
