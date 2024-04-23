@@ -16,7 +16,12 @@ spec:
         app: hairpin-proxy-controller
     spec:
       containers:
-        - image: 'compumike/hairpin-proxy-controller:0.2.1'
+        - env:
+            - name: COREDNS_CONFIGMAP_NAME
+              value: coredns-custom
+            - name: COREDNS_IMPORT_CONFIG
+              value: 'true'
+          image: 'ghcr.io/jarvusinnovations/hairpin-proxy/controller:0.3.0'
           name: main
           resources:
             limits:

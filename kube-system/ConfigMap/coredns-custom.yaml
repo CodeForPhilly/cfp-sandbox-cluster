@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  hairpinproxy.include: ''
+kind: ConfigMap
+metadata:
+  name: coredns-custom
+  namespace: kube-system
