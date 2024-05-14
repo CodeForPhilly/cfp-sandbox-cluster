@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: balancer-ingress
+  namespace: balancer
+spec:
+  rules:
+    - host: balancer.sandbox.k8s.phl.io
+      http:
+        paths:
+          - backend:
+              service:
+                name: frontend
+                port:
+                  name: http
+            path: /
+            pathType: Prefix
+    - host: balancertestsite.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: frontend
+                port:
+                  name: http
+            path: /
+            pathType: Prefix
