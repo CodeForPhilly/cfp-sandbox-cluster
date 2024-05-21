@@ -2,7 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
   name: balancer-ingress
   namespace: balancer
 spec:
@@ -17,13 +18,7 @@ spec:
                   name: http
             path: /
             pathType: Prefix
-    - host: balancertestsite.com
-      http:
-        paths:
-          - backend:
-              service:
-                name: frontend
-                port:
-                  name: http
-            path: /
-            pathType: Prefix
+  tls:
+    - hosts:
+        - balancer.sandbox.k8s.phl.io
+      secretName: balancer-tls
