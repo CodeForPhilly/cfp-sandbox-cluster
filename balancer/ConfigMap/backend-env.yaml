@@ -1,8 +1,9 @@
 apiVersion: v1
 data:
   DATABASE: postgres
-  DEBUG: 'FALSE'
-  DJANGO_ALLOWED_HOSTS: 'frontend localhost 127.0.0.1 [::1]'
+  DEBUG: 'TRUE'
+  DJANGO_ALLOWED_HOSTS: |
+    localhost frontend 127.0.0.1 [::1] balancer.sandbox.k8s.phl.io
   EMAIL_HOST: smtp.gmail.com
   EMAIL_HOST_USER: balancer-noreply@gmail.com
   EMAIL_PORT: '587'
