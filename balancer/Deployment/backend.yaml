@@ -45,7 +45,7 @@ spec:
                 name: backend-env
             - secretRef:
                 name: backend
-          image: 'ghcr.io/codeforphilly/balancer-main/backend:latest'
+          image: 'ghcr.io/codeforphilly/balancer-main/backend:0.1.1'
           imagePullPolicy: Always
           name: backend
           ports:
