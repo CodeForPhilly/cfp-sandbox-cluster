@@ -1,3 +1,11 @@
+backend:
+  image:
+    tag: "0.1.1"
+
+frontend:
+  image:
+    tag: "0.1.1"
+
 ingress:
   enabled: true
   annotations:
