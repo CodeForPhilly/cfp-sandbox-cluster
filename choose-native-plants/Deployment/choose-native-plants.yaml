@@ -37,6 +37,9 @@ spec:
                   key: password
                   name: mongo
                   optional: false
+          envFrom:
+            - secretRef:
+                name: pac-api
           image: 'mongo:5.0.6'
           imagePullPolicy: IfNotPresent
           name: choose-native-plants-db
@@ -127,7 +130,7 @@ spec:
             - configMapRef:
                 name: app-config
                 optional: true
-          image: 'ghcr.io/codeforphilly/pa-wildflower-selector/app:1.1.0'
+          image: 'ghcr.io/codeforphilly/pa-wildflower-selector/app:1.1.1'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
