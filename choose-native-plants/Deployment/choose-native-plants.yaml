@@ -37,6 +37,9 @@ spec:
                   key: password
                   name: mongo
                   optional: false
+          envFrom:
+            - secretRef:
+                name: pac-api
           image: 'mongo:5.0.6'
           imagePullPolicy: IfNotPresent
           name: choose-native-plants-db
