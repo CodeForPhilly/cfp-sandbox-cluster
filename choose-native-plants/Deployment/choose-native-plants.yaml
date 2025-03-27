@@ -90,6 +90,18 @@ spec:
                   key: IMAGE_URLS_SHEET_ID
                   name: app
                   optional: false
+            - name: PAC_API_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  key: PAC_API_BASE_URL
+                  name: pac-api
+                  optional: false
+            - name: PAC_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: PAC_API_KEY
+                  name: pac-api
+                  optional: false
             - name: SUPERPLANTS_CSV_URL
               valueFrom:
                 secretKeyRef:
@@ -126,11 +138,17 @@ spec:
                   key: SERVICE_ACCOUNT
                   name: app
                   optional: false
+            - name: PAC_API_BASE_URL
+              valueFrom:
+                secretKeyRef:
+                  key: PAC_API_BASE_URL
+                  name: pac_api
+                  optional: false
           envFrom:
             - configMapRef:
                 name: app-config
                 optional: true
-          image: 'ghcr.io/codeforphilly/pa-wildflower-selector/app:1.1.1'
+          image: 'ghcr.io/codeforphilly/pa-wildflower-selector/app:1.0.5'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
