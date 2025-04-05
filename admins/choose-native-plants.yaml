@@ -20,14 +20,24 @@ metadata:
   namespace: choose-native-plants
 rules:
 - apiGroups: [""]
-  resources: ["pods"]
-  verbs: ["get", "watch", "list", "delete"]
+  resources: ["pods", "services", "configmaps", "secrets", "persistentvolumeclaims"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 - apiGroups: [""]
-  resources: ["pods/exec", "pods/portforward"]
-  verbs: ["create"]
-- apiGroups: [""]
-  resources: ["pods/log"]
-  verbs: ["get"]
+  resources: ["pods/exec", "pods/portforward", "pods/log"]
+  verbs: ["create", "get", "list"]
+- apiGroups: ["apps", "extensions"]
+  resources: ["deployments", "replicasets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["networking.k8s.io"]
+  resources: ["ingresses"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["batch"]
+  resources: ["jobs", "cronjobs"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: ["helm.fluxcd.io"]
+  resources: ["helmreleases"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+
 
 ---
 
