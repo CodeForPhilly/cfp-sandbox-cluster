@@ -148,7 +148,7 @@ spec:
             - configMapRef:
                 name: app-config
                 optional: true
-          image: 'ghcr.io/codeforphilly/pa-wildflower-selector/app:2.0.0'
+          image: 'ghcr.io/codeforphilly/pa-wildflower-selector/app:2.0.1'
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
