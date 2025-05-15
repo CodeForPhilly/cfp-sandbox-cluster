@@ -37,7 +37,9 @@ rules:
 - apiGroups: ["helm.fluxcd.io"]
   resources: ["helmreleases"]
   verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
-
+- apiGroups: ["bitnami.com"]
+  resources: ["sealedsecrets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 
 ---
 
@@ -54,3 +56,33 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
   name: deployment-admin
+
+---
+
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: sealed-secrets-access
+rules:
+- apiGroups: [""]
+  resources: ["services"]
+  verbs: ["get"]
+  resourceNames: ["sealed-secrets-controller"]
+- apiGroups: ["bitnami.com"]
+  resources: ["sealedsecrets"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+
+---
+
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: sealed-secrets-access-choose-native-plants
+subjects:
+- kind: ServiceAccount
+  name: deployment-admin
+  namespace: choose-native-plants
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: sealed-secrets-access
