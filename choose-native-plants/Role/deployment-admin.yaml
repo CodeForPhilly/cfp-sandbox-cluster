@@ -81,3 +81,15 @@ rules:
       - update
       - patch
       - delete
+  - apiGroups:
+      - bitnami.com
+    resources:
+      - sealedsecrets
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
