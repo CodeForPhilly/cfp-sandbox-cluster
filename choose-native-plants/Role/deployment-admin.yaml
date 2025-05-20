@@ -93,3 +93,12 @@ rules:
       - update
       - patch
       - delete
+  - apiGroups:
+      - metrics.k8s.io
+    resources:
+      - pods
+      - nodes
+    verbs:
+      - get
+      - list
+      - watch
