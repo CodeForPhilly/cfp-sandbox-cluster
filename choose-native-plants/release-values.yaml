@@ -60,8 +60,8 @@ existingPVCs:
   mongoData: "choose-native-plants-mongo-data"
 
 # Use existing service and ingress
-existingService: true
-existingIngress: true
+existingService: false
+existingIngress: false
 
 ingress:
   enabled: true
