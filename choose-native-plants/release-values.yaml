@@ -44,6 +44,8 @@ app:
           name: linode-storage
           key: LINODE_ENDPOINT_URL
           optional: false
+    - name: NODE_OPTIONS
+      value: "--openssl-legacy-provider --max-old-space-size=768"
 
 # Resource settings for the application
 resources:
