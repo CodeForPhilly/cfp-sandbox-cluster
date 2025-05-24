@@ -20,7 +20,7 @@ metadata:
   namespace: choose-native-plants
 rules:
 - apiGroups: [""]
-  resources: ["pods", "services", "configmaps", "secrets", "persistentvolumeclaims"]
+  resources: ["pods", "services", "configmaps", "secrets", "persistentvolumeclaims", "events"]
   verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 - apiGroups: [""]
   resources: ["pods/exec", "pods/portforward", "pods/log"]
