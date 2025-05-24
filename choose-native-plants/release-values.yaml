@@ -45,6 +45,22 @@ app:
           key: LINODE_ENDPOINT_URL
           optional: false
 
+# Resource settings for the application
+resources:
+  limits:
+    memory: 4Gi
+  requests:
+    memory: 1Gi
+
+# Use existing resources instead of creating new ones
+existingPVCs:
+  appImages: "choose-native-plants-app-images-v2"
+  mongoData: "choose-native-plants-mongo-data"
+
+# Use existing service and ingress
+existingService: true
+existingIngress: true
+
 ingress:
   enabled: true
   annotations:
