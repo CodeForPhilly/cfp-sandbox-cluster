@@ -138,12 +138,80 @@ spec:
                   key: SERVICE_ACCOUNT
                   name: app
                   optional: false
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  key: AWS_ACCESS_KEY_ID
+                  name: linode-storage
+                  optional: false
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: AWS_SECRET_ACCESS_KEY
+                  name: linode-storage
+                  optional: false
+            - name: AWS_DEFAULT_REGION
+              valueFrom:
+                secretKeyRef:
+                  key: AWS_DEFAULT_REGION
+                  name: linode-storage
+                  optional: false
+            - name: LINODE_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: LINODE_BUCKET_NAME
+                  name: linode-storage
+                  optional: false
+            - name: LINODE_ENDPOINT_URL
+              valueFrom:
+                secretKeyRef:
+                  key: LINODE_ENDPOINT_URL
+                  name: linode-storage
+                  optional: false
             - name: PAC_API_BASE_URL
               valueFrom:
                 secretKeyRef:
                   key: PAC_API_BASE_URL
-                  name: pac_api
+                  name: pac-api
                   optional: false
+            - name: PAC_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: PAC_API_KEY
+                  name: pac-api
+                  optional: false
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  key: AWS_ACCESS_KEY_ID
+                  name: linode-storage
+                  optional: false
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: AWS_SECRET_ACCESS_KEY
+                  name: linode-storage
+                  optional: false
+            - name: AWS_DEFAULT_REGION
+              valueFrom:
+                secretKeyRef:
+                  key: AWS_DEFAULT_REGION
+                  name: linode-storage
+                  optional: false
+            - name: LINODE_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: LINODE_BUCKET_NAME
+                  name: linode-storage
+                  optional: false
+            - name: LINODE_ENDPOINT_URL
+              valueFrom:
+                secretKeyRef:
+                  key: LINODE_ENDPOINT_URL
+                  name: linode-storage
+                  optional: false
+            - name: NODE_OPTIONS
+              value: '--openssl-legacy-provider --max-old-space-size=768'
           envFrom:
             - configMapRef:
                 name: app-config
@@ -160,6 +228,11 @@ spec:
             - containerPort: 3000
               name: http
               protocol: TCP
+          resources:
+            limits:
+              memory: 4Gi
+            requests:
+              memory: 1Gi
           volumeMounts:
             - mountPath: /app/images
               name: choose-native-plants-app-images
@@ -168,7 +241,7 @@ spec:
       volumes:
         - name: choose-native-plants-app-images
           persistentVolumeClaim:
-            claimName: choose-native-plants-app-images
+            claimName: choose-native-plants-app-images-v2
         - name: choose-native-plants-mongo-data
           persistentVolumeClaim:
             claimName: choose-native-plants-mongo-data
