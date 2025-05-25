@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: choose-native-plants
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: choose-native-plants
-    app.kubernetes.io/version: 0.1.0
-    helm.sh/chart: choose-native-plants-0.1.0
+    app.kubernetes.io/version: 2.0.4
+    helm.sh/chart: choose-native-plants-2.0.4
   name: choose-native-plants
   namespace: choose-native-plants
 spec:
@@ -216,7 +216,7 @@ spec:
             - configMapRef:
                 name: app-config
                 optional: true
-          image: 'ghcr.io/codeforphilly/pa-wildflower-selector/app:2.0.3'
+          image: 'ghcr.io/codeforphilly/pa-wildflower-selector/app:2.0.4'
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
@@ -244,7 +244,7 @@ spec:
       volumes:
         - name: choose-native-plants-app-images
           persistentVolumeClaim:
-            claimName: choose-native-plants-app-images-v2
+            claimName: choose-native-plants-app-images
         - name: choose-native-plants-mongo-data
           persistentVolumeClaim:
             claimName: choose-native-plants-mongo-data
