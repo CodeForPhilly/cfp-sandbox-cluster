@@ -219,10 +219,13 @@ spec:
           image: 'ghcr.io/codeforphilly/pa-wildflower-selector/app:2.0.3'
           imagePullPolicy: Always
           livenessProbe:
+            failureThreshold: 3
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 5
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            timeoutSeconds: 10
           name: choose-native-plants-app
           ports:
             - containerPort: 3000

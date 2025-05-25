@@ -1,0 +1,13 @@
+apiVersion: v1
+data:
+  NODE_OPTIONS: '--openssl-legacy-provider --max-old-space-size=768'
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/instance: choose-native-plants
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: choose-native-plants
+    app.kubernetes.io/version: 0.1.0
+    helm.sh/chart: choose-native-plants-0.1.0
+  name: app-config
+  namespace: choose-native-plants
