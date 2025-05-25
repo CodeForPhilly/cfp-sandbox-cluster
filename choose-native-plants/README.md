@@ -1,6 +1,6 @@
 # Choose Native Plants Application
 
-This README provides instructions for deploying and managing the Choose Native Plants application in the Kubernetes cluster using Helm.
+This README provides instructions for deploying and managing the Choose Native Plants application in the Kubernetes cluster using GitOps.
 
 ## Creating a New Release
 
@@ -24,37 +24,18 @@ git push origin main
    - Go to the [GitHub repository](https://github.com/CodeForPhilly/pa-wildflower-selector)
    - Click on the "Releases" tab
    - Click "Draft a new release"
-   - Set the tag version to match your release (e.g., "v2.0.3")
-   - Set the release title (e.g., "Choose Native Plants v2.0.3")
+   - Set the tag version to match your release (e.g., "v2.0.4")
+   - Set the release title (e.g., "Choose Native Plants v2.0.4")
    - Add release notes describing the changes in this version
    - Click "Publish release"
 
 4. The GitHub Actions workflow will automatically build and push the new Docker image to the GitHub Container Registry with the specified tag.
 
-## Deploying the Application with Helm
+## Deploying the Application to Sandbox
 
-Once you've updated the release-values.yaml file and created a GitHub release, you can deploy the application using Helm:
+The sandbox environment uses a GitOps approach for deployments. When you push changes to the main branch of the cfp-sandbox-cluster repository, the deployment will be automatically triggered.
 
-```powershell
-# Deploy or upgrade the application using Helm
-# Note: This only updates the deployment in the Kubernetes cluster, not your local repository
-helm upgrade --install choose-native-plants .\pa-wildflower-selector\helm-chart\ -f .\cfp-sandbox-cluster\choose-native-plants\release-values.yaml -n choose-native-plants
-```
-
-**Important**: The `helm upgrade` command only affects your Kubernetes cluster deployment. It doesn't modify any files in your local repository. Make sure you've committed and pushed all changes to GitHub before running this command.
-
-### Helm Release Management
-
-```powershell
-# View release history
-helm history choose-native-plants -n choose-native-plants
-
-# Rollback to a previous release if needed
-helm rollback choose-native-plants [REVISION] -n choose-native-plants
-
-# View release status
-helm status choose-native-plants -n choose-native-plants
-```
+1. After updating the version in `release-values.yaml` and pushing to main, the GitOps process will detect the change and start a new deployment.
 
 ## Managing the Application
 
@@ -109,23 +90,25 @@ $POD_NAME = kubectl get pods -n choose-native-plants -l app.kubernetes.io/name=c
 kubectl describe pod $POD_NAME -n choose-native-plants
 ```
 
-## CI/CD Integration with Helm
+## CI/CD Integration with GitOps
 
-To integrate Helm into your CI/CD pipeline, update your deployment scripts to use Helm commands instead of direct kubectl commands. Here's a typical workflow:
+The sandbox environment uses a GitOps approach for deployments. Here's the typical workflow:
 
 1. **Update Version**: Update the version in release-values.yaml as part of your CI process
-2. **Commit Changes**: Commit the updated release-values.yaml to your repository
-3. **Deploy with Helm**: Use the helm upgrade command in your deployment pipeline
+2. **Commit Changes**: Commit the updated release-values.yaml to the repository
+3. **Push Changes**: Push to the main branch to trigger the GitOps deployment
 
 ```powershell
-# Example CI/CD script
-$VERSION="2.0.3"  # This would be dynamically set in your CI/CD process
+# Example CI/CD script to update version
+$VERSION="2.0.4"  # This would be dynamically set in your CI/CD process
 
 # Update the version in release-values.yaml
 (Get-Content .\cfp-sandbox-cluster\choose-native-plants\release-values.yaml) -replace 'tag: "\d+\.\d+\.\d+"', "tag: "$VERSION"" | Set-Content .\cfp-sandbox-cluster\choose-native-plants\release-values.yaml
 
-# Deploy with Helm
-helm upgrade --install choose-native-plants .\pa-wildflower-selector\helm-chart\ -f .\cfp-sandbox-cluster\choose-native-plants\release-values.yaml -n choose-native-plants
+# Commit and push changes
+git add .\cfp-sandbox-cluster\choose-native-plants\release-values.yaml
+git commit -m "Update Choose Native Plants to version $VERSION"
+git push origin main
 ```
 
 ## Accessing the Application
