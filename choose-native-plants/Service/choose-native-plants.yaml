@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: choose-native-plants
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: choose-native-plants
-    app.kubernetes.io/version: 2.0.4
-    helm.sh/chart: choose-native-plants-2.0.4
+    app.kubernetes.io/version: 2.0.5
+    helm.sh/chart: choose-native-plants-2.0.5
   name: choose-native-plants
   namespace: choose-native-plants
 spec:
