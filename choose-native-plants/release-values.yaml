@@ -6,6 +6,12 @@ app:
       value: "--openssl-legacy-provider --max-old-space-size=768"
   envFrom:
     - secretRef:
+        name: app
+    - secretRef:
+        name: mongo
+    - secretRef:
+        name: pac-api
+    - secretRef:
         name: linode-storage
 
 # Resource settings for the application
