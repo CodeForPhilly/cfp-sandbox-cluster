@@ -4,6 +4,9 @@ app:
   env:
     - name: NODE_OPTIONS
       value: "--openssl-legacy-provider --max-old-space-size=768"
+  envFrom:
+    - secretRef:
+        name: linode-storage
 
 # Resource settings for the application
 resources:
