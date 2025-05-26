@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: choose-native-plants
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: choose-native-plants
-    app.kubernetes.io/version: 2.0.4
-    helm.sh/chart: choose-native-plants-2.0.4
+    app.kubernetes.io/version: 2.0.5
+    helm.sh/chart: choose-native-plants-2.0.5
   name: choose-native-plants
   namespace: choose-native-plants
 spec:
@@ -168,55 +168,13 @@ spec:
                   key: LINODE_ENDPOINT_URL
                   name: linode-storage
                   optional: false
-            - name: PAC_API_BASE_URL
-              valueFrom:
-                secretKeyRef:
-                  key: PAC_API_BASE_URL
-                  name: pac-api
-                  optional: false
-            - name: PAC_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  key: PAC_API_KEY
-                  name: pac-api
-                  optional: false
-            - name: AWS_ACCESS_KEY_ID
-              valueFrom:
-                secretKeyRef:
-                  key: AWS_ACCESS_KEY_ID
-                  name: linode-storage
-                  optional: false
-            - name: AWS_SECRET_ACCESS_KEY
-              valueFrom:
-                secretKeyRef:
-                  key: AWS_SECRET_ACCESS_KEY
-                  name: linode-storage
-                  optional: false
-            - name: AWS_DEFAULT_REGION
-              valueFrom:
-                secretKeyRef:
-                  key: AWS_DEFAULT_REGION
-                  name: linode-storage
-                  optional: false
-            - name: LINODE_BUCKET_NAME
-              valueFrom:
-                secretKeyRef:
-                  key: LINODE_BUCKET_NAME
-                  name: linode-storage
-                  optional: false
-            - name: LINODE_ENDPOINT_URL
-              valueFrom:
-                secretKeyRef:
-                  key: LINODE_ENDPOINT_URL
-                  name: linode-storage
-                  optional: false
             - name: NODE_OPTIONS
               value: '--openssl-legacy-provider --max-old-space-size=768'
           envFrom:
             - configMapRef:
                 name: app-config
                 optional: true
-          image: 'ghcr.io/codeforphilly/pa-wildflower-selector/app:2.0.4'
+          image: 'ghcr.io/codeforphilly/pa-wildflower-selector/app:2.0.5'
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
