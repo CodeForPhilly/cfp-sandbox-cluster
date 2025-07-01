@@ -21,7 +21,7 @@ spec:
           name: balancer
           envFrom:
             - secretRef:
-                name: balancer-config-secret
+                name: balancer-config
           ports:
             - containerPort: 8000
           readinessProbe:
