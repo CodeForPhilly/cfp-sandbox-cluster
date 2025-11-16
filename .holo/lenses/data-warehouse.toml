@@ -1,5 +1,5 @@
 [hololens]
-package = "holo/lens-helm3/1.22"
+container = "ghcr.io/hologit/lenses/helm3:latest"
 
 [hololens.input]
 root = "data-warehouse"
