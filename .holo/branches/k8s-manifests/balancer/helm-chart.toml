@@ -1,3 +1,0 @@
-[holomapping]
-holosource = "balancer=>helm-chart"
-files = "**"

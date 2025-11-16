@@ -1,5 +1,5 @@
 [hololens]
-container = "ghcr.io/hologit/lenses/helm3:latest"
+container = "ghcr.io/hologit/lenses/kustomize:latest"
 
 [hololens.input]
 root = "balancer"
@@ -7,14 +7,3 @@ files = "**"
 
 [hololens.output]
 merge = "replace"
-
-[hololens.helm]
-namespace = "balancer"
-release_name = "balancer"
-namespace_fill = true
-namespace_override = true
-
-chart_path = "helm-chart"
-value_files = [
-    "release-values.yaml"
-]
