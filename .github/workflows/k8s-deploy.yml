@@ -28,48 +28,63 @@ jobs:
 
         # initialize empty log of kube operations
         echo -n '' > /tmp/kube.log
+        echo -n '' > /tmp/kube.err
 
     - name: 'Apply manifests: CRD resources'
       run: |
         if [ -d ./_/CustomResourceDefinition ]; then
-          kubectl apply -Rf ./_/CustomResourceDefinition | tee -a /tmp/kube.log
+          # Capture errors and add context
+          dir_errors=$(kubectl apply -Rf ./_/CustomResourceDefinition 2>&1 1>>/tmp/kube.log || true)
+
+          # Filter and append errors with context if meaningful
+          filtered_errors=$(echo "$dir_errors" | \
+                            grep -v "Warning: Use tokens from the TokenRequest API" | \
+                            grep -v "^Error: exit status [0-9]*$" | \
+                            grep -v "^[[:space:]]*$" || true)
+
+          if [ -n "$filtered_errors" ] && echo "$filtered_errors" | grep -q '[^[:space:]]' 2>/dev/null; then
+              echo "=== CRD Resources ===" >> /tmp/kube.err
+              echo "$filtered_errors" >> /tmp/kube.err
+              echo "" >> /tmp/kube.err
+          fi
         fi
 
     - name: 'Apply manifests: non-CRD global resources'
       run: |
         if [ -d ./_ ]; then
-          (
-            find _ \
-              -maxdepth 1 \
-              -mindepth 1 \
-              -type d \
-              -not -name 'CustomResourceDefinition' \
-              -print0 \
-            | sort -z \
-            | xargs -r0 -n 1 kubectl apply -Rf
-          ) | tee -a /tmp/kube.log
-        fi
-
-    - name: 'Apply manifests: namespaced resources'
-      run: |
-        (
-          find . \
+          find _ \
             -maxdepth 1 \
+            -mindepth 1 \
             -type d \
-            -not -name '_' \
-            -not -name '.*' \
+            -not -name 'CustomResourceDefinition' \
             -print0 \
           | sort -z \
-          | xargs -r0 -n 1 kubectl apply -Rf
-        ) | tee -a /tmp/kube.log
+          | while IFS= read -r -d '' dir; do
+              # Capture errors and add context per directory
+              dir_errors=$(kubectl apply -Rf "$dir" 2>&1 1>>/tmp/kube.log || true)
+
+              # Filter and append errors with context if meaningful
+              filtered_errors=$(echo "$dir_errors" | \
+                                grep -v "Warning: Use tokens from the TokenRequest API" | \
+                                grep -v "^Error: exit status [0-9]*$" | \
+                                grep -v "^[[:space:]]*$" || true)
+
+              if [ -n "$filtered_errors" ] && echo "$filtered_errors" | grep -q '[^[:space:]]' 2>/dev/null; then
+                  echo "=== Directory: $dir ===" >> /tmp/kube.err
+                  echo "$filtered_errors" >> /tmp/kube.err
+                  echo "" >> /tmp/kube.err
+              fi
+            done
+        fi
 
     - name: 'Apply manifests: generated regcred secrets'
       run: |
-
         # apply a copy of regcred secret for every deployed namespace
         while IFS= read -r namespace; do
           namespace="$(basename "${namespace}")"
-          cat <<EOF | kubectl apply -f - | tee -a /tmp/kube.log
+
+          # Capture errors for this namespace's regcred
+          secret_errors=$(cat <<EOF | kubectl apply -f - 2>&1 1>>/tmp/kube.log || true
         apiVersion: v1
         kind: Secret
         metadata:
@@ -79,7 +94,46 @@ jobs:
         data:
           .dockerconfigjson: ${{ secrets.DOCKER_CONFIG_BASE64 }}
         EOF
+        )
+
+          # Filter and append errors with context if meaningful
+          filtered_errors=$(echo "$secret_errors" | \
+                            grep -v "Warning: Use tokens from the TokenRequest API" | \
+                            grep -v "^Error: exit status [0-9]*$" | \
+                            grep -v "^[[:space:]]*$" || true)
+
+          if [ -n "$filtered_errors" ] && echo "$filtered_errors" | grep -q '[^[:space:]]' 2>/dev/null; then
+              echo "=== Regcred Secret: $namespace ===" >> /tmp/kube.err
+              echo "$filtered_errors" >> /tmp/kube.err
+              echo "" >> /tmp/kube.err
+          fi
         done <<< "$(find . -maxdepth 1 -type d -not -name '_' -not -name '.*')"
+
+    - name: 'Apply manifests: namespaced resources'
+      run: |
+        find . \
+          -maxdepth 1 \
+          -type d \
+          -not -name '_' \
+          -not -name '.*' \
+          -print0 \
+        | sort -z \
+        | while IFS= read -r -d '' dir; do
+            # Capture errors and add context per directory
+            dir_errors=$(kubectl apply -Rf "$dir" 2>&1 1>>/tmp/kube.log || true)
+
+            # Filter and append errors with context if meaningful
+            filtered_errors=$(echo "$dir_errors" | \
+                              grep -v "Warning: Use tokens from the TokenRequest API" | \
+                              grep -v "^Error: exit status [0-9]*$" | \
+                              grep -v "^[[:space:]]*$" || true)
+
+            if [ -n "$filtered_errors" ] && echo "$filtered_errors" | grep -q '[^[:space:]]' 2>/dev/null; then
+                echo "=== Directory: $dir ===" >> /tmp/kube.err
+                echo "$filtered_errors" >> /tmp/kube.err
+                echo "" >> /tmp/kube.err
+            fi
+          done
 
     - name: 'Apply manifests: deleted resources'
       run: |
@@ -90,10 +144,27 @@ jobs:
           kind="${kind_name%%/*}"
           name="${kind_name##*/}"
 
+          # Capture errors for this deletion
           if [ "${namespace}" == "_" ]; then
-            kubectl delete $kind $name | tee -a /tmp/kube.log
+            delete_errors=$(kubectl delete $kind $name 2>&1 1>>/tmp/kube.log || true)
           else
-            kubectl -n $namespace delete $kind $name | tee -a /tmp/kube.log
+            delete_errors=$(kubectl -n $namespace delete $kind $name 2>&1 1>>/tmp/kube.log || true)
+          fi
+
+          # Filter and append errors with context if meaningful
+          filtered_errors=$(echo "$delete_errors" | \
+                            grep -v "Warning: Use tokens from the TokenRequest API" | \
+                            grep -v "^Error: exit status [0-9]*$" | \
+                            grep -v "^[[:space:]]*$" || true)
+
+          if [ -n "$filtered_errors" ] && echo "$filtered_errors" | grep -q '[^[:space:]]' 2>/dev/null; then
+              if [ "${namespace}" == "_" ]; then
+                  echo "=== Deleting: $kind/$name ===" >> /tmp/kube.err
+              else
+                  echo "=== Deleting: $namespace/$kind/$name ===" >> /tmp/kube.err
+              fi
+              echo "$filtered_errors" >> /tmp/kube.err
+              echo "" >> /tmp/kube.err
           fi
         done
 
@@ -112,6 +183,17 @@ jobs:
         \`\`\`
         EOF
         )"
+
+        # Conditionally append error output if it has meaningful content
+        if [ -s /tmp/kube.err ]; then
+            comment_body="${comment_body}
+
+        ## Errors/Warnings
+
+        \`\`\`
+        $(cat /tmp/kube.err)
+        \`\`\`"
+        fi
 
 
         ## get most recent merged PR

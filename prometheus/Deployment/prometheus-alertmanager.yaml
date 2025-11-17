@@ -40,7 +40,7 @@ spec:
                 fieldRef:
                   apiVersion: v1
                   fieldPath: status.podIP
-          image: 'quay.io/prometheus/alertmanager:v0.24.0'
+          image: quay.io/prometheus/alertmanager:v0.24.0
           imagePullPolicy: IfNotPresent
           name: prometheus-alertmanager
           ports:
@@ -61,7 +61,7 @@ spec:
         - args:
             - '--volume-dir=/etc/config'
             - '--webhook-url=http://127.0.0.1:9093/-/reload'
-          image: 'jimmidyson/configmap-reload:v0.5.0'
+          image: jimmidyson/configmap-reload:v0.5.0
           imagePullPolicy: IfNotPresent
           name: prometheus-alertmanager-configmap-reload
           resources: {}

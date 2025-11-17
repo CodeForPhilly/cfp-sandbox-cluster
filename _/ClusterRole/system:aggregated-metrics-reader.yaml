@@ -6,7 +6,7 @@ metadata:
     rbac.authorization.k8s.io/aggregate-to-admin: 'true'
     rbac.authorization.k8s.io/aggregate-to-edit: 'true'
     rbac.authorization.k8s.io/aggregate-to-view: 'true'
-  name: 'system:aggregated-metrics-reader'
+  name: system:aggregated-metrics-reader
 rules:
   - apiGroups:
       - metrics.k8s.io

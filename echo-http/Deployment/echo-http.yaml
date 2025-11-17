@@ -14,7 +14,7 @@ spec:
         app: echo-http
     spec:
       containers:
-        - image: 'mendhak/http-https-echo:17'
+        - image: mendhak/http-https-echo:17
           name: echo-http
           ports:
             - containerPort: 8080

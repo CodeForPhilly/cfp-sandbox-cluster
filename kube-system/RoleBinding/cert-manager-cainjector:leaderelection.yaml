@@ -9,12 +9,12 @@ metadata:
     app.kubernetes.io/name: cainjector
     app.kubernetes.io/version: v1.10.1
     helm.sh/chart: cert-manager-v1.10.1
-  name: 'cert-manager-cainjector:leaderelection'
+  name: cert-manager-cainjector:leaderelection
   namespace: kube-system
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: 'cert-manager-cainjector:leaderelection'
+  name: cert-manager-cainjector:leaderelection
 subjects:
   - kind: ServiceAccount
     name: cert-manager-cainjector

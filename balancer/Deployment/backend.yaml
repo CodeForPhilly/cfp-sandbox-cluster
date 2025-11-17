@@ -19,9 +19,9 @@ spec:
       containers:
         - args:
             - gunicorn
-            - 'balancer_backend.wsgi:application'
+            - balancer_backend.wsgi:application
             - '--bind'
-            - '0.0.0.0:8000'
+            - 0.0.0.0:8000
           env:
             - name: SQL_HOST
               value: db-service
@@ -45,7 +45,7 @@ spec:
                 name: backend-env
             - secretRef:
                 name: backend
-          image: 'ghcr.io/codeforphilly/balancer-main/backend:0.1.1'
+          image: ghcr.io/codeforphilly/balancer-main/backend:0.1.1
           imagePullPolicy: Always
           name: backend
           ports:

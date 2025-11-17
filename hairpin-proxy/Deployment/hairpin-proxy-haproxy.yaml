@@ -16,7 +16,7 @@ spec:
         app: hairpin-proxy-haproxy
     spec:
       containers:
-        - image: 'ghcr.io/jarvusinnovations/hairpin-proxy/haproxy:0.3.0'
+        - image: ghcr.io/jarvusinnovations/hairpin-proxy/haproxy:0.3.0
           name: main
           resources:
             limits:

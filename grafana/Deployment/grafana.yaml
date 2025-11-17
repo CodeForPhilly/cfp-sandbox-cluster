@@ -49,7 +49,7 @@ spec:
               value: /var/lib/grafana/plugins
             - name: GF_PATHS_PROVISIONING
               value: /etc/grafana/provisioning
-          image: 'grafana/grafana:9.2.5'
+          image: grafana/grafana:9.2.5
           imagePullPolicy: IfNotPresent
           livenessProbe:
             failureThreshold: 10
@@ -86,7 +86,7 @@ spec:
             - '-R'
             - '472:472'
             - /var/lib/grafana
-          image: 'busybox:1.31.1'
+          image: busybox:1.31.1
           imagePullPolicy: IfNotPresent
           name: init-chown-data
           securityContext:
@@ -103,7 +103,7 @@ spec:
           command:
             - /bin/sh
           env: null
-          image: 'curlimages/curl:7.85.0'
+          image: curlimages/curl:7.85.0
           imagePullPolicy: IfNotPresent
           name: download-dashboards
           volumeMounts:
