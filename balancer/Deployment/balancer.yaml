@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: balancer
+  name: balancer
+  namespace: balancer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: balancer
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: balancer
+    spec:
+      containers:
+        - envFrom:
+            - secretRef:
+                name: balancer-config
+          image: ghcr.io/codeforphilly/balancer-main/app:1.0.2
+          name: app
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /admin/
+              port: 8000
+            initialDelaySeconds: 30
+            periodSeconds: 10

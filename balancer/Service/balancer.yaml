@@ -2,13 +2,13 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app.kubernetes.io/component: backend
-  name: backend
+    app: balancer
+  name: balancer
   namespace: balancer
 spec:
   ports:
-    - name: gunicorn
+    - name: http
       port: 8000
       targetPort: 8000
   selector:
-    app.kubernetes.io/component: backend
+    app: balancer
