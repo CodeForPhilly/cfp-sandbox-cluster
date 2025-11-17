@@ -24,7 +24,7 @@ spec:
   scope: Namespaced
   versions:
     - additionalPrinterColumns:
-        - jsonPath: '.status.conditions[?(@.type=="Ready")].status'
+        - jsonPath: .status.conditions[?(@.type=="Ready")].status
           name: Ready
           type: string
         - jsonPath: .spec.secretName
@@ -34,7 +34,7 @@ spec:
           name: Issuer
           priority: 1
           type: string
-        - jsonPath: '.status.conditions[?(@.type=="Ready")].message'
+        - jsonPath: .status.conditions[?(@.type=="Ready")].message
           name: Status
           priority: 1
           type: string

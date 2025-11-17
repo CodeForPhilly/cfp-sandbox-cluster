@@ -7,7 +7,7 @@ data:
   EMAIL_HOST: smtp.gmail.com
   EMAIL_HOST_USER: balancer-noreply@gmail.com
   EMAIL_PORT: '587'
-  LOGIN_REDIRECT_URL: 'https://balancertestsite.com/login'
+  LOGIN_REDIRECT_URL: https://balancertestsite.com/login
   SQL_ENGINE: django.db.backends.postgresql
   SQL_PORT: '5432'
 kind: ConfigMap

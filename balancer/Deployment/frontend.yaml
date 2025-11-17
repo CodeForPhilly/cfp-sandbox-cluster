@@ -21,7 +21,7 @@ spec:
         io.kompose.network/balancer-main-default: 'true'
     spec:
       containers:
-        - image: 'ghcr.io/codeforphilly/balancer-main/frontend:0.1.1'
+        - image: ghcr.io/codeforphilly/balancer-main/frontend:0.1.1
           imagePullPolicy: Always
           name: frontend
           ports:

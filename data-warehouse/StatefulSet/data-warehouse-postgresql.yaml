@@ -27,7 +27,7 @@ spec:
         - envFrom:
             - secretRef:
                 name: postgresql
-          image: 'postgres:13'
+          image: postgres:13
           livenessProbe:
             initialDelaySeconds: 15
             periodSeconds: 20

@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
         - args: null
-          image: 'prom/pushgateway:v1.4.3'
+          image: prom/pushgateway:v1.4.3
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:

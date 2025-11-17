@@ -21,10 +21,10 @@ spec:
   scope: Namespaced
   versions:
     - additionalPrinterColumns:
-        - jsonPath: '.status.conditions[?(@.type=="Ready")].status'
+        - jsonPath: .status.conditions[?(@.type=="Ready")].status
           name: Ready
           type: string
-        - jsonPath: '.status.conditions[?(@.type=="Ready")].message'
+        - jsonPath: .status.conditions[?(@.type=="Ready")].message
           name: Status
           priority: 1
           type: string
@@ -821,7 +821,7 @@ spec:
                                              Support for other resources is Implementation-Specific.
                                           maxLength: 63
                                           minLength: 1
-                                          pattern: '^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$'
+                                          pattern: ^[a-zA-Z]([-a-zA-Z0-9]*[a-zA-Z0-9])?$
                                           type: string
                                         name:
                                           description: |-
@@ -841,7 +841,7 @@ spec:
                                              Support: Core
                                           maxLength: 63
                                           minLength: 1
-                                          pattern: '^[a-z0-9]([-a-z0-9]*[a-z0-9])?$'
+                                          pattern: ^[a-z0-9]([-a-z0-9]*[a-z0-9])?$
                                           type: string
                                         port:
                                           description: >-
@@ -2020,7 +2020,7 @@ spec:
                                                 type: object
                                             type: object
                                           imagePullSecrets:
-                                            description: 'If specified, the pod''s imagePullSecrets'
+                                            description: If specified, the pod's imagePullSecrets
                                             items:
                                               description: >-
                                                 LocalObjectReference contains enough
@@ -2055,10 +2055,10 @@ spec:
                                               priorityClassName.
                                             type: string
                                           serviceAccountName:
-                                            description: 'If specified, the pod''s service account'
+                                            description: If specified, the pod's service account
                                             type: string
                                           tolerations:
-                                            description: 'If specified, the pod''s tolerations.'
+                                            description: If specified, the pod's tolerations.
                                             items:
                                               description: >-
                                                 The pod this Toleration is attached to
@@ -2601,7 +2601,7 @@ spec:
                           - Unknown
                         type: string
                       type:
-                        description: 'Type of the condition, known values are (`Ready`).'
+                        description: Type of the condition, known values are (`Ready`).
                         type: string
                     required:
                       - status

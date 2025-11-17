@@ -85,7 +85,7 @@ spec:
               envFrom:
                 - secretRef:
                     name: restic
-              image: 'ghcr.io/jarvusinnovations/restic-toolkit:1.3.0'
+              image: ghcr.io/jarvusinnovations/restic-toolkit:1.3.0
               imagePullPolicy: IfNotPresent
               name: restic-toolkit
           restartPolicy: Never

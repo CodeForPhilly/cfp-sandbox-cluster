@@ -21,7 +21,7 @@ spec:
               value: coredns-custom
             - name: COREDNS_IMPORT_CONFIG
               value: 'true'
-          image: 'ghcr.io/jarvusinnovations/hairpin-proxy/controller:0.3.0'
+          image: ghcr.io/jarvusinnovations/hairpin-proxy/controller:0.3.0
           name: main
           resources:
             limits:

@@ -5,7 +5,7 @@ metadata:
     app.kubernetes.io/instance: choose-native-plants
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: choose-native-plants
-    app.kubernetes.io/version: 2.0.6
+    app.kubernetes.io/version: 2.0.7
     helm.sh/chart: choose-native-plants-2.0.7
   name: choose-native-plants
   namespace: choose-native-plants
@@ -40,7 +40,7 @@ spec:
           envFrom:
             - secretRef:
                 name: pac-api
-          image: 'mongo:5.0.6'
+          image: mongo:5.0.6
           imagePullPolicy: IfNotPresent
           name: choose-native-plants-db
           ports:
@@ -182,7 +182,7 @@ spec:
                 name: pac-api
             - secretRef:
                 name: linode-storage
-          image: 'ghcr.io/codeforphilly/pa-wildflower-selector/app:2.0.7'
+          image: ghcr.io/codeforphilly/pa-wildflower-selector/app:2.0.7
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3

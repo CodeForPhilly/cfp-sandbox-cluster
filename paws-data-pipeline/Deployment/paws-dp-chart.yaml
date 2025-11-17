@@ -29,8 +29,8 @@ spec:
               value: paws
           envFrom:
             - secretRef:
-                name: db-pass
-          image: 'postgres:15.4-alpine'
+                name: paws-secrets
+          image: postgres:15.14-alpine
           imagePullPolicy: IfNotPresent
           name: paws-datapipeline-db
           ports:
@@ -43,10 +43,10 @@ spec:
               subPath: postgresql-data
         - envFrom:
             - secretRef:
-                name: api-server-pws
+                name: paws-salesforce
             - secretRef:
-                name: db-pass
-          image: 'ghcr.io/codeforphilly/paws-data-pipeline/server:2.50'
+                name: paws-secrets
+          image: ghcr.io/codeforphilly/paws-data-pipeline/server:2.63
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
@@ -64,7 +64,9 @@ spec:
             - mountPath: /var/lib/server/data
               name: paws-data-pipeline-server-data
               subPath: server-data
-        - image: 'ghcr.io/codeforphilly/paws-data-pipeline/client:2.50'
+            - mountPath: /app/pem/
+              name: paws-data-pipeline-pem
+        - image: ghcr.io/codeforphilly/paws-data-pipeline/client:2.63
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
@@ -96,3 +98,9 @@ spec:
         - name: paws-data-pipeline-server-data
           persistentVolumeClaim:
             claimName: paws-data-pipeline-server-data
+        - name: paws-data-pipeline-pem
+          secret:
+            items:
+              - key: PEM_FILE
+                path: connected-app-secrets.pem
+            secretName: paws-salesforce

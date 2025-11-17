@@ -33,15 +33,34 @@ jobs:
 
     - name: Generate diff
       run: |
-        (
-          find . \
-            -maxdepth 1 \
-            -type d \
-            -not -name '.*' \
-            -print0 \
-          | sort -z \
-          | xargs -r0 -n 1 kubectl diff -Rf || true
-        ) > /tmp/kube.diff
+        # Initialize output files
+        echo -n '' > /tmp/kube.diff
+        echo -n '' > /tmp/kube.err
+
+        # Process each directory
+        find . \
+          -maxdepth 1 \
+          -type d \
+          -not -name '.*' \
+          -print0 \
+        | sort -z \
+        | while IFS= read -r -d '' dir; do
+            # Run kubectl diff: stdout to file, capture stderr in variable
+            dir_errors=$(kubectl diff -Rf "$dir" 2>&1 1>>/tmp/kube.diff || true)
+
+            # Filter out known warnings, exit status messages, and blank lines
+            filtered_errors=$(echo "$dir_errors" | \
+                              grep -v "Warning: Use tokens from the TokenRequest API" | \
+                              grep -v "^Error: exit status [0-9]*$" | \
+                              grep -v "^[[:space:]]*$" || true)
+
+            # If there are meaningful errors, append with prefix
+            if [ -n "$filtered_errors" ] && echo "$filtered_errors" | grep -q '[^[:space:]]' 2>/dev/null; then
+                echo "=== Directory: $dir ===" >> /tmp/kube.err
+                echo "$filtered_errors" >> /tmp/kube.err
+                echo "" >> /tmp/kube.err
+            fi
+          done
 
     - name: Create/update pull request
       env:
@@ -62,6 +81,17 @@ jobs:
         \`\`\`
         EOF
         )"
+
+        # Conditionally append error output if it has meaningful content
+        if [ -s /tmp/kube.err ]; then
+            pr_body="${pr_body}
+
+        ## Errors/Warnings
+
+        \`\`\`
+        $(cat /tmp/kube.err)
+        \`\`\`"
+        fi
 
 
         ## generate initial commit for base if needed

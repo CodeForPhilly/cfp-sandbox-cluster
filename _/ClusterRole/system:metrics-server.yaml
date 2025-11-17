@@ -3,7 +3,7 @@ kind: ClusterRole
 metadata:
   labels:
     k8s-app: metrics-server
-  name: 'system:metrics-server'
+  name: system:metrics-server
 rules:
   - apiGroups:
       - ''

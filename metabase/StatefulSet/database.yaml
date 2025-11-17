@@ -23,7 +23,7 @@ spec:
         - envFrom:
             - configMapRef:
                 name: database-config
-          image: 'postgres:12'
+          image: postgres:12
           livenessProbe:
             initialDelaySeconds: 15
             periodSeconds: 20
