@@ -1,0 +1,4 @@
+[holomapping]
+holosource = "balancer"
+root = "deploy/manifests/balancer/base"
+files = "**"
