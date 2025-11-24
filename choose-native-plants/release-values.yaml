@@ -1,6 +1,6 @@
 app:
   image:
-    tag: "2.1.2"
+    tag: "2.1.3"
   env:
     - name: NODE_OPTIONS
       value: "--openssl-legacy-provider --max-old-space-size=768"
