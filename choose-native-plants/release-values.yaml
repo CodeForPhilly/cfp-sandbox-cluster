@@ -1,9 +1,9 @@
 app:
   image:
-    tag: "2.1.5"
+    tag: "2.1.6"
   env:
     - name: NODE_OPTIONS
-      value: "--openssl-legacy-provider --max-old-space-size=768"
+      value: "--openssl-legacy-provider --max-old-space-size=3072"
   envFrom:
     - secretRef:
         name: app
