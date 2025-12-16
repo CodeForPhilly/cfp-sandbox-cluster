@@ -3,7 +3,7 @@ app:
     tag: "2.1.4"
   env:
     - name: NODE_OPTIONS
-      value: "--openssl-legacy-provider --max-old-space-size=768"
+      value: "--openssl-legacy-provider --max-old-space-size=3072"
   envFrom:
     - secretRef:
         name: app
