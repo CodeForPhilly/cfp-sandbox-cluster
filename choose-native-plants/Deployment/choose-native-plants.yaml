@@ -5,7 +5,7 @@ metadata:
     app.kubernetes.io/instance: choose-native-plants
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: choose-native-plants
-    app.kubernetes.io/version: 2.0.7
+    app.kubernetes.io/version: 2.1.5
     helm.sh/chart: choose-native-plants-2.0.7
   name: choose-native-plants
   namespace: choose-native-plants
@@ -169,7 +169,7 @@ spec:
                   name: linode-storage
                   optional: false
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=768'
+              value: '--openssl-legacy-provider --max-old-space-size=3072'
           envFrom:
             - configMapRef:
                 name: app-config
@@ -182,7 +182,7 @@ spec:
                 name: pac-api
             - secretRef:
                 name: linode-storage
-          image: ghcr.io/codeforphilly/pa-wildflower-selector/app:2.1.5
+          image: ghcr.io/codeforphilly/pa-wildflower-selector/app:2.1.6
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
