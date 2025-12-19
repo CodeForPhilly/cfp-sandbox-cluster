@@ -57,6 +57,47 @@ $POD_NAME = kubectl get pods -n choose-native-plants -l app.kubernetes.io/name=c
 kubectl exec -it $POD_NAME -n choose-native-plants -c choose-native-plants-app -- node download --skip-images
 ```
 
+### Syncing Data Down (Database Only)
+
+To sync data down from Linode Object Storage without images (equivalent to `npm run sync:down:db`), use this command:
+
+```powershell
+$POD_NAME = kubectl get pods -n choose-native-plants -l app.kubernetes.io/name=choose-native-plants -o jsonpath='{.items[0].metadata.name}'
+kubectl exec -it $POD_NAME -n choose-native-plants -c choose-native-plants-app -- npm run sync:down:db
+```
+
+Alternatively, you can run the script directly:
+
+```powershell
+$POD_NAME = kubectl get pods -n choose-native-plants -l app.kubernetes.io/name=choose-native-plants -o jsonpath='{.items[0].metadata.name}'
+kubectl exec -it $POD_NAME -n choose-native-plants -c choose-native-plants-app -- node scripts/sync-down.js --skip-images
+```
+
+### Fast Update Data (Download and Massage)
+
+To download data without images and then process it (equivalent to `npm run fast-update-data`), use this command:
+
+```powershell
+$POD_NAME = kubectl get pods -n choose-native-plants -l app.kubernetes.io/name=choose-native-plants -o jsonpath='{.items[0].metadata.name}'
+kubectl exec -it $POD_NAME -n choose-native-plants -c choose-native-plants-app -- npm run fast-update-data
+```
+
+This command combines downloading data (without images) and massaging the data in a single operation.
+
+**Note:** This is a long-running command that may take several minutes. If you see a websocket error (`websocket: close 1006 (abnormal closure): unexpected EOF`), the command may have completed successfully in the pod despite the connection error. You can verify completion by checking the pod logs:
+
+```powershell
+$POD_NAME = kubectl get pods -n choose-native-plants -l app.kubernetes.io/name=choose-native-plants -o jsonpath='{.items[0].metadata.name}'
+kubectl logs $POD_NAME -n choose-native-plants -c choose-native-plants-app --tail=50
+```
+
+Alternatively, for long-running commands, you can run them without the interactive flag (`-it`) to avoid connection issues:
+
+```powershell
+$POD_NAME = kubectl get pods -n choose-native-plants -l app.kubernetes.io/name=choose-native-plants -o jsonpath='{.items[0].metadata.name}'
+kubectl exec $POD_NAME -n choose-native-plants -c choose-native-plants-app -- npm run fast-update-data
+```
+
 ### Massaging Data
 
 To process the data, use this command:
