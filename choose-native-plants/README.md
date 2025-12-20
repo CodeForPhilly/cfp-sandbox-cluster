@@ -98,6 +98,29 @@ $POD_NAME = kubectl get pods -n choose-native-plants -l app.kubernetes.io/name=c
 kubectl exec $POD_NAME -n choose-native-plants -c choose-native-plants-app -- npm run fast-update-data
 ```
 
+### Generating Embeddings
+
+After running `fast-update-data`, you should generate embeddings for the updated data. Use this command:
+
+```powershell
+$POD_NAME = kubectl get pods -n choose-native-plants -l app.kubernetes.io/name=choose-native-plants -o jsonpath='{.items[0].metadata.name}'
+kubectl exec -it $POD_NAME -n choose-native-plants -c choose-native-plants-app -- npm run generate-embeddings
+```
+
+**Note:** This is a long-running command that may take several minutes. If you see a websocket error (`websocket: close 1006 (abnormal closure): unexpected EOF`), the command may have completed successfully in the pod despite the connection error. You can verify completion by checking the pod logs:
+
+```powershell
+$POD_NAME = kubectl get pods -n choose-native-plants -l app.kubernetes.io/name=choose-native-plants -o jsonpath='{.items[0].metadata.name}'
+kubectl logs $POD_NAME -n choose-native-plants -c choose-native-plants-app --tail=50
+```
+
+Alternatively, for long-running commands, you can run them without the interactive flag (`-it`) to avoid connection issues:
+
+```powershell
+$POD_NAME = kubectl get pods -n choose-native-plants -l app.kubernetes.io/name=choose-native-plants -o jsonpath='{.items[0].metadata.name}'
+kubectl exec $POD_NAME -n choose-native-plants -c choose-native-plants-app -- npm run generate-embeddings
+```
+
 ### Massaging Data
 
 To process the data, use this command:
