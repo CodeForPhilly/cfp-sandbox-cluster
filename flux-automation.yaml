@@ -1,0 +1,48 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: balancer
+  namespace: flux-system
+spec:
+  image: ghcr.io/codeforphilly/balancer-main/app
+  interval: 1h
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: balancer
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: balancer
+  filterSelection:
+    pattern: '^dev-[0-9]+-[a-f0-9]+'
+  policy:
+    alphabetical:
+      order: asc # asc will pick the highest alphabetical value, which is the newest timestamp.
+
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageUpdateAutomation
+metadata:
+  name: balancer-updates
+  namespace: flux-system
+spec:
+  interval: 1h
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  git:
+    checkout:
+      ref:
+        branch: main
+    commit:
+      author:
+        email: fluxcdbot@users.noreply.github.com
+        name: fluxcdbot
+      messageTemplate: 'App: balancer image update to {{ .SelectedTarget.Tag }}'
+    push:
+      branch: main
+  update:
+    path: ./balancer
+    strategy: Setters
