@@ -15,9 +15,11 @@ metadata:
 spec:
   imageRepositoryRef:
     name: balancer
+  filterSelection:
+    pattern: '^.*-dev\.[0-9]+$'
   policy:
-    semver:
-      range: '>=1.2.0-0' # Includes pre-releases like 1.2.0-dev.TIMESTAMP
+    alphabetical:
+      order: desc # Picks the highest alphabetical/numerical value (newest timestamp)
 
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
