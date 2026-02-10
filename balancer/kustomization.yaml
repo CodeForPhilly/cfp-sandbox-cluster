@@ -23,10 +23,10 @@ patches:
         value: letsencrypt-prod
       - op: replace
         path: /spec/tls/0/hosts/0
-        value: balancer.sandbox.k8s.phl.io
+        value: sandbox.balancerproject.org
       - op: replace
         path: /spec/rules/0/host
-        value: balancer.sandbox.k8s.phl.io
+        value: sandbox.balancerproject.org
   - target:
       kind: Namespace
       name: balancer
