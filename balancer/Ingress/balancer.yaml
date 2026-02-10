@@ -8,7 +8,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: balancer.sandbox.k8s.phl.io
+    - host: sandbox.balancerproject.org
       http:
         paths:
           - backend:
@@ -20,5 +20,5 @@ spec:
             pathType: Prefix
   tls:
     - hosts:
-        - balancer.sandbox.k8s.phl.io
+        - sandbox.balancerproject.org
       secretName: balancer-tls
