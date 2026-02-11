@@ -11,7 +11,7 @@ resources:
 
 images:
   - name: ghcr.io/codeforphilly/balancer-main/app
-    newTag: "1.1.3"
+    newTag: "0.0.0-dev.20260211012449"
 
 patches:
   - target:
@@ -21,6 +21,9 @@ patches:
       - op: add
         path: /metadata/annotations/cert-manager.io~1cluster-issuer
         value: letsencrypt-prod
+      - op: add
+        path: /metadata/annotations/kubernetes.io~1ingress.class
+        value: nginx
       - op: replace
         path: /spec/tls/0/hosts/0
         value: sandbox.balancerproject.org
