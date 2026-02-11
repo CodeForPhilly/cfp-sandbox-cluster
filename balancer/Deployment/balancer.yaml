@@ -20,7 +20,7 @@ spec:
         - envFrom:
             - secretRef:
                 name: balancer-config
-          image: ghcr.io/codeforphilly/balancer-main/app:1.1.3
+          image: ghcr.io/codeforphilly/balancer-main/app:0.0.0-dev.20260211012449
           name: app
           ports:
             - containerPort: 8000
