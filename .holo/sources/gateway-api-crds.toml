@@ -1,0 +1,3 @@
+[holosource]
+url = "https://github.com/kubernetes-sigs/gateway-api.git"
+ref = "refs/tags/v1.5.0"

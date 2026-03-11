@@ -1,0 +1,5 @@
+[holomapping]
+holosource = "envoy-gateway-chart"
+root = "charts/gateway-crds-helm/templates"
+files = "**"
+before = "*"

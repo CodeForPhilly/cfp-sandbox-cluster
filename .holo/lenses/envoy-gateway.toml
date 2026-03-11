@@ -1,0 +1,18 @@
+[hololens]
+container = "ghcr.io/hologit/lenses/helm3:latest"
+
+[hololens.input]
+root = "infra/envoy-gateway"
+files = "**"
+
+[hololens.output]
+merge = "replace"
+
+[hololens.helm]
+namespace = "envoy-gateway-system"
+release_name = "eg"
+
+chart_path = "helm-chart"
+value_files = [
+    "release-values.yaml"
+]

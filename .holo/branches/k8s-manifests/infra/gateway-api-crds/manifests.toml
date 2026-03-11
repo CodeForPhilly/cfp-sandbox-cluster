@@ -1,0 +1,5 @@
+[holomapping]
+holosource = "gateway-api-crds"
+root = "config/crd/standard"
+files = "*.yaml"
+before = "*"

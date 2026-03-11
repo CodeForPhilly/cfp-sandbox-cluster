@@ -1,0 +1,2 @@
+# Default values for Envoy Gateway CRDs
+# See https://github.com/envoyproxy/gateway/blob/main/charts/gateway-crds-helm/values.yaml

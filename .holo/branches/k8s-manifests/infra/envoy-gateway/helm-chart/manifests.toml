@@ -1,0 +1,4 @@
+[holomapping]
+holosource = "envoy-gateway-chart"
+root = "charts/gateway-helm"
+files = "**"
