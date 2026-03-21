@@ -7,29 +7,13 @@ resources:
   - manifests/namespace.yaml
   - manifests/deployment.yaml
   - manifests/service.yaml
-  - manifests/ingress.yaml
+  - manifests/httproute.yaml
 
 images:
   - name: ghcr.io/codeforphilly/balancer-main/app
     newTag: "0.0.0-dev.20260211012449"
 
 patches:
-  - target:
-      kind: Ingress
-      name: balancer
-    patch: |-
-      - op: add
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-prod
-      - op: add
-        path: /metadata/annotations/kubernetes.io~1ingress.class
-        value: nginx
-      - op: replace
-        path: /spec/tls/0/hosts/0
-        value: sandbox.balancerproject.org
-      - op: replace
-        path: /spec/rules/0/host
-        value: sandbox.balancerproject.org
   - target:
       kind: Namespace
       name: balancer
