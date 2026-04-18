@@ -8,9 +8,25 @@ spec:
   imageName: ghcr.io/cloudnative-pg/postgresql:16.1
   storage:
     size: 20Gi
-  bootstrap:
-    initdb:
-      database: balancer
+  
+  managed:
+    roles:
+      - name: balancer
+        login: true
+        passwordSecret:
+          name: balancer-db-credentials
+
   postgresql:
     parameters:
       shared_preload_libraries: 'vector'
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: balancer
+  namespace: cloudnative-pg
+spec:
+  name: balancer
+  owner: balancer
+  cluster:
+    name: philly-cluster
