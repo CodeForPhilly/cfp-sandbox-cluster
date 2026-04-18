@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: philly-cluster
+  name: codeforphilly-cluster
   namespace: cloudnative-pg
 spec:
   instances: 3
@@ -29,4 +29,4 @@ spec:
   name: balancer
   owner: balancer
   cluster:
-    name: philly-cluster
+    name: codeforphilly-cluster
