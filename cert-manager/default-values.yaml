@@ -1,0 +1,4 @@
+# These values as applied first as template-provided defaults
+
+startupapicheck:
+  enabled: false

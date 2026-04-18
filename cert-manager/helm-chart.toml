@@ -1,0 +1,8 @@
+[holomapping]
+holosource = "cert-manager"
+files = [
+    "deploy/charts/cert-manager/**",
+    "!deploy/charts/cert-manager/Chart.template.yaml",
+    "!deploy/charts/cert-manager/README.template.md"
+]
+strip_prefix = "deploy/charts/cert-manager"
