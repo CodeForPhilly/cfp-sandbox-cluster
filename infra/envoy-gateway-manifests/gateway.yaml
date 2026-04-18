@@ -3,29 +3,9 @@ kind: Gateway
 metadata:
   name: main-gateway
   namespace: envoy-gateway-system
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   gatewayClassName: envoy
   allowedListeners:
     namespaces:
       from: All
-  listeners:
-    - name: http
-      protocol: HTTP
-      port: 80
-      allowedRoutes:
-        namespaces:
-          from: All
-    - name: https
-      protocol: HTTPS
-      port: 443
-      allowedRoutes:
-        namespaces:
-          from: All
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: main-gateway-tls
-            kind: Secret
-            group: ""
+  listeners: []
