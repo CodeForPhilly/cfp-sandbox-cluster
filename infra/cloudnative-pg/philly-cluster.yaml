@@ -1,0 +1,17 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: philly-cluster
+  namespace: postgresql
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.1
+  storage:
+    size: 20Gi
+  bootstrap:
+    initdb:
+      database: philly_db
+      owner: philly_admin
+  postgresql:
+    parameters:
+      shared_preload_libraries: 'vector'
