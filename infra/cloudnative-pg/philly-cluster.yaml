@@ -10,8 +10,10 @@ spec:
     size: 20Gi
   bootstrap:
     initdb:
-      database: philly_db
-      owner: philly_admin
+      database: balancer
+      owner: balancer
+      secret:
+        name: balancer-db-credentials
   postgresql:
     parameters:
       shared_preload_libraries: 'vector'
