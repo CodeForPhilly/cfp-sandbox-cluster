@@ -8,6 +8,8 @@ resources:
   - manifests/deployment.yaml
   - manifests/service.yaml
   - manifests/ingress.yaml
+  - gateway-listeners.yaml
+  - http-route.yaml
 
 images:
   - name: ghcr.io/codeforphilly/balancer-main/app
