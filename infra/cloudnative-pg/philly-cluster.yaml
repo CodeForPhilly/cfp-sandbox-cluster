@@ -11,9 +11,6 @@ spec:
   bootstrap:
     initdb:
       database: balancer
-      owner: balancer
-      secret:
-        name: balancer-db-credentials
   postgresql:
     parameters:
       shared_preload_libraries: 'vector'
