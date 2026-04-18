@@ -7,9 +7,8 @@ resources:
   - manifests/namespace.yaml
   - manifests/deployment.yaml
   - manifests/service.yaml
-  - manifests/ingress.yaml
-  - gateway-listeners.yaml
-  - http-route.yaml
+  - manifests/gateway-listeners.yaml
+  - manifests/httproute.yaml
 
 images:
   - name: ghcr.io/codeforphilly/balancer-main/app
@@ -17,21 +16,22 @@ images:
 
 patches:
   - target:
-      kind: Ingress
+      kind: ListenerSet
+      name: balancer-listeners
+    patch: |-
+      - op: replace
+        path: /spec/listeners/0/hostname
+        value: sandbox.balancerproject.org
+      - op: replace
+        path: /spec/listeners/1/hostname
+        value: sandbox.balancerproject.org
+  - target:
+      kind: HTTPRoute
       name: balancer
     patch: |-
       - op: add
-        path: /metadata/annotations/cert-manager.io~1cluster-issuer
-        value: letsencrypt-prod
-      - op: add
-        path: /metadata/annotations/kubernetes.io~1ingress.class
-        value: nginx
-      - op: replace
-        path: /spec/tls/0/hosts/0
-        value: sandbox.balancerproject.org
-      - op: replace
-        path: /spec/rules/0/host
-        value: sandbox.balancerproject.org
+        path: /spec/hostnames
+        value: ["sandbox.balancerproject.org"]
   - target:
       kind: Namespace
       name: balancer
