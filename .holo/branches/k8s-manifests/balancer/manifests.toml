@@ -1,4 +1,4 @@
 [holomapping]
 holosource = "balancer"
-root = "deploy/manifests/balancer/base"
+root = "deploy/manifests/balancer"
 files = "**"
