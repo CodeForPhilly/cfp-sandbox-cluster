@@ -1,7 +1,7 @@
 apiVersion: postgresql.cnpg.io/v1
 kind: Cluster
 metadata:
-  name: codeforphilly-cluster
+  name: shared-cluster
   namespace: cloudnative-pg
 spec:
   instances: 3
@@ -19,14 +19,3 @@ spec:
   postgresql:
     parameters:
       shared_preload_libraries: 'vector'
----
-apiVersion: postgresql.cnpg.io/v1
-kind: Database
-metadata:
-  name: balancer
-  namespace: cloudnative-pg
-spec:
-  name: balancer
-  owner: balancer
-  cluster:
-    name: codeforphilly-cluster

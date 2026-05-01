@@ -5,12 +5,20 @@ namespace: balancer
 
 resources:
   - manifests/overlays/sandbox
+  - database.yaml
 
 images:
   - name: ghcr.io/codeforphilly/balancer-main/app
     newTag: "0.0.0-dev.20260211012449"
 
 patches:
+  - target:
+      kind: Database
+      name: balancer
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: cloudnative-pg
   - target:
       kind: Ingress
       name: balancer
