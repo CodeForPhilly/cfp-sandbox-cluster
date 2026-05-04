@@ -1,0 +1,14 @@
+[hololens]
+container = "ghcr.io/hologit/lenses/helm3:latest"
+
+[hololens.input]
+root = "infra/cloudnative-pg/operator"
+files = "**"
+
+[hololens.output]
+merge = "replace"
+
+[hololens.helm]
+namespace = "cloudnative-pg"
+release_name = "cloudnative-pg"
+include_crds = true

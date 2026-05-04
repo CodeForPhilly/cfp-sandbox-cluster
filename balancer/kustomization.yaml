@@ -4,7 +4,10 @@ kind: Kustomization
 namespace: balancer
 
 resources:
-  - manifests/overlays/sandbox
+  - manifests/namespace.yaml
+  - manifests/deployment.yaml
+  - manifests/service.yaml
+  - manifests/ingress.yaml
 
 images:
   - name: ghcr.io/codeforphilly/balancer-main/app
@@ -27,3 +30,10 @@ patches:
       - op: replace
         path: /spec/rules/0/host
         value: sandbox.balancerproject.org
+  - target:
+      kind: Namespace
+      name: balancer
+    patch: |-
+      - op: replace
+        path: /metadata/name
+        value: dev
