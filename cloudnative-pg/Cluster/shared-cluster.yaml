@@ -1,0 +1,19 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: shared-cluster
+  namespace: cloudnative-pg
+spec:
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.1
+  instances: 3
+  managed:
+    roles:
+      - login: true
+        name: balancer
+        passwordSecret:
+          name: balancer-db-credentials
+  postgresql:
+    parameters:
+      shared_preload_libraries: vector
+  storage:
+    size: 20Gi

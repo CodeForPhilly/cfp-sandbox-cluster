@@ -46,7 +46,7 @@ spec:
                 name: paws-salesforce
             - secretRef:
                 name: paws-secrets
-          image: ghcr.io/codeforphilly/paws-data-pipeline/server:2.63
+          image: ghcr.io/codeforphilly/paws-data-pipeline/server:2.64
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
@@ -66,7 +66,7 @@ spec:
               subPath: server-data
             - mountPath: /app/pem/
               name: paws-data-pipeline-pem
-        - image: ghcr.io/codeforphilly/paws-data-pipeline/client:2.63
+        - image: ghcr.io/codeforphilly/paws-data-pipeline/client:2.64
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
