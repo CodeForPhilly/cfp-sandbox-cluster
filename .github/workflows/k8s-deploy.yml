@@ -31,10 +31,14 @@ jobs:
         echo -n '' > /tmp/kube.err
 
     - name: 'Apply manifests: CRD resources'
+      # Server-side apply avoids the 256KB metadata.annotations limit hit by
+      # client-side apply's last-applied-configuration on large CRDs (e.g.
+      # cnpg's poolers.postgresql.cnpg.io). --force-conflicts lets us reclaim
+      # ownership from any prior client-side annotation during migration.
       run: |
         if [ -d ./_/CustomResourceDefinition ]; then
           # Capture errors and add context
-          dir_errors=$(kubectl apply -Rf ./_/CustomResourceDefinition 2>&1 1>>/tmp/kube.log || true)
+          dir_errors=$(kubectl apply --server-side --force-conflicts -Rf ./_/CustomResourceDefinition 2>&1 1>>/tmp/kube.log || true)
 
           # Filter and append errors with context if meaningful
           filtered_errors=$(echo "$dir_errors" | \
