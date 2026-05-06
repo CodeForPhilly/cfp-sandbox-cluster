@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: cloudnative-pg
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: cloudnative-pg
-    app.kubernetes.io/version: 1.25.0
-    helm.sh/chart: cloudnative-pg-0.23.1
+    app.kubernetes.io/version: 1.29.0
+    helm.sh/chart: cloudnative-pg-0.28.0
   name: cloudnative-pg
   namespace: cloudnative-pg
 spec:
@@ -18,9 +18,9 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 31844124280868de949b74c53d63c6df096838350c32f641627f2de692e1f5fb
-        checksum/monitoring-config: 3cfcfcddb84ad11cc19e95adaa7d190fbfeed4c6cf9168ad1f8865854d9f3aad
-        checksum/rbac: 6b2438edd4867faa4740f44d14c4203456b4c1380d34cf27e6b5c0fd7de4838c
+        checksum/config: 1b0703c95b4ee680d176bff9c527b0aa792c9296c2c7ce6d0d9feb8a4a719a9c
+        checksum/monitoring-config: e386a85eeb1c33f87053f6424690f9a77e6ef7247a617162dbaee9b370fb70d1
+        checksum/rbac: de6f8c0801db717a56d299947c958973df088ff20a44e5058af807c196824bd6
       labels:
         app.kubernetes.io/instance: cloudnative-pg
         app.kubernetes.io/name: cloudnative-pg
@@ -36,19 +36,19 @@ spec:
             - /manager
           env:
             - name: OPERATOR_IMAGE_NAME
-              value: ghcr.io/cloudnative-pg/cloudnative-pg:1.25.0
+              value: ghcr.io/cloudnative-pg/cloudnative-pg:1.29.0
             - name: OPERATOR_NAMESPACE
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
             - name: MONITORING_QUERIES_CONFIGMAP
               value: cnpg-default-monitoring
-          image: ghcr.io/cloudnative-pg/cloudnative-pg:1.25.0
+          image: ghcr.io/cloudnative-pg/cloudnative-pg:1.29.0
           imagePullPolicy: IfNotPresent
           livenessProbe:
             httpGet:
               path: /readyz
-              port: 9443
+              port: webhook-server
               scheme: HTTPS
             initialDelaySeconds: 3
           name: manager
@@ -62,7 +62,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /readyz
-              port: 9443
+              port: webhook-server
               scheme: HTTPS
             initialDelaySeconds: 3
           resources: {}
@@ -76,6 +76,13 @@ spec:
             runAsUser: 10001
             seccompProfile:
               type: RuntimeDefault
+          startupProbe:
+            failureThreshold: 6
+            httpGet:
+              path: /readyz
+              port: webhook-server
+              scheme: HTTPS
+            periodSeconds: 5
           volumeMounts:
             - mountPath: /controller
               name: scratch-data
