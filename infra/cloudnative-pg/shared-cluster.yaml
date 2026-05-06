@@ -4,7 +4,7 @@ metadata:
   name: shared-cluster
   namespace: cloudnative-pg
 spec:
-  instances: 3
+  instances: 2
   imageName: ghcr.io/cloudnative-pg/postgis:18-3-system-trixie
   storage:
     size: 20Gi
