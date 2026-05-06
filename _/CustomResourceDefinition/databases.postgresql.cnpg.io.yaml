@@ -2,7 +2,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.16.5
+    controller-gen.kubebuilder.io/version: v0.20.1
     helm.sh/resource-policy: keep
   name: databases.postgresql.cnpg.io
 spec:
@@ -165,6 +165,185 @@ spec:
                     - present
                     - absent
                   type: string
+                extensions:
+                  description: The list of extensions to be managed in the database
+                  items:
+                    description: ExtensionSpec configures an extension in a database
+                    properties:
+                      ensure:
+                        default: present
+                        description: >-
+                          Specifies whether an object (e.g schema) should be
+                          present or absent
+
+                          in the database. If set to `present`, the object will
+                          be created if
+
+                          it does not exist. If set to `absent`, the
+                          extension/schema will be
+
+                          removed if it exists.
+                        enum:
+                          - present
+                          - absent
+                        type: string
+                      name:
+                        description: Name of the object (extension, schema, FDW, server)
+                        type: string
+                      schema:
+                        description: >-
+                          The name of the schema in which to install the
+                          extension's objects,
+
+                          in case the extension allows its contents to be
+                          relocated. If not
+
+                          specified (default), and the extension's control file
+                          does not
+
+                          specify a schema either, the current default object
+                          creation schema
+
+                          is used.
+                        type: string
+                      version:
+                        description: >-
+                          The version of the extension to install. If empty, the
+                          operator will
+
+                          install the default version (whatever is specified in
+                          the
+
+                          extension's control file)
+                        type: string
+                    required:
+                      - name
+                    type: object
+                  type: array
+                fdws:
+                  description: >-
+                    The list of foreign data wrappers to be managed in the
+                    database
+                  items:
+                    description: FDWSpec configures an Foreign Data Wrapper in a database
+                    properties:
+                      ensure:
+                        default: present
+                        description: >-
+                          Specifies whether an object (e.g schema) should be
+                          present or absent
+
+                          in the database. If set to `present`, the object will
+                          be created if
+
+                          it does not exist. If set to `absent`, the
+                          extension/schema will be
+
+                          removed if it exists.
+                        enum:
+                          - present
+                          - absent
+                        type: string
+                      handler:
+                        description: >-
+                          Name of the handler function (e.g.,
+                          "postgres_fdw_handler").
+
+                          This will be empty if no handler is specified. In that
+                          case,
+
+                          the default handler is registered when the FDW
+                          extension is created.
+                        type: string
+                      name:
+                        description: Name of the object (extension, schema, FDW, server)
+                        type: string
+                      options:
+                        description: >-
+                          Options specifies the configuration options for the
+                          FDW.
+                        items:
+                          description: >-
+                            OptionSpec holds the name, value and the ensure
+                            field for an option
+                          properties:
+                            ensure:
+                              default: present
+                              description: >-
+                                Specifies whether an option should be present or
+                                absent in
+
+                                the database. If set to `present`, the option
+                                will be
+
+                                created if it does not exist. If set to
+                                `absent`, the
+
+                                option will be removed if it exists.
+                              enum:
+                                - present
+                                - absent
+                              type: string
+                            name:
+                              description: Name of the option
+                              type: string
+                            value:
+                              description: Value of the option
+                              type: string
+                          required:
+                            - name
+                            - value
+                          type: object
+                        type: array
+                      owner:
+                        description: >-
+                          Owner specifies the database role that will own the
+                          Foreign Data Wrapper.
+
+                          The role must have superuser privileges in the target
+                          database.
+                        type: string
+                      usage:
+                        description: >-
+                          List of roles for which `USAGE` privileges on the FDW
+                          are granted or revoked.
+                        items:
+                          description: >-
+                            UsageSpec configures a usage for a foreign data
+                            wrapper
+                          properties:
+                            name:
+                              description: Name of the usage
+                              type: string
+                              x-kubernetes-validations:
+                                - message: name is required
+                                  rule: self != ''
+                            type:
+                              default: grant
+                              description: The type of usage
+                              enum:
+                                - grant
+                                - revoke
+                              type: string
+                          required:
+                            - name
+                          type: object
+                        type: array
+                      validator:
+                        description: >-
+                          Name of the validator function (e.g.,
+                          "postgres_fdw_validator").
+
+                          This will be empty if no validator is specified. In
+                          that case,
+
+                          the default validator is registered when the FDW
+                          extension is created.
+                        type: string
+                    required:
+                      - name
+                    type: object
+                  type: array
                 icuLocale:
                   description: >-
                     Maps to the `ICU_LOCALE` parameter of `CREATE DATABASE`.
@@ -277,6 +456,146 @@ spec:
                     The role name of the user who owns the database inside
                     PostgreSQL.
                   type: string
+                schemas:
+                  description: The list of schemas to be managed in the database
+                  items:
+                    description: SchemaSpec configures a schema in a database
+                    properties:
+                      ensure:
+                        default: present
+                        description: >-
+                          Specifies whether an object (e.g schema) should be
+                          present or absent
+
+                          in the database. If set to `present`, the object will
+                          be created if
+
+                          it does not exist. If set to `absent`, the
+                          extension/schema will be
+
+                          removed if it exists.
+                        enum:
+                          - present
+                          - absent
+                        type: string
+                      name:
+                        description: Name of the object (extension, schema, FDW, server)
+                        type: string
+                      owner:
+                        description: >-
+                          The role name of the user who owns the schema inside
+                          PostgreSQL.
+
+                          It maps to the `AUTHORIZATION` parameter of `CREATE
+                          SCHEMA` and the
+
+                          `OWNER TO` command of `ALTER SCHEMA`.
+                        type: string
+                    required:
+                      - name
+                    type: object
+                  type: array
+                servers:
+                  description: The list of foreign servers to be managed in the database
+                  items:
+                    description: ServerSpec configures a server of a foreign data wrapper
+                    properties:
+                      ensure:
+                        default: present
+                        description: >-
+                          Specifies whether an object (e.g schema) should be
+                          present or absent
+
+                          in the database. If set to `present`, the object will
+                          be created if
+
+                          it does not exist. If set to `absent`, the
+                          extension/schema will be
+
+                          removed if it exists.
+                        enum:
+                          - present
+                          - absent
+                        type: string
+                      fdw:
+                        description: The name of the Foreign Data Wrapper (FDW)
+                        type: string
+                        x-kubernetes-validations:
+                          - message: fdw is required
+                            rule: self != ''
+                      name:
+                        description: Name of the object (extension, schema, FDW, server)
+                        type: string
+                      options:
+                        description: >-
+                          Options specifies the configuration options for the
+                          server
+
+                          (key is the option name, value is the option value).
+                        items:
+                          description: >-
+                            OptionSpec holds the name, value and the ensure
+                            field for an option
+                          properties:
+                            ensure:
+                              default: present
+                              description: >-
+                                Specifies whether an option should be present or
+                                absent in
+
+                                the database. If set to `present`, the option
+                                will be
+
+                                created if it does not exist. If set to
+                                `absent`, the
+
+                                option will be removed if it exists.
+                              enum:
+                                - present
+                                - absent
+                              type: string
+                            name:
+                              description: Name of the option
+                              type: string
+                            value:
+                              description: Value of the option
+                              type: string
+                          required:
+                            - name
+                            - value
+                          type: object
+                        type: array
+                      usage:
+                        description: >-
+                          List of roles for which `USAGE` privileges on the
+                          server are granted or revoked.
+                        items:
+                          description: >-
+                            UsageSpec configures a usage for a foreign data
+                            wrapper
+                          properties:
+                            name:
+                              description: Name of the usage
+                              type: string
+                              x-kubernetes-validations:
+                                - message: name is required
+                                  rule: self != ''
+                            type:
+                              default: grant
+                              description: The type of usage
+                              enum:
+                                - grant
+                                - revoke
+                              type: string
+                          required:
+                            - name
+                          type: object
+                        type: array
+                    required:
+                      - fdw
+                      - name
+                    type: object
+                  type: array
                 tablespace:
                   description: >-
                     Maps to the `TABLESPACE` parameter of `CREATE DATABASE`.
@@ -334,6 +653,52 @@ spec:
                 applied:
                   description: Applied is true if the database was reconciled correctly
                   type: boolean
+                extensions:
+                  description: Extensions is the status of the managed extensions
+                  items:
+                    description: >-
+                      DatabaseObjectStatus is the status of the managed database
+                      objects
+                    properties:
+                      applied:
+                        description: |-
+                          True of the object has been installed successfully in
+                          the database
+                        type: boolean
+                      message:
+                        description: Message is the object reconciliation message
+                        type: string
+                      name:
+                        description: The name of the object
+                        type: string
+                    required:
+                      - applied
+                      - name
+                    type: object
+                  type: array
+                fdws:
+                  description: FDWs is the status of the managed FDWs
+                  items:
+                    description: >-
+                      DatabaseObjectStatus is the status of the managed database
+                      objects
+                    properties:
+                      applied:
+                        description: |-
+                          True of the object has been installed successfully in
+                          the database
+                        type: boolean
+                      message:
+                        description: Message is the object reconciliation message
+                        type: string
+                      name:
+                        description: The name of the object
+                        type: string
+                    required:
+                      - applied
+                      - name
+                    type: object
+                  type: array
                 message:
                   description: Message is the reconciliation output message
                   type: string
@@ -343,6 +708,52 @@ spec:
                     desired state that was synchronized
                   format: int64
                   type: integer
+                schemas:
+                  description: Schemas is the status of the managed schemas
+                  items:
+                    description: >-
+                      DatabaseObjectStatus is the status of the managed database
+                      objects
+                    properties:
+                      applied:
+                        description: |-
+                          True of the object has been installed successfully in
+                          the database
+                        type: boolean
+                      message:
+                        description: Message is the object reconciliation message
+                        type: string
+                      name:
+                        description: The name of the object
+                        type: string
+                    required:
+                      - applied
+                      - name
+                    type: object
+                  type: array
+                servers:
+                  description: Servers is the status of the managed servers
+                  items:
+                    description: >-
+                      DatabaseObjectStatus is the status of the managed database
+                      objects
+                    properties:
+                      applied:
+                        description: |-
+                          True of the object has been installed successfully in
+                          the database
+                        type: boolean
+                      message:
+                        description: Message is the object reconciliation message
+                        type: string
+                      name:
+                        description: The name of the object
+                        type: string
+                    required:
+                      - applied
+                      - name
+                    type: object
+                  type: array
               type: object
           required:
             - metadata

@@ -4,7 +4,7 @@ metadata:
   name: shared-cluster
   namespace: cloudnative-pg
 spec:
-  imageName: ghcr.io/cloudnative-pg/postgresql:16.1
+  imageName: ghcr.io/cloudnative-pg/postgis:18-3-system-trixie
   instances: 3
   managed:
     roles:
@@ -12,8 +12,5 @@ spec:
         name: balancer
         passwordSecret:
           name: balancer-db-credentials
-  postgresql:
-    parameters:
-      shared_preload_libraries: vector
   storage:
     size: 20Gi

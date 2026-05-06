@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: cloudnative-pg
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: cloudnative-pg
-    app.kubernetes.io/version: 1.25.0
-    helm.sh/chart: cloudnative-pg-0.23.1
+    app.kubernetes.io/version: 1.29.0
+    helm.sh/chart: cloudnative-pg-0.28.0
   name: cloudnative-pg-view
 rules:
   - apiGroups:
@@ -14,10 +14,14 @@ rules:
     resources:
       - backups
       - clusters
+      - clusters/status
       - databases
+      - failoverquorums
       - poolers
       - publications
       - scheduledbackups
+      - imagecatalogs
+      - clusterimagecatalogs
       - subscriptions
     verbs:
       - get
