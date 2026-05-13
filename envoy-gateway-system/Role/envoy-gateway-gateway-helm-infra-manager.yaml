@@ -1,0 +1,57 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  labels:
+    app.kubernetes.io/instance: envoy-gateway
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: gateway-helm
+    app.kubernetes.io/version: v1.7.3
+    helm.sh/chart: gateway-helm-v1.7.3
+  name: envoy-gateway-gateway-helm-infra-manager
+  namespace: envoy-gateway-system
+rules:
+  - apiGroups:
+      - ''
+    resources:
+      - serviceaccounts
+      - services
+      - configmaps
+    verbs:
+      - create
+      - get
+      - list
+      - delete
+      - deletecollection
+      - patch
+  - apiGroups:
+      - apps
+    resources:
+      - deployments
+      - daemonsets
+    verbs:
+      - create
+      - get
+      - delete
+      - deletecollection
+      - patch
+  - apiGroups:
+      - autoscaling
+      - policy
+    resources:
+      - horizontalpodautoscalers
+      - poddisruptionbudgets
+    verbs:
+      - create
+      - get
+      - list
+      - delete
+      - deletecollection
+      - patch
+  - apiGroups:
+      - certificates.k8s.io
+    resources:
+      - clustertrustbundles
+    verbs:
+      - list
+      - get
+      - watch
