@@ -1,0 +1,12 @@
+# Overrides the stale helm-values.yaml pulled from cert-manager's source.
+# Upstream cert-manager keeps `ingressShim.resources` and `webhook.enabled`
+# in deploy/manifests/helm-values.yaml, but the chart schema in v1.20+ no
+# longer accepts those keys — they fail validation.
+# This file mirrors the still-valid bits.
+
+fullnameOverride: cert-manager
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 32Mi
