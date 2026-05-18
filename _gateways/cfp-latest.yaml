@@ -27,8 +27,6 @@ metadata:
   namespace: code-for-philly
 spec:
   parentRefs:
-    - name: main-gateway
-      namespace: envoy-gateway-system
     - name: latest
   hostnames:
     - latest.codeforphilly.sandbox.k8s.phl.io

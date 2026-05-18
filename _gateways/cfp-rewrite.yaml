@@ -27,8 +27,6 @@ metadata:
   namespace: codeforphilly-rewrite-sandbox
 spec:
   parentRefs:
-    - name: main-gateway
-      namespace: envoy-gateway-system
     - name: codeforphilly
   hostnames:
     - codeforphilly-rewrite.codeforphilly.sandbox.k8s.phl.io
