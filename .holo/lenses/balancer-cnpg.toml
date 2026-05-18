@@ -2,7 +2,7 @@
 container = "ghcr.io/hologit/lenses/kustomize:latest"
 
 [hololens.input]
-root = "balancer/manifests/overlays/sandbox"
+root = "balancer/manifests/overlays/sandbox/cnpg"
 files = "**"
 
 [hololens.output]
