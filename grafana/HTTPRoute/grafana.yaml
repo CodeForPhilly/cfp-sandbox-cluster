@@ -9,6 +9,7 @@ spec:
   parentRefs:
     - name: main-gateway
       namespace: envoy-gateway-system
+    - name: grafana
   rules:
     - backendRefs:
         - name: grafana

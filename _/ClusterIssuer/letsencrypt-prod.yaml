@@ -10,5 +10,9 @@ spec:
     server: https://acme-v02.api.letsencrypt.org/directory
     solvers:
       - http01:
-          ingress:
-            class: nginx
+          gatewayHTTPRoute:
+            parentRefs:
+              - group: gateway.networking.k8s.io
+                kind: Gateway
+                name: main-gateway
+                namespace: envoy-gateway-system
