@@ -1,22 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: balancer
-
+# No namespace here — each sub-kustomization sets its own:
+#   - app/ rewrites resources to `balancer`
+#   - cnpg/ leaves Database CR in its own `cloudnative-pg` namespace
+# kustomize emits a single stream; k8s-normalize routes by each
+# resource's metadata.namespace at deploy time.
 resources:
-  - manifests/namespace.yaml
-  - manifests/deployment.yaml
-  - manifests/service.yaml
-
-images:
-  - name: ghcr.io/codeforphilly/balancer-main/app
-    newTag: "0.0.0-dev.20260211012449"
-
-patches:
-  - target:
-      kind: Namespace
-      name: balancer
-    patch: |-
-      - op: replace
-        path: /metadata/name
-        value: dev
+  - app
+  - cnpg
