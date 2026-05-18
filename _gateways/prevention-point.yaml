@@ -27,8 +27,6 @@ metadata:
   namespace: prevention-point
 spec:
   parentRefs:
-    - name: main-gateway
-      namespace: envoy-gateway-system
     - name: prevention-point
   hostnames:
     - prevention-point.sandbox.k8s.phl.io

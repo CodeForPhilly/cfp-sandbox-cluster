@@ -27,8 +27,6 @@ metadata:
   namespace: grafana
 spec:
   parentRefs:
-    - name: main-gateway
-      namespace: envoy-gateway-system
     - name: grafana
   hostnames:
     - metrics.sandbox.k8s.phl.io

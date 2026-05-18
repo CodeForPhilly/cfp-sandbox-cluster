@@ -27,8 +27,6 @@ metadata:
   namespace: paws-data-pipeline
 spec:
   parentRefs:
-    - name: main-gateway
-      namespace: envoy-gateway-system
     - name: paws-data-pipeline
   # Only handle the wildcard-resolved hostname here; test.pawsdp.org is on
   # its own DNS zone still pointed at ingress-nginx, so it keeps working
