@@ -9,6 +9,7 @@ spec:
   parentRefs:
     - name: main-gateway
       namespace: envoy-gateway-system
+    - name: prevention-point
   rules:
     - backendRefs:
         - name: prevention-point
