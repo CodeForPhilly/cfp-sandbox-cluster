@@ -1,4 +1,8 @@
 [holomapping]
 holosource = "=>k8s-blueprint-lke"
-files = "**"
+files = [
+    "**",
+    "!ingress-nginx/**",
+    "!.holo/lenses/ingress-nginx.toml",
+]
 before = "*"

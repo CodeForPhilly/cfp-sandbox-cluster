@@ -1,11 +1,10 @@
 # These values as applied last as downstream overrides
 # See https://github.com/grafana/helm-charts/blob/grafana-6.2.1/charts/grafana/values.yaml
 ingress:
+  enabled: false
 
-  enabled: true
-  hosts:
-    - metrics.sandbox.k8s.phl.io
-  tls:
-    - secretName: grafana-tls
-      hosts:
-        - metrics.sandbox.k8s.phl.io
+# Public hostname previously inferred from ingress.hosts. Set directly
+# now that the Ingress is gone (HTTPS is served by per-app Envoy Gateway).
+grafana.ini:
+  server:
+    domain: metrics.sandbox.k8s.phl.io
