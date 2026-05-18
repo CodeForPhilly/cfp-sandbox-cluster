@@ -5,14 +5,4 @@ frontend:
   image:
     tag: 0.3.3
 ingress:
-  enabled: true
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-  hosts:
-    - host: prevention-point.sandbox.k8s.phl.io
-      paths: [ '/' ]
-  tls:
-    - secretName: prevention-point-tls
-      hosts:
-        - prevention-point.sandbox.k8s.phl.io
+  enabled: false
