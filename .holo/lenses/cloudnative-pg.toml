@@ -2,7 +2,7 @@
 container = "ghcr.io/hologit/lenses/helm3:latest"
 
 [hololens.input]
-root = "infra/cloudnative-pg/operator"
+root = "_infra/cloudnative-pg/operator"
 files = "**"
 
 [hololens.output]
