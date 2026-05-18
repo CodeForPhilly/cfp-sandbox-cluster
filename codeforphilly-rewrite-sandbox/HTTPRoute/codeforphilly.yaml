@@ -7,8 +7,6 @@ spec:
   hostnames:
     - codeforphilly-rewrite.codeforphilly.sandbox.k8s.phl.io
   parentRefs:
-    - name: main-gateway
-      namespace: envoy-gateway-system
     - name: codeforphilly
   rules:
     - backendRefs:

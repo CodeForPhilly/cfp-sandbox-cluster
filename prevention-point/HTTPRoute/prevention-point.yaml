@@ -7,8 +7,6 @@ spec:
   hostnames:
     - prevention-point.sandbox.k8s.phl.io
   parentRefs:
-    - name: main-gateway
-      namespace: envoy-gateway-system
     - name: prevention-point
   rules:
     - backendRefs:
