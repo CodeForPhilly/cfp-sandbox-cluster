@@ -11,7 +11,7 @@ spec:
     - allowedRoutes:
         namespaces:
           from: Same
-      hostname: codeforphilly-rewrite.codeforphilly.sandbox.k8s.phl.io
+      hostname: next-v2.codeforphilly.org
       name: https
       port: 443
       protocol: HTTPS

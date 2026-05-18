@@ -1,0 +1,18 @@
+apiVersion: v1
+data:
+  CFP_DATA_BRANCH: fixture
+  CFP_DATA_REPO_PATH: /app/data
+  CFP_PRIVATE_STORAGE_PATH: /app/private-storage
+  CFP_WEB_DIST_PATH: /app/apps/web/dist
+  GIT_AUTHOR_EMAIL: api@codeforphilly.org
+  GIT_AUTHOR_NAME: CodeForPhilly API
+  GIT_SSH_COMMAND: >-
+    ssh -i /etc/cfp-data-deploy-key/id_ed25519 -o IdentitiesOnly=yes -o
+    StrictHostKeyChecking=accept-new -o UserKnownHostsFile=/dev/null
+  NODE_ENV: production
+  PORT: '3001'
+  STORAGE_BACKEND: filesystem
+kind: ConfigMap
+metadata:
+  name: codeforphilly-env
+  namespace: codeforphilly-rewrite-sandbox
