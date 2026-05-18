@@ -1,0 +1,10 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: shared
+  namespace: envoy-gateway-system
+spec:
+  # Collapse all Gateway resources using the `eg` class into one Envoy
+  # data-plane Deployment + one LoadBalancer. Keeps cost flat regardless
+  # of how many Gateway resources exist on the cluster.
+  mergeGateways: true
