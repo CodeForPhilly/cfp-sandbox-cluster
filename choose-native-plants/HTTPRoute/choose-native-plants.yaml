@@ -1,0 +1,15 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: choose-native-plants
+  namespace: choose-native-plants
+spec:
+  hostnames:
+    - choose-native-plants.sandbox.k8s.phl.io
+  parentRefs:
+    - name: main-gateway
+      namespace: envoy-gateway-system
+  rules:
+    - backendRefs:
+        - name: choose-native-plants
+          port: 80
