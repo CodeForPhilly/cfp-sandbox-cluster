@@ -1,0 +1,43 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    email: services@codeforphilly.org
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    solvers:
+      # cert-manager 1.20 gatewayHTTPRoute solver. cert-manager creates a
+      # short-lived HTTPRoute attached to main-gateway for each challenge,
+      # routing /.well-known/acme-challenge/* on the cert's hostname to its
+      # solver Pod. Replaces the ingress-nginx-based http01 solver — the
+      # wildcard DNS no longer points at ingress-nginx, so the old path is
+      # unreachable.
+      - http01:
+          gatewayHTTPRoute:
+            parentRefs:
+              - group: gateway.networking.k8s.io
+                kind: Gateway
+                name: main-gateway
+                namespace: envoy-gateway-system
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prod
+spec:
+  acme:
+    email: services@codeforphilly.org
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-prod
+    solvers:
+      - http01:
+          gatewayHTTPRoute:
+            parentRefs:
+              - group: gateway.networking.k8s.io
+                kind: Gateway
+                name: main-gateway
+                namespace: envoy-gateway-system
