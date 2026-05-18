@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: codeforphilly-rewrite-sandbox
+
+resources:
+  - namespace.yaml
+  - manifests/configmap.yaml
+  - manifests/deployment.yaml
+  - manifests/service.yaml
+  - manifests/serviceaccount.yaml
+  - manifests/pvc-data.yaml
+  - manifests/pvc-private.yaml

@@ -1,0 +1,14 @@
+[holomapping]
+holosource = "codeforphilly-ng"
+root = "deploy/kustomize/base"
+files = [
+    "configmap.yaml",
+    "deployment.yaml",
+    "service.yaml",
+    "serviceaccount.yaml",
+    "pvc-data.yaml",
+    "pvc-private.yaml",
+]
+# Excludes the upstream `gateway.yaml` + `httproute.yaml` (replaced by
+# per-cluster _gateways/codeforphilly-ng.yaml) and `kustomization.yaml`
+# (we compose our own at codeforphilly-ng/app/kustomization.yaml).
