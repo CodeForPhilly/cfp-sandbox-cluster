@@ -5,10 +5,14 @@ metadata:
   namespace: codeforphilly-rewrite-sandbox
 spec:
   hostnames:
-    - codeforphilly-rewrite.codeforphilly.sandbox.k8s.phl.io
+    - next-v2.codeforphilly.org
   parentRefs:
     - name: codeforphilly
   rules:
     - backendRefs:
         - name: codeforphilly
           port: 80
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
