@@ -1,4 +1,26 @@
 apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: paws-data-pipeline
+  namespace: paws-data-pipeline
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  gatewayClassName: eg
+  listeners:
+    - name: https
+      protocol: HTTPS
+      port: 443
+      hostname: paws-data-pipeline.sandbox.k8s.phl.io
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: paws-data-pipeline-gw-tls
+      allowedRoutes:
+        namespaces:
+          from: Same
+---
+apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: paws-data-pipeline
@@ -7,6 +29,7 @@ spec:
   parentRefs:
     - name: main-gateway
       namespace: envoy-gateway-system
+    - name: paws-data-pipeline
   # Only handle the wildcard-resolved hostname here; test.pawsdp.org is on
   # its own DNS zone still pointed at ingress-nginx, so it keeps working
   # through the existing Ingress until that's migrated separately.
