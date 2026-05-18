@@ -7,8 +7,6 @@ spec:
   hostnames:
     - paws-data-pipeline.sandbox.k8s.phl.io
   parentRefs:
-    - name: main-gateway
-      namespace: envoy-gateway-system
     - name: paws-data-pipeline
   rules:
     - backendRefs:

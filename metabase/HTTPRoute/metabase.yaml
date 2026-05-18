@@ -7,8 +7,6 @@ spec:
   hostnames:
     - metabase.sandbox.k8s.phl.io
   parentRefs:
-    - name: main-gateway
-      namespace: envoy-gateway-system
     - name: metabase
   rules:
     - backendRefs:

@@ -7,8 +7,6 @@ spec:
   hostnames:
     - echo-http.sandbox.k8s.phl.io
   parentRefs:
-    - name: main-gateway
-      namespace: envoy-gateway-system
     - name: echo-http
   rules:
     - backendRefs:
