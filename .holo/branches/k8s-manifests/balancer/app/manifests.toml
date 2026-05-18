@@ -1,0 +1,11 @@
+[holomapping]
+holosource = "balancer"
+root = "deploy/manifests/balancer/base"
+files = [
+    "namespace.yaml",
+    "deployment.yaml",
+    "service.yaml",
+]
+# Excludes the upstream `ingress.yaml` (replaced by per-cluster
+# _gateways/balancer.yaml) and `kustomization.yaml` (we compose our
+# own at balancer/app/kustomization.yaml).
