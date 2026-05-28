@@ -9,5 +9,4 @@ resources:
   - manifests/deployment.yaml
   - manifests/service.yaml
   - manifests/serviceaccount.yaml
-  - manifests/pvc-data.yaml
   - manifests/pvc-private.yaml

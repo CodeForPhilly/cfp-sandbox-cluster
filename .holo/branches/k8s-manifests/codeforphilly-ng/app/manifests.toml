@@ -6,7 +6,6 @@ files = [
     "deployment.yaml",
     "service.yaml",
     "serviceaccount.yaml",
-    "pvc-data.yaml",
     "pvc-private.yaml",
 ]
 # Excludes the upstream `gateway.yaml` + `httproute.yaml` (replaced by
