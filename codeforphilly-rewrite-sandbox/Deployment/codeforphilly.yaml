@@ -71,9 +71,8 @@ spec:
         fsGroup: 1000
       serviceAccountName: codeforphilly
       volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: codeforphilly-data
+        - emptyDir: {}
+          name: data
         - name: private
           persistentVolumeClaim:
             claimName: codeforphilly-private
