@@ -1,3 +1,5 @@
 [holosource]
 url = "https://github.com/CodeForPhilly/balancer-main.git"
-ref = "refs/tags/v1.1.5"
+# Pinned to balancer-main#507 merge SHA (no tag has been cut past v1.1.5
+# yet). Move to a real tag whenever balancer-main publishes one >= v1.2.0.
+ref = "c88a4d8f580d9c701d832582fbf93b9e01c20004"
