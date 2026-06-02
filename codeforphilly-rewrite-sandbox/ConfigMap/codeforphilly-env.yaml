@@ -2,7 +2,9 @@ apiVersion: v1
 data:
   CFP_DATA_BRANCH: published
   CFP_DATA_REPO_PATH: /app/data
+  CFP_NOTIFICATION_FROM: Code for Philly <notifications@codeforphilly.org>
   CFP_PRIVATE_STORAGE_PATH: /app/private-storage
+  CFP_SITE_HOST: codeforphilly.org
   CFP_WEB_DIST_PATH: /app/apps/web/dist
   GIT_AUTHOR_EMAIL: api@codeforphilly.org
   GIT_AUTHOR_NAME: CodeForPhilly API
