@@ -182,12 +182,12 @@ spec:
                 name: pac-api
             - secretRef:
                 name: linode-storage
-          image: ghcr.io/codeforphilly/pa-wildflower-selector/app:2.2.8
+          image: ghcr.io/codeforphilly/pa-wildflower-selector/app:2.3.0
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 5
             httpGet:
-              path: /
+              path: /healthz
               port: http
             initialDelaySeconds: 60
             periodSeconds: 30
