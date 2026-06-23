@@ -6,6 +6,9 @@ files = [
     "deployment.yaml",
     "service.yaml",
 ]
-# Excludes the upstream `ingress.yaml` (replaced by per-cluster
-# _gateways/balancer.yaml) and `kustomization.yaml` (we compose our
-# own at balancer/app/kustomization.yaml).
+# Excludes from balancer-main base/:
+#   - kustomization.yaml — we compose our own at balancer/app/kustomization.yaml
+#   - balancer.env — upstream ships empty; we provide our own with cnpg connection config
+#   - gateway-listeners.yaml + httproute.yaml — replaced by per-cluster _gateways/balancer.yaml
+#   - secret.template.yaml — informational only, not deployable
+#   - ingress.yaml (if present in older revs) — superseded by Gateway API

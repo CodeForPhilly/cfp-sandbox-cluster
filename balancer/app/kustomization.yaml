@@ -8,6 +8,19 @@ resources:
   - manifests/deployment.yaml
   - manifests/service.yaml
 
+# balancer-main#507 split balancer-config into a Secret (sensitive)
+# + ConfigMap (connection params). The Deployment's envFrom references
+# both by the same `balancer-config` name. Generate the ConfigMap here
+# from a local env file, disabling kustomize's name suffix hash so the
+# Deployment's envFrom reference matches.
+configMapGenerator:
+  - name: balancer-config
+    envs:
+      - balancer.env
+
+generatorOptions:
+  disableNameSuffixHash: true
+
 images:
   - name: ghcr.io/codeforphilly/balancer-main/app
     newTag: "0.0.0-dev.20260211012449"
