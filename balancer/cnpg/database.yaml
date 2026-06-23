@@ -8,3 +8,9 @@ spec:
   owner: balancer
   cluster:
     name: shared-cluster
+  # Django's api.0005_embeddings migration creates a vector(384) column.
+  # cnpg-controller runs CREATE EXTENSION as postgres superuser; the `balancer`
+  # role lacks superuser perms so it can't enable extensions itself.
+  extensions:
+    - name: vector
+      ensure: present
