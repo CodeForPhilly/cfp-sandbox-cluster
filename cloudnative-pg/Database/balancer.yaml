@@ -6,5 +6,8 @@ metadata:
 spec:
   cluster:
     name: shared-cluster
+  extensions:
+    - ensure: present
+      name: vector
   name: balancer
   owner: balancer
