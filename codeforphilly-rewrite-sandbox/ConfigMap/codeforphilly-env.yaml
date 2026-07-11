@@ -12,7 +12,7 @@ data:
     ssh -i /etc/cfp-data-deploy-key/id_ed25519 -o IdentitiesOnly=yes -o
     StrictHostKeyChecking=accept-new -o UserKnownHostsFile=/dev/null
   NODE_ENV: production
-  NODE_OPTIONS: '--max-old-space-size=1536'
+  NODE_OPTIONS: '--max-old-space-size=512'
   PORT: '3001'
   STORAGE_BACKEND: filesystem
 kind: ConfigMap
