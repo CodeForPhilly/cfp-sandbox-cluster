@@ -6,7 +6,7 @@ metadata:
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: choose-native-plants
     app.kubernetes.io/version: 2.2.8
-    helm.sh/chart: choose-native-plants-2.0.8
+    helm.sh/chart: choose-native-plants-2.1.0
   name: choose-native-plants
   namespace: choose-native-plants
 spec:
@@ -37,9 +37,6 @@ spec:
                   key: password
                   name: mongo
                   optional: false
-          envFrom:
-            - secretRef:
-                name: pac-api
           image: mongo:5.0.6
           imagePullPolicy: IfNotPresent
           name: choose-native-plants-db
@@ -90,28 +87,10 @@ spec:
                   key: IMAGE_URLS_SHEET_ID
                   name: app
                   optional: false
-            - name: PAC_API_BASE_URL
-              valueFrom:
-                secretKeyRef:
-                  key: PAC_API_BASE_URL
-                  name: pac-api
-                  optional: false
-            - name: PAC_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  key: PAC_API_KEY
-                  name: pac-api
-                  optional: false
             - name: SUPERPLANTS_CSV_URL
               valueFrom:
                 secretKeyRef:
                   key: SUPERPLANTS_CSV_URL
-                  name: app
-                  optional: false
-            - name: LOCAL_MAP_CSV_URL
-              valueFrom:
-                secretKeyRef:
-                  key: LOCAL_MAP_CSV_URL
                   name: app
                   optional: false
             - name: CONTACT_SHEET_ID
@@ -124,12 +103,6 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: CONTACT_FILES_FOLDER_ID
-                  name: app
-                  optional: false
-            - name: ONLINE_STORES_CSV_URL
-              valueFrom:
-                secretKeyRef:
-                  key: ONLINE_STORES_CSV_URL
                   name: app
                   optional: false
             - name: SERVICE_ACCOUNT
@@ -178,8 +151,6 @@ spec:
                 name: app
             - secretRef:
                 name: mongo
-            - secretRef:
-                name: pac-api
             - secretRef:
                 name: linode-storage
           image: ghcr.io/codeforphilly/pa-wildflower-selector/app:2.3.1
