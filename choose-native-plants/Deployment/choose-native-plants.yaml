@@ -153,7 +153,7 @@ spec:
                 name: mongo
             - secretRef:
                 name: linode-storage
-          image: ghcr.io/codeforphilly/pa-wildflower-selector/app:2.3.1
+          image: ghcr.io/codeforphilly/pa-wildflower-selector/app:2.3.2
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 5
