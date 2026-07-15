@@ -1425,13 +1425,19 @@ keeps them out of a public repo.</p>
 <td>a verified Postmark sender for this cluster (e.g. <code>alerts@example.org</code>)</td>
 </tr>
 <tr>
+<td><code>from-name</code></td>
+<td>the sender name shown in alert emails — <strong>name the cluster</strong> so its origin is obvious at a glance, e.g. <code>CodeForPhilly — Live</code></td>
+</tr>
+<tr>
 <td><code>recipients</code></td>
 <td>semicolon-separated list, e.g. <code>a@example.org;b@example.org</code></td>
 </tr>
 </tbody>
 </table>
 <p>The <code>from-address</code> must be a verified sender signature (or under a verified domain) in the
-Postmark server, or Postmark rejects the mail.</p>
+Postmark server, or Postmark rejects the mail. Set <code>from-name</code> distinctly per cluster —
+when several clusters share one Postmark server and email the same people, it&rsquo;s the only
+thing in the inbox that says which cluster fired.</p>
 <h2 id="create-it">Create it<a class="headerlink" href="#create-it" title="Permanent link"> ¶</a></h2>
 <p>Sealed into the cluster repo (recommended — survives a cluster rebuild):</p>
 <div class="highlight"><pre><span></span><code><span class="nv">TOKEN</span><span class="o">=</span><span class="s1">&#39;&lt;postmark-server-token&gt;&#39;</span>
@@ -1441,6 +1447,7 @@ kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="
 <span class="w">    </span>--from-literal<span class="o">=</span><span class="nv">user</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--from-literal<span class="o">=</span><span class="nv">password</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--from-literal<span class="o">=</span>from-address<span class="o">=</span><span class="s1">&#39;alerts@example.org&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--from-literal<span class="o">=</span>from-name<span class="o">=</span><span class="s1">&#39;CodeForPhilly — Live&#39;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--from-literal<span class="o">=</span><span class="nv">recipients</span><span class="o">=</span><span class="s1">&#39;a@example.org;b@example.org&#39;</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>kubeseal<span class="w"> </span>--format<span class="w"> </span>yaml<span class="w"> </span><span class="se">\</span>
 <span class="w">      </span>--controller-namespace<span class="w"> </span>sealed-secrets<span class="w"> </span>--controller-name<span class="w"> </span>sealed-secrets<span class="w"> </span><span class="se">\</span>
