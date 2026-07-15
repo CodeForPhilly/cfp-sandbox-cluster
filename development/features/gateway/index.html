@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://codeforphilly.github.io/cfp-sandbox-cluster/operations/upgrades/to-0.20/">
+        <link rel="canonical" href="https://codeforphilly.github.io/cfp-sandbox-cluster/development/features/gateway/">
       
       
         <link rel="prev" href="../../">
       
       
-        <link rel="next" href="../to-1.0/">
+        <link rel="next" href="../ingress/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>To 0.20.x - Philly (sandbox) Civic Cloud</title>
+        <title>Exposing services (Gateway API) - Philly (sandbox) Civic Cloud</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#to-020x" class="md-skip">
+        <a href="#exposing-services-gateway-api" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              To 0.20.x
+              Exposing services (Gateway API)
             
           </span>
         </div>
@@ -230,11 +230,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../development/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -289,13 +291,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../operations/" class="md-tabs__link">
           
   
   
@@ -610,24 +610,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
@@ -645,7 +650,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -663,7 +668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../development/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -688,6 +693,8 @@
                 
   
   
+    
+  
   
   
     
@@ -698,11 +705,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
         
           
           <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
@@ -723,7 +730,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -738,10 +745,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../development/features/gateway/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exposing services (Gateway API)
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -757,6 +791,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exposing-a-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exposing a service
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#http-https-and-certificates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        HTTP, HTTPS, and certificates
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure modes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy-ingress-nginx" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legacy: ingress-nginx
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -769,7 +867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../development/features/ingress/" class="md-nav__link">
+      <a href="../ingress/" class="md-nav__link">
         
   
   
@@ -797,7 +895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../development/features/sealed-secrets/" class="md-nav__link">
+      <a href="../sealed-secrets/" class="md-nav__link">
         
   
   
@@ -1005,29 +1103,24 @@
       
   
   
-    
   
   
-  
     
     
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   
@@ -1045,7 +1138,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1063,7 +1156,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../" class="md-nav__link">
+      <a href="../../../operations/" class="md-nav__link">
         
   
   
@@ -1088,8 +1181,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1100,11 +1191,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
         
           
           <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
@@ -1125,7 +1216,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1140,37 +1231,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    To 0.20.x
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../operations/upgrades/to-0.20/" class="md-nav__link">
         
   
   
@@ -1186,92 +1250,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#upgrade-cert-manager-apis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Upgrade cert-manager APIs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#upgrade-cert-manager-crds" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Upgrade cert-manager CRDs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#upgrade-sealed-secrets-ingress-config" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Upgrade sealed-secrets ingress config
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#upgrade-rbac-apis-for-any-service-account-manifests" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Upgrade RBAC APIs for any service account manifests
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-for-deprecated-apis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Check for deprecated APIs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deployment" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Deployment
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1284,7 +1262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../to-1.0/" class="md-nav__link">
+      <a href="../../../operations/upgrades/to-1.0/" class="md-nav__link">
         
   
   
@@ -1347,10 +1325,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#upgrade-cert-manager-apis" class="md-nav__link">
+  <a href="#exposing-a-service" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Upgrade cert-manager APIs
+        Exposing a service
       
     </span>
   </a>
@@ -1358,10 +1336,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-cert-manager-crds" class="md-nav__link">
+  <a href="#http-https-and-certificates" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Upgrade cert-manager CRDs
+        HTTP, HTTPS, and certificates
       
     </span>
   </a>
@@ -1369,10 +1347,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-sealed-secrets-ingress-config" class="md-nav__link">
+  <a href="#failure-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Upgrade sealed-secrets ingress config
+        Failure modes
       
     </span>
   </a>
@@ -1380,32 +1358,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#upgrade-rbac-apis-for-any-service-account-manifests" class="md-nav__link">
+  <a href="#legacy-ingress-nginx" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Upgrade RBAC APIs for any service account manifests
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#check-for-deprecated-apis" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Check for deprecated APIs
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deployment" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Deployment
+        Legacy: ingress-nginx
       
     </span>
   </a>
@@ -1432,69 +1388,156 @@
   
 
 
-<h1 id="to-020x">To 0.20.x<a class="headerlink" href="#to-020x" title="Permanent link"> ¶</a></h1>
-<p><code>cluster-template</code> v0.20.x  brings compatibility with Kubernetes 1.22</p>
-<h2 id="upgrade-cert-manager-apis">Upgrade <code>cert-manager</code> APIs<a class="headerlink" href="#upgrade-cert-manager-apis" title="Permanent link"> ¶</a></h2>
-<p>Any manifests defining <code>ClusterIssuer</code> objects must be upgraded to the stable API:</p>
-<div class="highlight"><pre><span></span><code><span class="gh">diff --git a/cert-manager.issuers.yaml b/cert-manager.issuers.yaml</span>
-<span class="gh">index ebd08997..8dba5834 100644</span>
-<span class="gd">--- a/cert-manager.issuers.yaml</span>
-<span class="gi">+++ b/cert-manager.issuers.yaml</span>
-<span class="gu">@@ -1,4 +1,4 @@</span>
-<span class="gd">-apiVersion: cert-manager.io/v1alpha2</span>
-<span class="gi">+apiVersion: cert-manager.io/v1</span>
-<span class="w"> </span>kind: ClusterIssuer
+<h1 id="exposing-services-gateway-api">Exposing services (Gateway API)<a class="headerlink" href="#exposing-services-gateway-api" title="Permanent link"> ¶</a></h1>
+<p>Public services are exposed through <strong>Envoy Gateway</strong> and the Kubernetes <strong>Gateway API</strong>.
+This replaces the older ingress-nginx path (see <a href="#legacy-ingress-nginx">Legacy: ingress-nginx</a>).</p>
+<p>The design rests on one rule, and most of the sharp edges below are consequences of
+getting it wrong:</p>
+<blockquote>
+<p><strong>A cluster decides <em>where</em> a service is reachable. An application decides <em>what</em> it
+serves. Neither declares the other&rsquo;s half.</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>The cluster owns</th>
+<th>The application owns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Gateway</code> — hostnames, TLS, certificate issuer, <code>gatewayClassName</code></td>
+<td><code>HTTPRoute</code> — paths, backend Services, ports</td>
+</tr>
+<tr>
+<td><code>GatewayClass</code>, the shared data plane, the HTTP→HTTPS redirect</td>
+<td>its own container ports and routing</td>
+</tr>
+</tbody>
+</table>
+<p>Hostnames, TLS, and issuers differ between clusters and are negotiated across every app
+sharing the ingress — they are cluster facts. Paths and ports change when the app changes
+and belong in the same commit as that change — they are app facts. An app cannot correctly
+author cluster facts: it doesn&rsquo;t know the cluster&rsquo;s issuer name, cert Secret names, or
+Gateway class, and guessing wrong fails in ways that are hard to see (see
+<a href="#failure-modes">Failure modes</a>).</p>
+<h2 id="exposing-a-service">Exposing a service<a class="headerlink" href="#exposing-a-service" title="Permanent link"> ¶</a></h2>
+<p><strong>1. The cluster provides a <code>Gateway</code> named after the app</strong>, in the app&rsquo;s namespace, with
+one HTTPS listener per hostname:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gateway</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">cert-manager.io/cluster-issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">letsencrypt-prod</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">gatewayClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eg</span>
+<span class="w">  </span><span class="nt">listeners</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https</span>
+<span class="w">      </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPS</span>
+<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
+<span class="w">      </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app.sandbox.k8s.phl.io</span>
+<span class="w">      </span><span class="nt">tls</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Terminate</span>
+<span class="w">        </span><span class="nt">certificateRefs</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app-gw-tls</span><span class="w">        </span><span class="c1"># cert-manager creates this from the annotation</span>
+<span class="w">      </span><span class="nt">allowedRoutes</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">namespaces</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Same</span>
 </code></pre></div>
-<h2 id="upgrade-cert-manager-crds">Upgrade <code>cert-manager</code> CRDs<a class="headerlink" href="#upgrade-cert-manager-crds" title="Permanent link"> ¶</a></h2>
-<p>If migrating from a pre-1.0 version of <code>cert-manager</code> to a post-1.0 version, you may need <a href="https://cert-manager.io/docs/installation/upgrading/upgrading-0.16-1.0/#kubernetes-1-14-and-below">to manually delete all CRDs</a></p>
-<h2 id="upgrade-sealed-secrets-ingress-config">Upgrade <code>sealed-secrets</code> ingress config<a class="headerlink" href="#upgrade-sealed-secrets-ingress-config" title="Permanent link"> ¶</a></h2>
-<p>The newer version of <code>sealed-secrets</code> has a new syntax for configuring its ingress:</p>
-<div class="highlight"><pre><span></span><code><span class="gh">diff --git a/sealed-secrets/release-values.yaml b/sealed-secrets/release-values.yaml</span>
-<span class="gh">index eb3216c2..3fcef1d3 100644</span>
-<span class="gd">--- a/sealed-secrets/release-values.yaml</span>
-<span class="gi">+++ b/sealed-secrets/release-values.yaml</span>
-<span class="gu">@@ -6,9 +6,5 @@ ingress:</span>
-<span class="w"> </span>  annotations:
-<span class="w"> </span>    kubernetes.io/ingress.class: nginx
-<span class="w"> </span>    cert-manager.io/cluster-issuer: letsencrypt-prod
-<span class="gd">-  hosts:</span>
-<span class="gd">-    - sealed-secrets.sandbox.k8s.example.com</span>
-<span class="gd">-  tls:</span>
-<span class="gd">-    - secretName: sealed-secrets-tls</span>
-<span class="gd">-      hosts:</span>
-<span class="gd">-        - sealed-secrets.sandbox.k8s.example.com</span>
-<span class="gi">+  hostname: sealed-secrets.sandbox.k8s.example.com</span>
-<span class="gi">+  tls: true</span>
+<p>cert-manager sees the <code>cluster-issuer</code> annotation and issues the certificate into the
+<code>certificateRefs</code> Secret automatically. No <code>Certificate</code> resource is written by hand.</p>
+<p><strong>2. The application ships an <code>HTTPRoute</code></strong> that attaches to that Gateway by name and
+declares <strong>no hostnames</strong>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">parentRefs</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app</span><span class="w">          </span><span class="c1"># the Gateway the cluster provides</span>
+<span class="w">  </span><span class="c1"># no hostnames — inherited from the Gateway&#39;s listeners</span>
+<span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matches</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">PathPrefix</span><span class="p p-Indicator">,</span><span class="nt"> value</span><span class="p">:</span><span class="w"> </span><span class="nv">/</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">      </span><span class="nt">backendRefs</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-app</span>
+<span class="w">          </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">80</span>
 </code></pre></div>
-<h2 id="upgrade-rbac-apis-for-any-service-account-manifests">Upgrade RBAC APIs for any service account manifests<a class="headerlink" href="#upgrade-rbac-apis-for-any-service-account-manifests" title="Permanent link"> ¶</a></h2>
-<div class="highlight"><pre><span></span><code><span class="gh">diff --git a/admins/project-admin.yaml b/admins/project-admin.yaml</span>
-<span class="gh">index dc5c52d0..b3fedfcc 100644</span>
-<span class="gd">--- a/admins/project-admin.yaml</span>
-<span class="gi">+++ b/admins/project-admin.yaml</span>
-<span class="gu">@@ -14,7 +14,7 @@ metadata:</span>
-<span class="w"> </span>---
-
-<span class="w"> </span>kind: Role
-<span class="gd">-apiVersion: rbac.authorization.k8s.io/v1beta1</span>
-<span class="gi">+apiVersion: rbac.authorization.k8s.io/v1</span>
-<span class="w"> </span>metadata:
-<span class="w"> </span>  name: deployment-admin
-</code></pre></div>
-<h2 id="check-for-deprecated-apis">Check for deprecated APIs<a class="headerlink" href="#check-for-deprecated-apis" title="Permanent link"> ¶</a></h2>
-<p>After deploying v0.20.x, check for any locally-defined manifests using deprecated APIs <strong>before upgrading</strong> the host cluster to Kubernetes v1.22+.</p>
-<p>Check for deployed objects with deprecated APIs:</p>
-<div class="highlight"><pre><span></span><code>kubent<span class="w"> </span>--target-version<span class="w"> </span><span class="m">1</span>.22.0
-</code></pre></div>
-<p>Check for helm chart snapshots:</p>
-<div class="highlight"><pre><span></span><code>pluto<span class="w"> </span>detect-helm
-</code></pre></div>
-<h2 id="deployment">Deployment<a class="headerlink" href="#deployment" title="Permanent link"> ¶</a></h2>
-<p>Before deploying an upgrade to v0.20.x, delete existing <code>ingress-nginx</code> jobs to prevent errors about immutable fields being changed:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>ingress-nginx<span class="w"> </span>delete<span class="w"> </span><span class="nb">jobs</span><span class="w"> </span>ingress-nginx-admission-create<span class="w"> </span>ingress-nginx-admission-patch
-</code></pre></div>
-<p>For the same reason, also delete the <code>prometheus-kube-state-metrics</code> deployment:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>prometheus<span class="w"> </span>delete<span class="w"> </span>deployment<span class="w"> </span>prometheus-kube-state-metrics
-</code></pre></div>
+<p>A route with no <code>hostnames</code> <strong>inherits</strong> them from the listeners it attaches to. So the
+same route file works unchanged in every environment — the Gateway supplies the hostname —
+and the app repo contains zero cluster facts. This is the mechanism that makes the
+ownership split practical; it is a supported part of the Gateway API and behaves correctly
+on Envoy Gateway.</p>
+<p>When an app team ships routes from their own repository, this is all they ship: an
+HTTPRoute, attached by convention to a Gateway named after the app.</p>
+<h2 id="http-https-and-certificates">HTTP, HTTPS, and certificates<a class="headerlink" href="#http-https-and-certificates" title="Permanent link"> ¶</a></h2>
+<ul>
+<li><strong>HTTP→HTTPS is handled once, globally.</strong> A single redirect <code>HTTPRoute</code> on the shared
+  HTTP listener 301s everything to HTTPS. Per-app HTTPRoutes attach only to their per-app
+  HTTPS Gateway — they do <strong>not</strong> each carry a redirect.</li>
+<li><strong>ACME challenges bypass the redirect automatically.</strong> cert-manager creates a short-lived
+  HTTPRoute per challenge with an <code>Exact</code> path match on <code>/.well-known/acme-challenge/…</code>,
+  which outranks the catch-all redirect under Gateway API precedence.</li>
+<li><strong>One LoadBalancer for all Gateways.</strong> The <code>EnvoyProxy</code> resource sets
+  <code>mergeGateways: true</code>, so every Gateway shares one Envoy data plane and one cloud
+  LoadBalancer. Without it, each Gateway provisions its own LB and cost multiplies. Do not
+  disable it.</li>
+</ul>
+<h2 id="failure-modes">Failure modes<a class="headerlink" href="#failure-modes" title="Permanent link"> ¶</a></h2>
+<p>These are not hypothetical — each one cost real time on a production cluster.</p>
+<div class="admonition danger">
+<p class="admonition-title">Certificate issuance depends on <strong>in-cluster</strong> reachability</p>
+<p>cert-manager runs an HTTP-01 self-check <em>from inside the cluster</em> before it asks the CA
+to validate. So a solver the cluster cannot reach from within will never issue a cert,
+even if it works perfectly from the public internet.</p>
+<p>This is what makes ingress-nginx-with-PROXY-protocol unusable for issuance once the
+in-cluster PROXY-header shim (hairpin-proxy) is removed: in-cluster traffic bypasses the
+load balancer that would add the header, so the backend drops the connection and the
+self-check fails silently. The general rule: <strong>a component in the request path that
+needs a header only the load balancer supplies is unreachable from inside the cluster.</strong>
+Envoy Gateway does not use PROXY protocol, so it is reachable in-cluster and its
+self-checks pass. Never enable <code>ClientTrafficPolicy.enableProxyProtocol</code> to recover
+client IPs without accounting for this.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Don&rsquo;t leave gateway certs pending across a renewal window</p>
+<p>If you pre-create per-app Gateways (and their pending ACME challenges) but delay the DNS
+cutover, those challenges sit <code>pending</code> indefinitely. A pending challenge <strong>holds its
+hostname&rsquo;s slot</strong> in cert-manager&rsquo;s scheduler, which will not run two HTTP-01 challenges
+for the same hostname at once — so it can silently starve the <em>legacy</em> certificate&rsquo;s
+renewal for that same hostname. If you must pause mid-migration, remove the
+<code>cluster-issuer</code> annotation from the pre-created Gateways so no challenges exist to hold
+the slots.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">A Challenge can outlive its Order and deadlock renewals</p>
+<p>A cert-manager <code>Challenge</code> is owned by <strong>both</strong> its <code>Order</code> and the <code>ClusterIssuer</code>.
+Kubernetes garbage-collects a dependent only when <em>all</em> owners are gone, so a Challenge
+survives its Order&rsquo;s deletion as a half-orphan: still <code>processing</code>, no controller driving
+it, no GC path to remove it — and still holding its scheduler slot. Symptom:
+<code>kubectl get challenges -A</code> shows a challenge <code>pending</code> for days with a sibling for the
+same <code>dnsName</code> stuck with an empty status. Delete the stale one by name. The
+<code>CertChallengeStuck</code> alert (shipped with Grafana alerting) catches this.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title"><code>ListenerSet</code> is not usable yet</p>
+<p>Envoy Gateway before v1.8 does not reconcile <code>ListenerSet</code> — it watches <code>XListenerSet</code>
+and logs <code>XListenerSet CRD not found, skipping XListenerSet watch</code>. A <code>ListenerSet</code>
+applies cleanly to the API server and is then <strong>silently ignored</strong>, leaving the hostname
+with no listener and nothing in any log to say why. Use per-app <code>Gateway</code> resources with
+<code>mergeGateways: true</code> until the cluster&rsquo;s Envoy Gateway is on v1.8+.</p>
+</div>
+<h2 id="legacy-ingress-nginx">Legacy: ingress-nginx<a class="headerlink" href="#legacy-ingress-nginx" title="Permanent link"> ¶</a></h2>
+<p>ingress-nginx remains in the manifests for compatibility with services that haven&rsquo;t moved
+to the Gateway API yet, but it is being retired and <strong>new services should not use it</strong>.
+The old flow — an <code>Ingress</code> with <code>kubernetes.io/ingress.class: nginx</code> — still functions
+where it already exists. When migrating an existing Ingress, mirror its routing faithfully
+in the HTTPRoute: multi-path Ingresses (e.g. <code>/api</code> to a backend, <code>/</code> to a frontend) and
+redirect-only hosts must be reproduced as explicit HTTPRoute rules, or behavior changes
+silently at cutover.</p>
 
 
 

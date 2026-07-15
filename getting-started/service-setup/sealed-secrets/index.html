@@ -521,6 +521,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../grafana-smtp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grafana SMTP &amp; certificate alerting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../grafana/" class="md-nav__link">
         
   
@@ -620,10 +648,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#enable-ingress" class="md-nav__link">
+  <a href="#expose-the-public-certificate" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Enable ingress
+        Expose the public certificate
       
     </span>
   </a>
@@ -789,6 +817,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../development/features/gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exposing services (Gateway API)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../development/features/ingress/" class="md-nav__link">
         
   
@@ -796,7 +852,7 @@
   <span class="md-ellipsis">
     
   
-    Ingress
+    Ingress (legacy)
   
 
     
@@ -1258,10 +1314,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#enable-ingress" class="md-nav__link">
+  <a href="#expose-the-public-certificate" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Enable ingress
+        Expose the public certificate
       
     </span>
   </a>
@@ -1304,21 +1360,50 @@
 <p>Be sure to keep this file secure and delete from your working directory after uploading it to a secure credentials vault for backup.</p>
 <p><strong>Do not commit this file to source control</strong></p>
 </div>
-<h2 id="enable-ingress">Enable ingress<a class="headerlink" href="#enable-ingress" title="Permanent link"> ¶</a></h2>
-<p>The <code>sealed-secrets</code> helm chart includes an ingress that can be configured to provide a public URL to the cluster&rsquo;s public certificate that can be used for local <code>kubeseal</code> client operations.</p>
-<p>To enable the ingress, configure and deploy <code>sealed-secrets/release-values.yaml</code>:</p>
-<div class="tabbed-set" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">sealed-secrets/release-values.yaml</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="nt">ingress</span><span class="p">:</span>
-<span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="nt">annotations</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">kubernetes.io/ingress.class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<h2 id="expose-the-public-certificate">Expose the public certificate<a class="headerlink" href="#expose-the-public-certificate" title="Permanent link"> ¶</a></h2>
+<p>The controller serves its public certificate at <code>/v1/cert.pem</code>, which local <code>kubeseal</code>
+clients can fetch instead of pulling it from the cluster each time. Expose it through the
+Gateway API — see <a href="../../../development/features/gateway/">Exposing services</a> for the full
+pattern and the ownership split.</p>
+<p>Provide a <code>Gateway</code> and an <code>HTTPRoute</code> (leave the chart&rsquo;s own <code>ingress</code> disabled):</p>
+<div class="tabbed-set" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">gateway.yaml</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gateway</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sealed-secrets</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sealed-secrets</span>
+<span class="w">  </span><span class="nt">annotations</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">cert-manager.io/cluster-issuer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">letsencrypt-prod</span>
-<span class="nt">hosts</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sealed-secrets.sandbox.k8s.phl.io</span>
-<span class="nt">tls</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sealed-secrets-tls</span>
-<span class="w">    </span><span class="nt">hosts</span><span class="p">:</span>
-<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sealed-secrets.sandbox.k8s.phl.io</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">gatewayClassName</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">eg</span>
+<span class="w">  </span><span class="nt">listeners</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https</span>
+<span class="w">      </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPS</span>
+<span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">443</span>
+<span class="w">      </span><span class="nt">hostname</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sealed-secrets.sandbox.k8s.phl.io</span>
+<span class="w">      </span><span class="nt">tls</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Terminate</span>
+<span class="w">        </span><span class="nt">certificateRefs</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sealed-secrets-gw-tls</span>
+<span class="w">      </span><span class="nt">allowedRoutes</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">namespaces</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Same</span>
+<span class="nn">---</span>
+<span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gateway.networking.k8s.io/v1</span>
+<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HTTPRoute</span>
+<span class="nt">metadata</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sealed-secrets</span>
+<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sealed-secrets</span>
+<span class="nt">spec</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">parentRefs</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sealed-secrets</span>
+<span class="w">  </span><span class="nt">rules</span><span class="p">:</span>
+<span class="w">    </span><span class="c1"># Only the public cert is served — not the whole controller surface.</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">matches</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> type</span><span class="p">:</span><span class="w"> </span><span class="nv">Exact</span><span class="p p-Indicator">,</span><span class="nt"> value</span><span class="p">:</span><span class="w"> </span><span class="nv">/v1/cert.pem</span><span class="w"> </span><span class="p p-Indicator">}</span>
+<span class="w">      </span><span class="nt">backendRefs</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sealed-secrets</span>
+<span class="w">          </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
 </code></pre></div>
 </div>
 </div>

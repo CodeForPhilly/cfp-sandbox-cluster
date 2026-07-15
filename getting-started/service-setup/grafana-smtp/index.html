@@ -8,25 +8,31 @@
       
       
       
+        <link rel="canonical" href="https://codeforphilly.github.io/cfp-sandbox-cluster/getting-started/service-setup/grafana-smtp/">
       
+      
+        <link rel="prev" href="../../">
+      
+      
+        <link rel="next" href="../grafana/">
       
       
         
       
       
-      <link rel="icon" href="/cfp-sandbox-cluster/assets/images/favicon.png">
+      <link rel="icon" href="../../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
     
     
       
-        <title>Philly (sandbox) Civic Cloud</title>
+        <title>Grafana SMTP & certificate alerting - Philly (sandbox) Civic Cloud</title>
       
     
     
-      <link rel="stylesheet" href="/cfp-sandbox-cluster/assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="/cfp-sandbox-cluster/assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -45,7 +51,7 @@
       
     
     
-    <script>__md_scope=new URL("/cfp-sandbox-cluster/",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -67,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#grafana-smtp-certificate-alerting" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -77,7 +88,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="/cfp-sandbox-cluster/." title="Philly (sandbox) Civic Cloud" class="md-header__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
+    <a href="../../.." title="Philly (sandbox) Civic Cloud" class="md-header__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -97,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              
+              Grafana SMTP &amp; certificate alerting
             
           </span>
         </div>
@@ -182,7 +193,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/cfp-sandbox-cluster/." class="md-tabs__link">
+      <a href="../../.." class="md-tabs__link">
         
   
   
@@ -199,11 +210,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="/cfp-sandbox-cluster/getting-started/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
           
   
   
@@ -223,7 +236,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/cfp-sandbox-cluster/development/" class="md-tabs__link">
+        <a href="../../../development/" class="md-tabs__link">
           
   
   
@@ -241,7 +254,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="/cfp-sandbox-cluster/echo-service/" class="md-tabs__link">
+      <a href="../../../echo-service/" class="md-tabs__link">
         
   
   
@@ -262,7 +275,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/cfp-sandbox-cluster/data-warehouse/" class="md-tabs__link">
+        <a href="../../../data-warehouse/" class="md-tabs__link">
           
   
   
@@ -282,7 +295,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="/cfp-sandbox-cluster/operations/" class="md-tabs__link">
+        <a href="../../../operations/" class="md-tabs__link">
           
   
   
@@ -316,7 +329,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="/cfp-sandbox-cluster/." title="Philly (sandbox) Civic Cloud" class="md-nav__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
+    <a href="../../.." title="Philly (sandbox) Civic Cloud" class="md-nav__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -346,7 +359,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/." class="md-nav__link">
+      <a href="../../.." class="md-nav__link">
         
   
   
@@ -370,24 +383,29 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -405,7 +423,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -423,7 +441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/getting-started/" class="md-nav__link">
+      <a href="../../" class="md-nav__link">
         
   
   
@@ -448,6 +466,8 @@
                 
   
   
+    
+  
   
   
     
@@ -458,11 +478,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" checked>
         
           
           <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
@@ -483,7 +503,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
             
@@ -498,10 +518,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/getting-started/service-setup/grafana-smtp/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Grafana SMTP &amp; certificate alerting
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -517,6 +564,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-is-a-secret-and-why-grafana-rather-than-alertmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this is a Secret, and why Grafana rather than Alertmanager
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify delivery
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -529,7 +640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/getting-started/service-setup/grafana/" class="md-nav__link">
+      <a href="../grafana/" class="md-nav__link">
         
   
   
@@ -557,7 +668,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/getting-started/service-setup/sealed-secrets/" class="md-nav__link">
+      <a href="../sealed-secrets/" class="md-nav__link">
         
   
   
@@ -650,7 +761,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/development/" class="md-nav__link">
+      <a href="../../../development/" class="md-nav__link">
         
   
   
@@ -728,7 +839,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/development/features/gateway/" class="md-nav__link">
+      <a href="../../../development/features/gateway/" class="md-nav__link">
         
   
   
@@ -756,7 +867,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/development/features/ingress/" class="md-nav__link">
+      <a href="../../../development/features/ingress/" class="md-nav__link">
         
   
   
@@ -784,7 +895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/development/features/sealed-secrets/" class="md-nav__link">
+      <a href="../../../development/features/sealed-secrets/" class="md-nav__link">
         
   
   
@@ -827,7 +938,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/echo-service/" class="md-nav__link">
+      <a href="../../../echo-service/" class="md-nav__link">
         
   
   
@@ -904,7 +1015,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/data-warehouse/" class="md-nav__link">
+      <a href="../../../data-warehouse/" class="md-nav__link">
         
   
   
@@ -932,7 +1043,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/data-warehouse/add-user/" class="md-nav__link">
+      <a href="../../../data-warehouse/add-user/" class="md-nav__link">
         
   
   
@@ -960,7 +1071,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/data-warehouse/initial-setup/" class="md-nav__link">
+      <a href="../../../data-warehouse/initial-setup/" class="md-nav__link">
         
   
   
@@ -1045,7 +1156,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/operations/" class="md-nav__link">
+      <a href="../../../operations/" class="md-nav__link">
         
   
   
@@ -1123,7 +1234,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/operations/upgrades/to-0.20/" class="md-nav__link">
+      <a href="../../../operations/upgrades/to-0.20/" class="md-nav__link">
         
   
   
@@ -1151,7 +1262,7 @@
   
   
     <li class="md-nav__item">
-      <a href="/cfp-sandbox-cluster/operations/upgrades/to-1.0/" class="md-nav__link">
+      <a href="../../../operations/upgrades/to-1.0/" class="md-nav__link">
         
   
   
@@ -1204,6 +1315,60 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-this-is-a-secret-and-why-grafana-rather-than-alertmanager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this is a Secret, and why Grafana rather than Alertmanager
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#keys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Keys
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create it
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verify-delivery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify delivery
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -1216,8 +1381,101 @@
               
               <article class="md-content__inner md-typeset">
                 
-  <h1>404 - Not found</h1>
+                  
 
+
+  
+  
+
+
+<h1 id="grafana-smtp-certificate-alerting">Grafana SMTP &amp; certificate alerting<a class="headerlink" href="#grafana-smtp-certificate-alerting" title="Permanent link"> ¶</a></h1>
+<p>The template ships certificate alert rules (in <code>k8s-common/grafana/default-values.yaml</code>)
+that email the cluster&rsquo;s operators when a certificate stops renewing. Grafana sends that
+mail through <strong>Postmark</strong>, and the credential, sender, and recipient list come from a
+<code>grafana-smtp</code> Secret in the <code>grafana</code> namespace.</p>
+<p>Until this Secret exists, Grafana still runs and the rules still evaluate — they just
+can&rsquo;t deliver. Creating it turns delivery on.</p>
+<h2 id="why-this-is-a-secret-and-why-grafana-rather-than-alertmanager">Why this is a Secret, and why Grafana rather than Alertmanager<a class="headerlink" href="#why-this-is-a-secret-and-why-grafana-rather-than-alertmanager" title="Permanent link"> ¶</a></h2>
+<p>Postmark&rsquo;s server token is <strong>both</strong> the SMTP username and the password. Prometheus
+Alertmanager can read the SMTP password from a file but has no way to read the username
+from one, so on a public GitOps repo the token would end up committed in plaintext.
+Grafana reads both from a Secret as environment variables, exposing nothing — which is
+why alerting lives in Grafana here.</p>
+<p>The recipient list lives in the Secret too: it&rsquo;s usually personal addresses, and this
+keeps them out of a public repo.</p>
+<h2 id="keys">Keys<a class="headerlink" href="#keys" title="Permanent link"> ¶</a></h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user</code></td>
+<td>Postmark <strong>server token</strong></td>
+</tr>
+<tr>
+<td><code>password</code></td>
+<td>the <strong>same</strong> Postmark server token</td>
+</tr>
+<tr>
+<td><code>from-address</code></td>
+<td>a verified Postmark sender for this cluster (e.g. <code>alerts@example.org</code>)</td>
+</tr>
+<tr>
+<td><code>recipients</code></td>
+<td>semicolon-separated list, e.g. <code>a@example.org;b@example.org</code></td>
+</tr>
+</tbody>
+</table>
+<p>The <code>from-address</code> must be a verified sender signature (or under a verified domain) in the
+Postmark server, or Postmark rejects the mail.</p>
+<h2 id="create-it">Create it<a class="headerlink" href="#create-it" title="Permanent link"> ¶</a></h2>
+<p>Sealed into the cluster repo (recommended — survives a cluster rebuild):</p>
+<div class="highlight"><pre><span></span><code><span class="nv">TOKEN</span><span class="o">=</span><span class="s1">&#39;&lt;postmark-server-token&gt;&#39;</span>
+kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>grafana-smtp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--namespace<span class="w"> </span>grafana<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--dry-run<span class="o">=</span>client<span class="w"> </span>-o<span class="w"> </span>json<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--from-literal<span class="o">=</span><span class="nv">user</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--from-literal<span class="o">=</span><span class="nv">password</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--from-literal<span class="o">=</span>from-address<span class="o">=</span><span class="s1">&#39;alerts@example.org&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--from-literal<span class="o">=</span><span class="nv">recipients</span><span class="o">=</span><span class="s1">&#39;a@example.org;b@example.org&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="p">|</span><span class="w"> </span>kubeseal<span class="w"> </span>--format<span class="w"> </span>yaml<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>--controller-namespace<span class="w"> </span>sealed-secrets<span class="w"> </span>--controller-name<span class="w"> </span>sealed-secrets<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>&gt;<span class="w"> </span>grafana/grafana-smtp.sealed.yaml
+</code></pre></div>
+<p>Commit the sealed file. For a quick non-GitOps setup, drop the <code>kubeseal</code> pipe and apply
+the plain Secret directly instead — but never commit an unsealed one.</p>
+<h2 id="verify-delivery">Verify delivery<a class="headerlink" href="#verify-delivery" title="Permanent link"> ¶</a></h2>
+<p>Don&rsquo;t assume a rendered config delivers. After Grafana rolls out, fire a real test through
+its own notifier (a rendered-but-undeliverable pipeline is exactly the silent failure the
+alerts exist to prevent):</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Grafana&#39;s admin password lives in the grafana-initial-admin Secret.</span>
+<span class="c1"># Test the provisioned contact point with its real, env-expanded recipients:</span>
+kubectl<span class="w"> </span>-n<span class="w"> </span>grafana<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>deploy/grafana<span class="w"> </span>--<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>wget<span class="w"> </span>-qO-<span class="w"> </span>--post-data<span class="o">=</span><span class="s1">&#39;{&quot;receivers&quot;:[{&quot;name&quot;:&quot;cluster-alerts-email&quot;,</span>
+<span class="s1">    &quot;grafana_managed_receiver_configs&quot;:[{&quot;name&quot;:&quot;cluster-alerts-email&quot;,&quot;type&quot;:&quot;email&quot;,</span>
+<span class="s1">    &quot;settings&quot;:{&quot;addresses&quot;:&quot;&lt;your-address&gt;&quot;,&quot;singleEmail&quot;:false}}]}],</span>
+<span class="s1">    &quot;alert&quot;:{&quot;annotations&quot;:{&quot;summary&quot;:&quot;alerting pipeline test&quot;}}}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="o">=</span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;http://admin:</span><span class="nv">$ADMIN_PW</span><span class="s2">@localhost:3000/api/alertmanager/grafana/config/api/v1/receivers/test&quot;</span>
+</code></pre></div>
+<p>A <code>status: "ok"</code> and an email in the inbox means the pipeline works end to end.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
               </article>
             </div>
           
@@ -1254,10 +1512,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "/cfp-sandbox-cluster/", "features": ["navigation.tabs"], "search": "/cfp-sandbox-cluster/assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="/cfp-sandbox-cluster/assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
         <script src="https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js"></script>
       
