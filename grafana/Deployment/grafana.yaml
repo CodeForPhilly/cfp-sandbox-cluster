@@ -61,6 +61,12 @@ spec:
                   key: from-address
                   name: grafana-smtp
                   optional: true
+            - name: GF_SMTP_FROM_NAME
+              valueFrom:
+                secretKeyRef:
+                  key: from-name
+                  name: grafana-smtp
+                  optional: true
             - name: GF_SMTP_PASSWORD
               valueFrom:
                 secretKeyRef:
