@@ -38,7 +38,7 @@ Cluster-scoped resources land in `_/<Kind>/<name>.yaml`.
 ## Directory map
 
 | Path | Purpose |
-|---|---|
+| --- | --- |
 | `_infra/` | Cluster-level infra (cert-manager issuers, envoy-gateway config, cnpg cluster) |
 | `_gateways/` | Per-app Gateway + HTTPRoute pairs, one file per app |
 | `<app>/` | App workspace — `release-values.yaml` for helm, `kustomization.yaml` for kustomize |
@@ -130,8 +130,9 @@ For chart versions owned by the upstream chain: bump in cluster-template or civi
 Things not in any single grep-able file:
 
 - **`shared-cluster` (cnpg)**: PG 18.0 + PostGIS 3.6.3 + pgvector 0.8.2 + pgaudit 18.0 (available, not preloaded). 2 instances. Image `ghcr.io/cloudnative-pg/postgis:18-3-system-trixie`. Storage class `linode-block-storage-retain`.
-- **Envoy LB**: external IP for the cluster. Wildcard DNS `*.sandbox.k8s.phl.io` resolves there. Linode LKE supports LoadBalancer hairpin natively (in-cluster pods can reach the LB external IP).
+- **Envoy LB**: external IP for the cluster. Wildcard DNS `*.sandbox.k8s.phl.io` resolves there.
 - **No hairpin-proxy, no ingress-nginx**: both were decommissioned in the May 2026 Envoy migration. Don't reintroduce.
+- **⚠️ "Native LKE hairpin" does NOT replace what hairpin-proxy did.** LKE does route in-cluster traffic to the LB external IP, but it does so *without* the PROXY-protocol header that a NodeBalancer prepends — kube-proxy short-circuits straight to the pods. hairpin-proxy existed to re-add that header in-cluster. This is harmless here (Envoy doesn't use PROXY protocol), but the reasoning "LKE supports hairpin natively, so hairpin-proxy is safe to drop" is exactly what silently broke cert issuance on the live cluster (ingress-nginx required the header; cert-manager's in-cluster HTTP-01 self-check couldn't reach it; nine certs expired unnoticed for 56 days — CodeForPhilly/cfp-live-cluster#144). The rule: a component in the request path that needs a header only the load balancer supplies is unreachable from inside the cluster, and cert issuance depends on in-cluster reachability. **Never enable proxy protocol on Envoy** (`ClientTrafficPolicy.enableProxyProtocol`) to recover client IPs without accounting for this.
 - **DNS for some non-wildcard hostnames** (e.g. `sandbox.balancerproject.org`, `test.pawsdp.org`) was retired during the migration. Those hostnames don't work anymore.
 
 ## Guardrails
