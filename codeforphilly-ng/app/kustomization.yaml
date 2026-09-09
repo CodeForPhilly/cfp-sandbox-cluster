@@ -10,3 +10,9 @@ resources:
   - manifests/service.yaml
   - manifests/serviceaccount.yaml
   - manifests/pvc-private.yaml
+
+# Track released versions instead of the hand-pushed `:sandbox` tag baked
+# into the upstream Deployment. Bump on each release, ahead of prod.
+images:
+  - name: ghcr.io/codeforphilly/codeforphilly-ng
+    newTag: v0.2.0
