@@ -21,7 +21,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -29,7 +29,7 @@
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -1440,15 +1440,15 @@ when several clusters share one Postmark server and email the same people, it&rs
 thing in the inbox that says which cluster fired.</p>
 <h2 id="create-it">Create it<a class="headerlink" href="#create-it" title="Permanent link"> ¶</a></h2>
 <p>Sealed into the cluster repo (recommended — survives a cluster rebuild):</p>
-<div class="highlight"><pre><span></span><code><span class="nv">TOKEN</span><span class="o">=</span><span class="s1">&#39;&lt;postmark-server-token&gt;&#39;</span>
+<div class="highlight"><pre><span></span><code><span class="nv">TOKEN</span><span class="o">=</span><span class="s1">'&lt;postmark-server-token&gt;'</span>
 kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span>grafana-smtp<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--namespace<span class="w"> </span>grafana<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--dry-run<span class="o">=</span>client<span class="w"> </span>-o<span class="w"> </span>json<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--from-literal<span class="o">=</span><span class="nv">user</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--from-literal<span class="o">=</span><span class="nv">password</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$TOKEN</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--from-literal<span class="o">=</span>from-address<span class="o">=</span><span class="s1">&#39;alerts@example.org&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--from-literal<span class="o">=</span>from-name<span class="o">=</span><span class="s1">&#39;CodeForPhilly — Live&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--from-literal<span class="o">=</span><span class="nv">recipients</span><span class="o">=</span><span class="s1">&#39;a@example.org;b@example.org&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--from-literal<span class="o">=</span><span class="nv">user</span><span class="o">=</span><span class="s2">"</span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--from-literal<span class="o">=</span><span class="nv">password</span><span class="o">=</span><span class="s2">"</span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--from-literal<span class="o">=</span>from-address<span class="o">=</span><span class="s1">'alerts@example.org'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--from-literal<span class="o">=</span>from-name<span class="o">=</span><span class="s1">'CodeForPhilly — Live'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--from-literal<span class="o">=</span><span class="nv">recipients</span><span class="o">=</span><span class="s1">'a@example.org;b@example.org'</span><span class="w"> </span><span class="se">\</span>
 <span class="w">  </span><span class="p">|</span><span class="w"> </span>kubeseal<span class="w"> </span>--format<span class="w"> </span>yaml<span class="w"> </span><span class="se">\</span>
 <span class="w">      </span>--controller-namespace<span class="w"> </span>sealed-secrets<span class="w"> </span>--controller-name<span class="w"> </span>sealed-secrets<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>&gt;<span class="w"> </span>grafana/grafana-smtp.sealed.yaml
@@ -1459,15 +1459,15 @@ the plain Secret directly instead — but never commit an unsealed one.</p>
 <p>Don&rsquo;t assume a rendered config delivers. After Grafana rolls out, fire a real test through
 its own notifier (a rendered-but-undeliverable pipeline is exactly the silent failure the
 alerts exist to prevent):</p>
-<div class="highlight"><pre><span></span><code><span class="c1"># Grafana&#39;s admin password lives in the grafana-initial-admin Secret.</span>
+<div class="highlight"><pre><span></span><code><span class="c1"># Grafana's admin password lives in the grafana-initial-admin Secret.</span>
 <span class="c1"># Test the provisioned contact point with its real, env-expanded recipients:</span>
 kubectl<span class="w"> </span>-n<span class="w"> </span>grafana<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>deploy/grafana<span class="w"> </span>--<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>wget<span class="w"> </span>-qO-<span class="w"> </span>--post-data<span class="o">=</span><span class="s1">&#39;{&quot;receivers&quot;:[{&quot;name&quot;:&quot;cluster-alerts-email&quot;,</span>
-<span class="s1">    &quot;grafana_managed_receiver_configs&quot;:[{&quot;name&quot;:&quot;cluster-alerts-email&quot;,&quot;type&quot;:&quot;email&quot;,</span>
-<span class="s1">    &quot;settings&quot;:{&quot;addresses&quot;:&quot;&lt;your-address&gt;&quot;,&quot;singleEmail&quot;:false}}]}],</span>
-<span class="s1">    &quot;alert&quot;:{&quot;annotations&quot;:{&quot;summary&quot;:&quot;alerting pipeline test&quot;}}}&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--header<span class="o">=</span><span class="s1">&#39;Content-Type: application/json&#39;</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="s2">&quot;http://admin:</span><span class="nv">$ADMIN_PW</span><span class="s2">@localhost:3000/api/alertmanager/grafana/config/api/v1/receivers/test&quot;</span>
+<span class="w">  </span>wget<span class="w"> </span>-qO-<span class="w"> </span>--post-data<span class="o">=</span><span class="s1">'{"receivers":[{"name":"cluster-alerts-email",</span>
+<span class="s1">    "grafana_managed_receiver_configs":[{"name":"cluster-alerts-email","type":"email",</span>
+<span class="s1">    "settings":{"addresses":"&lt;your-address&gt;","singleEmail":false}}]}],</span>
+<span class="s1">    "alert":{"annotations":{"summary":"alerting pipeline test"}}}'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--header<span class="o">=</span><span class="s1">'Content-Type: application/json'</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">"http://admin:</span><span class="nv">$ADMIN_PW</span><span class="s2">@localhost:3000/api/alertmanager/grafana/config/api/v1/receivers/test"</span>
 </code></pre></div>
 <p>A <code>status: "ok"</code> and an email in the inbox means the pipeline works end to end.</p>
 
@@ -1522,7 +1522,7 @@ kubectl<span class="w"> </span>-n<span class="w"> </span>grafana<span class="w">
       <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js"></script>
       
