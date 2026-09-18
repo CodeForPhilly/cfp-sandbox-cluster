@@ -24,7 +24,7 @@ spec:
                 name: codeforphilly-env
             - secretRef:
                 name: codeforphilly-secrets
-          image: ghcr.io/codeforphilly/codeforphilly-ng:v0.5.0
+          image: ghcr.io/codeforphilly/codeforphilly-ng:v0.5.1
           imagePullPolicy: Always
           livenessProbe:
             httpGet:
