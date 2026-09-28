@@ -1,26 +1,24 @@
 # Continuous WAL archiving + nightly base backups for shared-cluster, via the
 # Barman Cloud plugin (the in-tree barmanObjectStore is removed in cnpg 1.31).
 #
-# Bucket: cfp-sandbox-cluster-cnpg (Linode Object Storage, us-east, CodeForPhilly
-# account). Barman keys everything under the Cluster's name inside the bucket,
-# so any future Cluster on this k8s cluster can share it. The access key is
-# limited to this one bucket and sealed in cloudnative-pg.secrets/.
+# Bucket: gs://cnpg-sandbox in GCP project openphl-1177 (us-east4) — deliberately
+# OFF Linode, so backups survive the loss of the Linode account or region.
+# Barman keys everything under the Cluster's name inside the bucket, so any
+# future Cluster on this k8s cluster can share it. The service account
+# cnpg-backup-sandbox@openphl-1177 has objectAdmin + legacyBucketReader on this
+# one bucket only; its JSON key is sealed in cloudnative-pg.secrets/.
 apiVersion: barmancloud.cnpg.io/v1
 kind: ObjectStore
 metadata:
-  name: linode-cnpg
+  name: gcs-cnpg
   namespace: cloudnative-pg
 spec:
   configuration:
-    destinationPath: s3://cfp-sandbox-cluster-cnpg/
-    endpointURL: https://us-east-1.linodeobjects.com
-    s3Credentials:
-      accessKeyId:
+    destinationPath: gs://cnpg-sandbox/
+    googleCredentials:
+      applicationCredentials:
         name: cnpg-backup-creds
-        key: ACCESS_KEY_ID
-      secretAccessKey:
-        name: cnpg-backup-creds
-        key: ACCESS_SECRET_KEY
+        key: gcsCredentials
     wal:
       compression: gzip
     data:
