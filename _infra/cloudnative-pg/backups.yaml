@@ -1,0 +1,46 @@
+# Continuous WAL archiving + nightly base backups for shared-cluster, via the
+# Barman Cloud plugin (the in-tree barmanObjectStore is removed in cnpg 1.31).
+#
+# Bucket: cfp-sandbox-cluster-cnpg (Linode Object Storage, us-east, CodeForPhilly
+# account). Barman keys everything under the Cluster's name inside the bucket,
+# so any future Cluster on this k8s cluster can share it. The access key is
+# limited to this one bucket and sealed in cloudnative-pg.secrets/.
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: linode-cnpg
+  namespace: cloudnative-pg
+spec:
+  configuration:
+    destinationPath: s3://cfp-sandbox-cluster-cnpg/
+    endpointURL: https://us-east-1.linodeobjects.com
+    s3Credentials:
+      accessKeyId:
+        name: cnpg-backup-creds
+        key: ACCESS_KEY_ID
+      secretAccessKey:
+        name: cnpg-backup-creds
+        key: ACCESS_SECRET_KEY
+    wal:
+      compression: gzip
+    data:
+      compression: gzip
+  # Base backups and WALs older than this are pruned after each new backup.
+  retentionPolicy: "30d"
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: shared-cluster-nightly
+  namespace: cloudnative-pg
+spec:
+  # Six-field cron (seconds first): daily at 04:00 UTC / midnight Eastern.
+  schedule: "0 0 4 * * *"
+  # Take one as soon as this lands so the store is proven before we rely on it.
+  immediate: true
+  backupOwnerReference: self
+  cluster:
+    name: shared-cluster
+  method: plugin
+  pluginConfiguration:
+    name: barman-cloud.cloudnative-pg.io
