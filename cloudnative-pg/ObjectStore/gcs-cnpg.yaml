@@ -1,0 +1,17 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: gcs-cnpg
+  namespace: cloudnative-pg
+spec:
+  configuration:
+    data:
+      compression: gzip
+    destinationPath: gs://cnpg-sandbox/
+    googleCredentials:
+      applicationCredentials:
+        key: gcsCredentials
+        name: cnpg-backup-creds
+    wal:
+      compression: gzip
+  retentionPolicy: 30d

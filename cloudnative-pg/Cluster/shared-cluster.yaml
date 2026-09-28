@@ -16,6 +16,6 @@ spec:
     - isWALArchiver: true
       name: barman-cloud.cloudnative-pg.io
       parameters:
-        barmanObjectName: linode-cnpg
+        barmanObjectName: gcs-cnpg
   storage:
     size: 20Gi
