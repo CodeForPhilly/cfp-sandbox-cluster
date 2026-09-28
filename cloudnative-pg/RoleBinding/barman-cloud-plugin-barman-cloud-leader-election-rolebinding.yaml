@@ -1,0 +1,19 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/instance: barman-cloud
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: plugin-barman-cloud
+    app.kubernetes.io/version: v0.15.0
+    helm.sh/chart: plugin-barman-cloud-0.8.0
+  name: barman-cloud-plugin-barman-cloud-leader-election-rolebinding
+  namespace: cloudnative-pg
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: barman-cloud-plugin-barman-cloud-leader-election-role
+subjects:
+  - kind: ServiceAccount
+    name: barman-cloud-plugin-barman-cloud
+    namespace: cloudnative-pg

@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    cnpg.io/pluginClientSecret: barman-cloud-client-tls
+    cnpg.io/pluginPort: '9090'
+    cnpg.io/pluginServerSecret: barman-cloud-server-tls
+  labels:
+    app.kubernetes.io/instance: barman-cloud
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: plugin-barman-cloud
+    app.kubernetes.io/version: v0.15.0
+    cnpg.io/pluginName: barman-cloud.cloudnative-pg.io
+    helm.sh/chart: plugin-barman-cloud-0.8.0
+  name: barman-cloud
+  namespace: cloudnative-pg
+spec:
+  ports:
+    - port: 9090
+      protocol: TCP
+      targetPort: 9090
+  selector:
+    app.kubernetes.io/instance: barman-cloud
+    app.kubernetes.io/name: plugin-barman-cloud

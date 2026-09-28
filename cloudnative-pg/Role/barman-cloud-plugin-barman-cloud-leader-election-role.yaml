@@ -1,0 +1,43 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  labels:
+    app.kubernetes.io/instance: barman-cloud
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: plugin-barman-cloud
+    app.kubernetes.io/version: v0.15.0
+    helm.sh/chart: plugin-barman-cloud-0.8.0
+  name: barman-cloud-plugin-barman-cloud-leader-election-role
+  namespace: cloudnative-pg
+rules:
+  - apiGroups:
+      - ''
+    resources:
+      - configmaps
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
+  - apiGroups:
+      - coordination.k8s.io
+    resources:
+      - leases
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
+  - apiGroups:
+      - ''
+    resources:
+      - events
+    verbs:
+      - create
+      - patch
