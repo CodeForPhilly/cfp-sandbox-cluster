@@ -1,0 +1,20 @@
+[hololens]
+container = "ghcr.io/hologit/lenses/helm3:latest"
+
+[hololens.input]
+root = "_infra/cloudnative-pg/barman-cloud"
+files = "**"
+
+[hololens.output]
+merge = "replace"
+
+# The plugin must run in the operator's namespace. Its CRDs (ObjectStore) ship
+# as templates gated on crds.create, and its gRPC mTLS certs come from a
+# self-signed cert-manager Issuer the chart creates.
+[hololens.helm]
+namespace = "cloudnative-pg"
+release_name = "barman-cloud"
+include_crds = true
+# The helm3 lens renders against 1.22 by default; this chart declares
+# kubeVersion >=1.29. Match the cluster (LKE 1.34).
+kube_version = "1.34"
