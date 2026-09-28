@@ -12,5 +12,10 @@ spec:
         name: balancer
         passwordSecret:
           name: balancer-db-credentials
+  plugins:
+    - isWALArchiver: true
+      name: barman-cloud.cloudnative-pg.io
+      parameters:
+        barmanObjectName: linode-cnpg
   storage:
     size: 20Gi
