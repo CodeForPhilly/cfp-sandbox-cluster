@@ -1,0 +1,4 @@
+[holomapping]
+holosource = "barman-cloud-chart"
+root = "charts/plugin-barman-cloud"
+files = "**"
