@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/instance: barman-cloud
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: plugin-barman-cloud
+    app.kubernetes.io/version: v0.15.0
+    helm.sh/chart: plugin-barman-cloud-0.8.0
+  name: barman-cloud-plugin-barman-cloud
+  namespace: cloudnative-pg
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: barman-cloud
+      app.kubernetes.io/name: plugin-barman-cloud
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: barman-cloud
+        app.kubernetes.io/name: plugin-barman-cloud
+    spec:
+      containers:
+        - args:
+            - operator
+            - '--server-cert=/server/tls.crt'
+            - '--server-key=/server/tls.key'
+            - '--client-cert=/client/tls.crt'
+            - '--server-address=:9090'
+            - '--leader-elect'
+            - '--log-level=info'
+          env:
+            - name: SIDECAR_IMAGE
+              valueFrom:
+                configMapKeyRef:
+                  key: SIDECAR_IMAGE
+                  name: plugin-barman-cloud-config
+          image: ghcr.io/cloudnative-pg/plugin-barman-cloud:v0.15.0
+          livenessProbe:
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            tcpSocket:
+              port: 8081
+          name: barman-cloud
+          ports:
+            - containerPort: 9090
+              protocol: TCP
+          readinessProbe:
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            tcpSocket:
+              port: 8081
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+            readOnlyRootFilesystem: true
+            runAsGroup: 10001
+            runAsUser: 10001
+            seccompProfile:
+              type: RuntimeDefault
+          volumeMounts:
+            - mountPath: /server
+              name: server
+            - mountPath: /client
+              name: client
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      serviceAccountName: barman-cloud-plugin-barman-cloud
+      volumes:
+        - name: server
+          secret:
+            secretName: barman-cloud-server-tls
+        - name: client
+          secret:
+            secretName: barman-cloud-client-tls

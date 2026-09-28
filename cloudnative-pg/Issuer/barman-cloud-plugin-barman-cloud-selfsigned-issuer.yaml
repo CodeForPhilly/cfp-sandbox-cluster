@@ -1,0 +1,7 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: barman-cloud-plugin-barman-cloud-selfsigned-issuer
+  namespace: cloudnative-pg
+spec:
+  selfSigned: {}

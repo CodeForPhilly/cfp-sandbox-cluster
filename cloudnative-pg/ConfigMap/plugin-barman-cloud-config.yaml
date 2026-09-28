@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  SIDECAR_IMAGE: ghcr.io/cloudnative-pg/plugin-barman-cloud-sidecar:v0.15.0
+kind: ConfigMap
+metadata:
+  name: plugin-barman-cloud-config
+  namespace: cloudnative-pg
