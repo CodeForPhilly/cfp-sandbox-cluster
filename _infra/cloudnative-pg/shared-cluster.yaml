@@ -16,10 +16,10 @@ spec:
         passwordSecret:
           name: balancer-db-credentials
 
-  # Backups: WAL archiving + nightly base backups to Linode Object Storage via
+  # Backups: WAL archiving + nightly base backups to GCS (off-Linode) via
   # the Barman Cloud plugin. See backups.yaml for the ObjectStore + schedule.
   plugins:
     - name: barman-cloud.cloudnative-pg.io
       isWALArchiver: true
       parameters:
-        barmanObjectName: linode-cnpg
+        barmanObjectName: gcs-cnpg
