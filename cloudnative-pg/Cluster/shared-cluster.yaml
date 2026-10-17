@@ -4,7 +4,8 @@ metadata:
   name: shared-cluster
   namespace: cloudnative-pg
 spec:
-  imageName: ghcr.io/cloudnative-pg/postgis:18-3-system-trixie
+  imageName: >-
+    ghcr.io/cloudnative-pg/postgis:18-3-system-trixie@sha256:a2b2fc7941fe97a27728ecb285df0b35f0341b63bef98a8e4328723a0417f828
   instances: 2
   managed:
     roles:
