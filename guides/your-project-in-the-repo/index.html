@@ -1728,25 +1728,25 @@
 
 
 <h1 id="your-project-in-the-repo">Your project in the repo<a class="headerlink" href="#your-project-in-the-repo" title="Permanent link"> ¶</a></h1>
-<p>A project is a small set of files in predictable places. Here they are for <code>paws-data-pipeline</code>; yours look the same with the name swapped.</p>
-<div class="highlight"><pre><span></span><code>.holo/sources/paws-data-pipeline.toml          ← where your code comes from, pinned to a tag
-.holo/branches/k8s-manifests/paws-data-pipeline/helm-chart.toml
-.holo/lenses/paws-data-pipeline.toml           ← how it's rendered (helm or kustomize)
-paws-data-pipeline/release-values.yaml         ← your helm values (or kustomization.yaml)
-paws-data-pipeline.secrets/*.yaml              ← SealedSecrets for your namespace
-paws-data-pipeline.cnpg/*.yaml                 ← your database user + database (next page)
-_gateways/paws-data-pipeline.yaml              ← your public hostname and TLS
-_admins/paws-data-pipeline.yaml                ← namespace + a deployment-admin role for your team
+<p>A project is a small set of files in predictable places. Here they are for a made-up <code>example-app</code>; yours look the same with the name swapped.</p>
+<div class="highlight"><pre><span></span><code>.holo/sources/example-app.toml          ← where your code comes from, pinned to a tag
+.holo/branches/k8s-manifests/example-app/helm-chart.toml
+.holo/lenses/example-app.toml           ← how it's rendered (helm or kustomize)
+example-app/release-values.yaml         ← your helm values (or kustomization.yaml)
+example-app.secrets/*.yaml              ← SealedSecrets for your namespace
+example-app.cnpg/*.yaml                 ← your database user + database (next page)
+_gateways/example-app.yaml              ← your public hostname and TLS
+_admins/example-app.yaml                ← namespace + a deployment-admin role for your team
 </code></pre></div>
 <h2 id="what-you-own">What you own<a class="headerlink" href="#what-you-own" title="Permanent link"> ¶</a></h2>
 <p>Everything with your app&rsquo;s name in it is yours to change through a PR. The three <code>.holo/</code> files rarely change after setup; <code>release-values.yaml</code>, <code>.secrets/</code> and <code>.cnpg/</code> are where day-to-day changes happen.</p>
 <p>Directories starting with <code>_</code> (<code>_infra/</code>, <code>_gateways/</code>, <code>_admins/</code>) are cluster-wide. You own your file inside <code>_gateways/</code> and <code>_admins/</code>; <code>_infra/</code> (cert-manager, Envoy Gateway, the Postgres operator) you should never need to touch.</p>
 <h2 id="the-one-rule-about-app">The one rule about <code>&lt;app&gt;/</code><a class="headerlink" href="#the-one-rule-about-app" title="Permanent link"> ¶</a></h2>
-<p><code>paws-data-pipeline/</code> is the <strong>input to a lens</strong>. For a helm app that means: the chart is fetched into it from your repo, <code>release-values.yaml</code> is applied, and the rendered output <em>replaces</em> the directory in the projected tree. Anything else you put in that directory is not rendered and silently disappears.</p>
-<p>That&rsquo;s why things that belong to your app but aren&rsquo;t part of the chart live in <strong>sibling directories</strong> with a suffix: <code>paws-data-pipeline.secrets/</code> and <code>paws-data-pipeline.cnpg/</code>. Those are raw manifests, applied as written, and routed to the right namespace by the <code>namespace:</code> they declare.</p>
+<p><code>example-app/</code> is the <strong>input to a lens</strong>. For a helm app that means: the chart is fetched into it from your repo, <code>release-values.yaml</code> is applied, and the rendered output <em>replaces</em> the directory in the projected tree. Anything else you put in that directory is not rendered and silently disappears.</p>
+<p>That&rsquo;s why things that belong to your app but aren&rsquo;t part of the chart live in <strong>sibling directories</strong> with a suffix: <code>example-app.secrets/</code> and <code>example-app.cnpg/</code>. Those are raw manifests, applied as written, and routed to the right namespace by the <code>namespace:</code> they declare.</p>
 <p>(A kustomize app can get away with a subdirectory instead, because kustomize passes raw resources through; balancer keeps its database files in <code>balancer/cnpg/</code> and lists them in its kustomization. Either way is fine; the sibling directory works for both.)</p>
 <h2 id="pins">Pins<a class="headerlink" href="#pins" title="Permanent link"> ¶</a></h2>
-<p><code>.holo/sources/paws-data-pipeline.toml</code> names a git ref in your repo. <strong>Make it a tag.</strong> Tracking <code>refs/heads/master</code> means a merge in your repo can change what&rsquo;s deployed, or break the cluster build, with no PR here to review it. Cut a release, bump the pin, open the PR: that&rsquo;s a deploy.</p>
+<p><code>.holo/sources/example-app.toml</code> names a git ref in your repo. <strong>Make it a tag.</strong> Tracking <code>refs/heads/master</code> means a merge in your repo can change what&rsquo;s deployed, or break the cluster build, with no PR here to review it. Cut a release, bump the pin, open the PR: that&rsquo;s a deploy.</p>
 <h2 id="your-namespace">Your namespace<a class="headerlink" href="#your-namespace" title="Permanent link"> ¶</a></h2>
 <p>Your app runs in a namespace with its name. <code>_admins/&lt;app&gt;.yaml</code> gives your team a <code>deployment-admin</code> ServiceAccount there, enough to see pods, read logs, <code>exec</code> and port-forward. It does not reach other namespaces, which matters for the database pages: your Postgres lives in <code>cloudnative-pg</code>, and you reach it from inside your own namespace.</p>
 <p>Next: <a href="database/">Shared PostgreSQL</a>, starting with <a href="../database/provision/">Provision a database</a>.</p>

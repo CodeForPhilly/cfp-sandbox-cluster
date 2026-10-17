@@ -1732,13 +1732,13 @@
 <h1 id="data-and-backups">Data and backups<a class="headerlink" href="#data-and-backups" title="Permanent link"> ¶</a></h1>
 <h2 id="getting-a-psql-shell">Getting a psql shell<a class="headerlink" href="#getting-a-psql-shell" title="Permanent link"> ¶</a></h2>
 <p>Your team&rsquo;s access covers your namespace, not <code>cloudnative-pg</code>, so the way in is a throwaway pod in your namespace with the credentials loaded:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>paws-data-pipeline<span class="w"> </span>run<span class="w"> </span>psql<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>--restart<span class="o">=</span>Never<span class="w"> </span>--image<span class="o">=</span>postgres:18<span class="w"> </span><span class="se">\</span>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>example-app<span class="w"> </span>run<span class="w"> </span>psql<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>--restart<span class="o">=</span>Never<span class="w"> </span>--image<span class="o">=</span>postgres:18<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>--overrides<span class="o">=</span><span class="s1">'{"spec":{"containers":[{"name":"psql","image":"postgres:18","stdin":true,"tty":true,</span>
 <span class="s1">    "command":["psql"],</span>
 <span class="s1">    "env":[{"name":"PGHOST","value":"shared-cluster-rw.cloudnative-pg.svc.cluster.local"},</span>
-<span class="s1">           {"name":"PGDATABASE","value":"paws"},</span>
-<span class="s1">           {"name":"PGUSER","valueFrom":{"secretKeyRef":{"name":"paws-db-credentials","key":"username"}}},</span>
-<span class="s1">           {"name":"PGPASSWORD","valueFrom":{"secretKeyRef":{"name":"paws-db-credentials","key":"password"}}}]}]}}'</span>
+<span class="s1">           {"name":"PGDATABASE","value":"example"},</span>
+<span class="s1">           {"name":"PGUSER","valueFrom":{"secretKeyRef":{"name":"example-db-credentials","key":"username"}}},</span>
+<span class="s1">           {"name":"PGPASSWORD","valueFrom":{"secretKeyRef":{"name":"example-db-credentials","key":"password"}}}]}]}}'</span>
 </code></pre></div>
 <p>The same pod with <code>["sleep","3600"]</code> as the command is a workbench for <code>pg_dump</code> and <code>pg_restore</code>; <code>kubectl cp</code> files in and out.</p>
 <h2 id="loading-existing-data">Loading existing data<a class="headerlink" href="#loading-existing-data" title="Permanent link"> ¶</a></h2>
@@ -1746,9 +1746,9 @@
 <div class="highlight"><pre><span></span><code><span class="c1"># from wherever can reach the old database</span>
 pg_dump<span class="w"> </span>-Fc<span class="w"> </span>--no-owner<span class="w"> </span>--no-privileges<span class="w"> </span>-h<span class="w"> </span>OLDHOST<span class="w"> </span>-U<span class="w"> </span>OLDUSER<span class="w"> </span>-d<span class="w"> </span>OLDDB<span class="w"> </span>-f<span class="w"> </span>app.dump
 
-<span class="c1"># from the workbench pod, connected as paws</span>
+<span class="c1"># from the workbench pod, connected as example</span>
 pg_restore<span class="w"> </span>-l<span class="w"> </span>app.dump<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-vE<span class="w"> </span><span class="s2">" (EXTENSION|COMMENT - EXTENSION) "</span><span class="w"> </span>&gt;<span class="w"> </span>list
-pg_restore<span class="w"> </span>--no-owner<span class="w"> </span>--no-privileges<span class="w"> </span>-L<span class="w"> </span>list<span class="w"> </span>-d<span class="w"> </span>paws<span class="w"> </span>app.dump
+pg_restore<span class="w"> </span>--no-owner<span class="w"> </span>--no-privileges<span class="w"> </span>-L<span class="w"> </span>list<span class="w"> </span>-d<span class="w"> </span>example<span class="w"> </span>app.dump
 </code></pre></div>
 <p>The <code>grep -v EXTENSION</code> matters: the dump wants to <code>CREATE EXTENSION</code>, your user can&rsquo;t, and the extension already exists from <code>database.yaml</code>. For a 50 MB database this takes seconds.</p>
 <p>Then compare. Use exact counts, not <code>pg_stat</code> estimates (statistics aren&rsquo;t carried by a restore):</p>

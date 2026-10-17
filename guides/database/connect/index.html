@@ -1711,9 +1711,9 @@
 <p>Once <a href="../provision/">provisioned</a>, your app needs five things: host, port, database, user, password. Four are plain configuration; the password comes from the Secret you sealed into your namespace.</p>
 <div class="highlight"><pre><span></span><code>host      shared-cluster-rw.cloudnative-pg.svc.cluster.local   (-ro for a read replica)
 port      5432
-database  paws
-user      paws
-password  Secret paws-db-credentials, key "password"
+database  example
+user      example
+password  Secret example-db-credentials, key "password"
 </code></pre></div>
 <h2 id="helm-apps">Helm apps<a class="headerlink" href="#helm-apps" title="Permanent link"> ¶</a></h2>
 <p>Make the chart read these from values, with the password from a Secret. In <code>templates/deployment.yaml</code>:</p>
@@ -1730,14 +1730,14 @@ password  Secret paws-db-credentials, key "password"
 <span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Values.database.passwordSecret</span><span class="w"> </span><span class="p p-Indicator">}}</span>
 <span class="w">        </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">password</span>
 </code></pre></div>
-<p>If the chart currently runs its own Postgres container (PAWS did, as a sidecar in the app pod), remove it, or keep it behind a <code>database.embedded: true</code> default so local dev is unchanged. Cut a release and bump <code>.holo/sources/&lt;app&gt;.toml</code> to the new tag.</p>
-<p>Then set the values in the cluster repo, <code>paws-data-pipeline/release-values.yaml</code>:</p>
+<p>If the chart currently runs its own Postgres container (a common starting point: a sidecar in the app pod, or a subchart), remove it, or keep it behind a <code>database.embedded: true</code> default so local dev is unchanged. Cut a release and bump <code>.holo/sources/&lt;app&gt;.toml</code> to the new tag.</p>
+<p>Then set the values in the cluster repo, <code>example-app/release-values.yaml</code>:</p>
 <div class="highlight"><pre><span></span><code><span class="nt">database</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">embedded</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shared-cluster-rw.cloudnative-pg.svc.cluster.local</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paws</span>
-<span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paws</span>
-<span class="w">  </span><span class="nt">passwordSecret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paws-db-credentials</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example</span>
+<span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example</span>
+<span class="w">  </span><span class="nt">passwordSecret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example-db-credentials</span>
 </code></pre></div>
 <h2 id="kustomize-apps">Kustomize apps<a class="headerlink" href="#kustomize-apps" title="Permanent link"> ¶</a></h2>
 <p>See <code>balancer/</code> for a worked example: a <code>balancer.env</code> file rendered into a ConfigMap for the non-secret settings, the password merged into the app&rsquo;s existing SealedSecret with <code>kubeseal --merge-into</code>, and the <code>cnpg/</code> files included from the kustomization. One thing to know: a ConfigMap generated with a stable name does not restart your pod when it changes, so balancer carries a pod-template annotation it bumps on purpose.</p>
