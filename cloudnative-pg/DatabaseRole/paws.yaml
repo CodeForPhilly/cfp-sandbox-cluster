@@ -1,0 +1,14 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: paws
+  namespace: cloudnative-pg
+spec:
+  cluster:
+    name: shared-cluster
+  connectionLimit: 20
+  databaseRoleReclaimPolicy: retain
+  login: true
+  name: paws
+  passwordSecret:
+    name: paws-db-credentials
