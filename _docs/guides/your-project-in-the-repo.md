@@ -1,16 +1,16 @@
 # Your project in the repo
 
-A project is a small set of files in predictable places. Here they are for `paws-data-pipeline`; yours look the same with the name swapped.
+A project is a small set of files in predictable places. Here they are for a made-up `example-app`; yours look the same with the name swapped.
 
 ```
-.holo/sources/paws-data-pipeline.toml          ← where your code comes from, pinned to a tag
-.holo/branches/k8s-manifests/paws-data-pipeline/helm-chart.toml
-.holo/lenses/paws-data-pipeline.toml           ← how it's rendered (helm or kustomize)
-paws-data-pipeline/release-values.yaml         ← your helm values (or kustomization.yaml)
-paws-data-pipeline.secrets/*.yaml              ← SealedSecrets for your namespace
-paws-data-pipeline.cnpg/*.yaml                 ← your database user + database (next page)
-_gateways/paws-data-pipeline.yaml              ← your public hostname and TLS
-_admins/paws-data-pipeline.yaml                ← namespace + a deployment-admin role for your team
+.holo/sources/example-app.toml          ← where your code comes from, pinned to a tag
+.holo/branches/k8s-manifests/example-app/helm-chart.toml
+.holo/lenses/example-app.toml           ← how it's rendered (helm or kustomize)
+example-app/release-values.yaml         ← your helm values (or kustomization.yaml)
+example-app.secrets/*.yaml              ← SealedSecrets for your namespace
+example-app.cnpg/*.yaml                 ← your database user + database (next page)
+_gateways/example-app.yaml              ← your public hostname and TLS
+_admins/example-app.yaml                ← namespace + a deployment-admin role for your team
 ```
 
 ## What you own
@@ -21,15 +21,15 @@ Directories starting with `_` (`_infra/`, `_gateways/`, `_admins/`) are cluster-
 
 ## The one rule about `<app>/`
 
-`paws-data-pipeline/` is the **input to a lens**. For a helm app that means: the chart is fetched into it from your repo, `release-values.yaml` is applied, and the rendered output *replaces* the directory in the projected tree. Anything else you put in that directory is not rendered and silently disappears.
+`example-app/` is the **input to a lens**. For a helm app that means: the chart is fetched into it from your repo, `release-values.yaml` is applied, and the rendered output *replaces* the directory in the projected tree. Anything else you put in that directory is not rendered and silently disappears.
 
-That's why things that belong to your app but aren't part of the chart live in **sibling directories** with a suffix: `paws-data-pipeline.secrets/` and `paws-data-pipeline.cnpg/`. Those are raw manifests, applied as written, and routed to the right namespace by the `namespace:` they declare.
+That's why things that belong to your app but aren't part of the chart live in **sibling directories** with a suffix: `example-app.secrets/` and `example-app.cnpg/`. Those are raw manifests, applied as written, and routed to the right namespace by the `namespace:` they declare.
 
 (A kustomize app can get away with a subdirectory instead, because kustomize passes raw resources through; balancer keeps its database files in `balancer/cnpg/` and lists them in its kustomization. Either way is fine; the sibling directory works for both.)
 
 ## Pins
 
-`.holo/sources/paws-data-pipeline.toml` names a git ref in your repo. **Make it a tag.** Tracking `refs/heads/master` means a merge in your repo can change what's deployed, or break the cluster build, with no PR here to review it. Cut a release, bump the pin, open the PR: that's a deploy.
+`.holo/sources/example-app.toml` names a git ref in your repo. **Make it a tag.** Tracking `refs/heads/master` means a merge in your repo can change what's deployed, or break the cluster build, with no PR here to review it. Cut a release, bump the pin, open the PR: that's a deploy.
 
 ## Your namespace
 

@@ -14,6 +14,6 @@ Read in order the first time; each page is short.
     - [Data and backups](database/data-and-backups.md): getting a `psql` shell, loading existing data, and what the backups do and don't give you.
 4. **[Reference](reference.md)**: the directory map and the gotchas, for when you already know the shape.
 
-The running example is **paws-data-pipeline**, which is moving from a Postgres container inside its own pod to the shared cluster. Substitute your app's name.
+The running example is a made-up **example-app** that is moving from a Postgres container inside its own pod to the shared cluster. Substitute your app's name wherever you see it.
 
 If you get stuck, ask in `#civic-cloud` on the Code for Philly Slack.

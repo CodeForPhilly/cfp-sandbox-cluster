@@ -5,9 +5,9 @@ Once [provisioned](provision.md), your app needs five things: host, port, databa
 ```
 host      shared-cluster-rw.cloudnative-pg.svc.cluster.local   (-ro for a read replica)
 port      5432
-database  paws
-user      paws
-password  Secret paws-db-credentials, key "password"
+database  example
+user      example
+password  Secret example-db-credentials, key "password"
 ```
 
 ## Helm apps
@@ -31,17 +31,17 @@ env:
 ```
 {% endraw %}
 
-If the chart currently runs its own Postgres container (PAWS did, as a sidecar in the app pod), remove it, or keep it behind a `database.embedded: true` default so local dev is unchanged. Cut a release and bump `.holo/sources/<app>.toml` to the new tag.
+If the chart currently runs its own Postgres container (a common starting point: a sidecar in the app pod, or a subchart), remove it, or keep it behind a `database.embedded: true` default so local dev is unchanged. Cut a release and bump `.holo/sources/<app>.toml` to the new tag.
 
-Then set the values in the cluster repo, `paws-data-pipeline/release-values.yaml`:
+Then set the values in the cluster repo, `example-app/release-values.yaml`:
 
 ```yaml
 database:
   embedded: false
   host: shared-cluster-rw.cloudnative-pg.svc.cluster.local
-  name: paws
-  user: paws
-  passwordSecret: paws-db-credentials
+  name: example
+  user: example
+  passwordSecret: example-db-credentials
 ```
 
 ## Kustomize apps
