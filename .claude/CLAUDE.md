@@ -43,6 +43,7 @@ Cluster-scoped resources land in `_/<Kind>/<name>.yaml`.
 | `_gateways/` | Per-app Gateway + HTTPRoute pairs, one file per app |
 | `<app>/` | App workspace — `release-values.yaml` for helm, `kustomization.yaml` for kustomize |
 | `<app>.secrets/` | SealedSecrets for that namespace |
+| `<app>.cnpg/` | The app's `DatabaseRole` + `Database` on `shared-cluster` (raw manifests, `namespace: cloudnative-pg`). Sibling dir because `<app>/` is the lens input; a kustomize app may use `<app>/cnpg/` instead (balancer does) |
 | `.holo/sources/` | Holosource pins (URL + ref) |
 | `.holo/branches/<branch>/` | Holomappings — source content → workspace path |
 | `.holo/lenses/` | Lens configs |
@@ -68,12 +69,14 @@ HTTP (port 80) is handled globally by `_infra/envoy-gateway/http-redirect.yaml` 
 
 ### Database resources (cnpg)
 
-The shared `cloudnative-pg/Cluster/shared-cluster` is the only PostgreSQL cluster. To add a database:
+The shared `cloudnative-pg/Cluster/shared-cluster` is the only PostgreSQL cluster (PG 18 + PostGIS + pgvector, backups to GCS). Tenant guide for humans: `_docs/guides/` (start at `README.md`). To add a database:
 
-- `Database` CR lives in `cloudnative-pg` namespace (cnpg requires same-namespace reference to the Cluster — not configurable)
-- Workspace file can live wherever organizationally makes sense (e.g. `<app>/cnpg/database.yaml`). k8s-normalize routes by `metadata.namespace` at projection time.
-- Add a `managed.roles[<app>]` entry to the Cluster CR with `passwordSecret: name: <app>-db-credentials`
-- Create the SealedSecret `<app>-db-credentials` in `cloudnative-pg` namespace before cnpg can fully provision the role
+- `<app>.cnpg/role.yaml` — a `DatabaseRole` (cnpg ≥ 1.30): the app's Postgres user. `passwordSecret: <app>-db-credentials`, `connectionLimit: 20`, `databaseRoleReclaimPolicy: retain`.
+- `<app>.cnpg/database.yaml` — a `Database` owned by that role; extensions declared here (the role is not a superuser).
+- Both carry `namespace: cloudnative-pg` (cnpg requires same-namespace as the Cluster; not configurable). k8s-normalize routes them there.
+- Seal `<app>-db-credentials` (basic-auth: `username` + `password`) **twice** from one password: `cloudnative-pg.secrets/` for cnpg, `<app>.secrets/` for the app.
+- **Never add `managed.roles` to `shared-cluster.yaml`** — that file is shared infra and must not change per tenant.
+- Gotchas: a role reconciled before its Secret exists is marked failed and not retried (nudge: `kubectl annotate cluster -n cloudnative-pg shared-cluster cnpg.io/reconciliationLoop="$(date +%s)" --overwrite`); a pod can start before a changed SealedSecret is re-rendered (one restart, harmless).
 
 ### Envoy Gateway
 

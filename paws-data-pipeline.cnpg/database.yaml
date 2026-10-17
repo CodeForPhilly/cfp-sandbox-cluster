@@ -1,0 +1,13 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Database
+metadata:
+  name: paws
+  namespace: cloudnative-pg
+spec:
+  cluster:
+    name: shared-cluster
+  name: paws
+  owner: paws
+  # Extensions must be declared here: the paws role is not a superuser and
+  # cannot CREATE EXTENSION itself. Add postgis/vector/etc. when the app
+  # needs them.

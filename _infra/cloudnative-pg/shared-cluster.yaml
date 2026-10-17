@@ -11,12 +11,9 @@ spec:
   storage:
     size: 20Gi
 
-  managed:
-    roles:
-      - name: balancer
-        login: true
-        passwordSecret:
-          name: balancer-db-credentials
+  # No managed.roles here. Each tenant declares its own DatabaseRole next to
+  # its Database (balancer/cnpg/, <app>.cnpg/), so adding a database never
+  # touches this file. See _docs/guides/add-a-database.md.
 
   # Backups: WAL archiving + nightly base backups to GCS (off-Linode) via
   # the Barman Cloud plugin. See backups.yaml for the ObjectStore + schedule.
