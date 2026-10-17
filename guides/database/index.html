@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://codeforphilly.github.io/cfp-sandbox-cluster/guides/add-a-database/">
+        <link rel="canonical" href="https://codeforphilly.github.io/cfp-sandbox-cluster/guides/database/">
       
       
         <link rel="prev" href="../your-project-in-the-repo/">
       
       
-        <link rel="next" href="../connect-your-app/">
+        <link rel="next" href="provision/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>Add a database - Philly (sandbox) Civic Cloud</title>
+        <title>Shared PostgreSQL - Philly (sandbox) Civic Cloud</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#add-a-database" class="md-skip">
+        <a href="#shared-postgresql" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Add a database
+              Shared PostgreSQL
             
           </span>
         </div>
@@ -527,6 +527,58 @@
   
   
   
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shared PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shared PostgreSQL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -535,24 +587,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Add a database
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -560,7 +594,7 @@
   <span class="md-ellipsis">
     
   
-    Add a database
+    Shared PostgreSQL
   
 
     
@@ -569,69 +603,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-one-password-sealed-twice" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. One password, sealed twice
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-the-user-paws-data-pipelinecnpgroleyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. The user: paws-data-pipeline.cnpg/role.yaml
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-the-database-paws-data-pipelinecnpgdatabaseyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. The database: paws-data-pipeline.cnpg/database.yaml
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-open-the-pr" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Open the PR
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -645,14 +616,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../connect-your-app/" class="md-nav__link">
+      <a href="provision/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Connect your app
+    Provision a database
   
 
     
@@ -673,7 +644,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../data-and-backups/" class="md-nav__link">
+      <a href="connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connect your app to the database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data-and-backups/" class="md-nav__link">
         
   
   
@@ -689,6 +688,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1571,58 +1578,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-one-password-sealed-twice" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. One password, sealed twice
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-the-user-paws-data-pipelinecnpgroleyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. The user: paws-data-pipeline.cnpg/role.yaml
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-the-database-paws-data-pipelinecnpgdatabaseyaml" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. The database: paws-data-pipeline.cnpg/database.yaml
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-open-the-pr" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. Open the PR
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -1641,74 +1596,22 @@
   
 
 
-<h1 id="add-a-database">Add a database<a class="headerlink" href="#add-a-database" title="Permanent link"> ¶</a></h1>
-<p>Both clusters run one PostgreSQL cluster for everyone, <code>shared-cluster</code> in the <code>cloudnative-pg</code> namespace, managed by <a href="https://cloudnative-pg.io">CloudNativePG</a>. You get a user and a database on it; you don&rsquo;t run Postgres yourself.</p>
-<p><strong>What you get:</strong> PostgreSQL 18 with PostGIS and pgvector available, two instances with automatic failover, nightly backups plus continuous archiving stored off-Linode in Google Cloud Storage, and upgrades handled centrally.</p>
-<p>Adding your database is four files in the cluster repo. None of them is in <code>_infra/</code>.</p>
-<h2 id="1-one-password-sealed-twice">1. One password, sealed twice<a class="headerlink" href="#1-one-password-sealed-twice" title="Permanent link"> ¶</a></h2>
-<p>Your Postgres user needs a password. cnpg reads it from a Secret in <code>cloudnative-pg</code> to set the role&rsquo;s password; your app reads it from a Secret in your own namespace. Same password, two SealedSecrets.</p>
-<p>Run this with <code>KUBECONFIG</code> pointing at the cluster you&rsquo;re adding to (sandbox first); sealed values only decrypt on the cluster that sealed them.</p>
-<div class="highlight"><pre><span></span><code><span class="nv">APP</span><span class="o">=</span>paws-data-pipeline<span class="p">;</span><span class="w"> </span><span class="nv">ROLE</span><span class="o">=</span>paws
-<span class="nv">PW</span><span class="o">=</span><span class="k">$(</span>openssl<span class="w"> </span>rand<span class="w"> </span>-base64<span class="w"> </span><span class="m">48</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tr<span class="w"> </span>-dc<span class="w"> </span>A-Za-z0-9<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-c<span class="w"> </span><span class="m">40</span><span class="k">)</span>
-<span class="k">for</span><span class="w"> </span>ns<span class="w"> </span><span class="k">in</span><span class="w"> </span>cloudnative-pg<span class="w"> </span><span class="nv">$APP</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<span class="w">  </span>kubectl<span class="w"> </span>create<span class="w"> </span>secret<span class="w"> </span>generic<span class="w"> </span><span class="nv">$ROLE</span>-db-credentials<span class="w"> </span>-n<span class="w"> </span><span class="nv">$ns</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--type<span class="w"> </span>kubernetes.io/basic-auth<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--from-literal<span class="o">=</span><span class="nv">username</span><span class="o">=</span><span class="nv">$ROLE</span><span class="w"> </span>--from-literal<span class="o">=</span><span class="nv">password</span><span class="o">=</span><span class="s2">"</span><span class="nv">$PW</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>--dry-run<span class="o">=</span>client<span class="w"> </span>-o<span class="w"> </span>yaml<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span><span class="p">|</span><span class="w"> </span>kubeseal<span class="w"> </span>--controller-name<span class="w"> </span>sealed-secrets<span class="w"> </span>--controller-namespace<span class="w"> </span>sealed-secrets<span class="w"> </span>--format<span class="w"> </span>yaml<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>&gt;<span class="w"> </span><span class="nv">$ns</span>.secrets/<span class="nv">$ROLE</span>-db-credentials.yaml
-<span class="k">done</span>
-<span class="nb">unset</span><span class="w"> </span>PW
-</code></pre></div>
-<p>That writes <code>cloudnative-pg.secrets/paws-db-credentials.yaml</code> and <code>paws-data-pipeline.secrets/paws-db-credentials.yaml</code>. You never need to write the password down; once deployed, anyone with access to your namespace can read it back from the Secret.</p>
-<h2 id="2-the-user-paws-data-pipelinecnpgroleyaml">2. The user: <code>paws-data-pipeline.cnpg/role.yaml</code><a class="headerlink" href="#2-the-user-paws-data-pipelinecnpgroleyaml" title="Permanent link"> ¶</a></h2>
-<p>A <code>DatabaseRole</code> is your Postgres user. cnpg creates it on <code>shared-cluster</code> and keeps it matching this spec, password included.</p>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgresql.cnpg.io/v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DatabaseRole</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paws</span>
-<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cloudnative-pg</span><span class="w">        </span><span class="c1"># required: cnpg wants this next to the Cluster</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">cluster</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shared-cluster</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paws</span>
-<span class="w">  </span><span class="nt">login</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">connectionLimit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span><span class="w">              </span><span class="c1"># the cluster allows 100 in total; be a good neighbour</span>
-<span class="w">  </span><span class="nt">passwordSecret</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paws-db-credentials</span>
-<span class="w">  </span><span class="nt">databaseRoleReclaimPolicy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">retain</span><span class="w">   </span><span class="c1"># deleting this file does not drop the role</span>
-</code></pre></div>
-<h2 id="3-the-database-paws-data-pipelinecnpgdatabaseyaml">3. The database: <code>paws-data-pipeline.cnpg/database.yaml</code><a class="headerlink" href="#3-the-database-paws-data-pipelinecnpgdatabaseyaml" title="Permanent link"> ¶</a></h2>
-<div class="highlight"><pre><span></span><code><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgresql.cnpg.io/v1</span>
-<span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Database</span>
-<span class="nt">metadata</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paws</span>
-<span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cloudnative-pg</span>
-<span class="nt">spec</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">cluster</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shared-cluster</span>
-<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paws</span>
-<span class="w">  </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paws</span>
-<span class="w">  </span><span class="nt">extensions</span><span class="p">:</span><span class="w">                      </span><span class="c1"># only if you need them</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgis</span>
-<span class="w">      </span><span class="nt">ensure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
-</code></pre></div>
-<div class="admonition note">
-<p class="admonition-title">Extensions go here, not in your migrations</p>
-<p>Your role is not a superuser, so <code>CREATE EXTENSION</code> in a migration will fail. Declare the extension on the <code>Database</code> and the operator installs it before your app connects. Django, Rails, Prisma and the rest are happy once it exists.</p>
-</div>
-<h2 id="4-open-the-pr">4. Open the PR<a class="headerlink" href="#4-open-the-pr" title="Permanent link"> ¶</a></h2>
-<p>Commit the four files, run the projection diff (<a href="../how-deploys-work/#seeing-the-projection-yourself">how</a>), and open the PR. You should see exactly four additions, all under <code>cloudnative-pg/</code>: a <code>SealedSecret</code>, a <code>DatabaseRole</code>, a <code>Database</code>, and a second <code>SealedSecret</code> under your namespace. Merge it and its deploy PR.</p>
-<p>Then check it took:</p>
-<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>-n<span class="w"> </span>cloudnative-pg<span class="w"> </span>get<span class="w"> </span>databaserole<span class="w"> </span>paws<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status}'</span>
-kubectl<span class="w"> </span>-n<span class="w"> </span>cloudnative-pg<span class="w"> </span>get<span class="w"> </span>database<span class="w"> </span>paws<span class="w"> </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">'{.status.applied}{"\n"}'</span>
-</code></pre></div>
-<p>You now have an empty database named <code>paws</code>, owned by a user named <code>paws</code>, reachable from inside the cluster at <code>shared-cluster-rw.cloudnative-pg.svc.cluster.local</code>. Nothing uses it yet.</p>
-<div class="admonition warning">
-<p class="admonition-title">Secret before role</p>
-<p>If cnpg reconciles the <code>DatabaseRole</code> before its Secret exists, it marks the role failed and does not retry on its own. Landing both in one PR is enough. If it happens anyway: <code>kubectl annotate cluster -n cloudnative-pg shared-cluster cnpg.io/reconciliationLoop="$(date +%s)" --overwrite</code>, and check <code>.status</code> again.</p>
-</div>
-<p>Next: <a href="../connect-your-app/">Connect your app</a>.</p>
+<h1 id="shared-postgresql">Shared PostgreSQL<a class="headerlink" href="#shared-postgresql" title="Permanent link"> ¶</a></h1>
+<p>Both clusters run one PostgreSQL cluster for everyone, <code>shared-cluster</code> in the <code>cloudnative-pg</code> namespace, managed by <a href="https://cloudnative-pg.io">CloudNativePG</a>. Projects get their own user and database on it rather than running Postgres themselves.</p>
+<p><strong>What you get</strong></p>
+<ul>
+<li>PostgreSQL 18 with PostGIS and pgvector available, two instances with automatic failover.</li>
+<li>Reachable from inside the cluster at <code>shared-cluster-rw.cloudnative-pg.svc.cluster.local:5432</code> (<code>-ro</code> for a read replica).</li>
+<li>Nightly backups plus continuous archiving, kept 30 days, stored off-Linode in Google Cloud Storage, and tested by restore.</li>
+<li>Operator upgrades, image pinning and certificates handled centrally in <code>_infra/cloudnative-pg/</code>.</li>
+</ul>
+<p><strong>The three steps</strong></p>
+<ol>
+<li><strong><a href="provision/">Provision a database</a></strong>: four files in the cluster repo give you a user and an empty database. None of them touches shared infrastructure.</li>
+<li><strong><a href="connect/">Connect your app</a></strong>: read host, database, user and password from configuration, for helm and for kustomize apps, and land the change in the right order.</li>
+<li><strong><a href="data-and-backups/">Data and backups</a></strong>: get a <code>psql</code> shell, load existing data, and know what the shared backups do and don&rsquo;t cover.</li>
+</ol>
+<p>The running example is <code>paws-data-pipeline</code>, moving from a Postgres container inside its own pod to the shared cluster. Substitute your app&rsquo;s name.</p>
 
 
 

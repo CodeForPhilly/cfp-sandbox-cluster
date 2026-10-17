@@ -14,7 +14,7 @@
         <link rel="prev" href="../how-deploys-work/">
       
       
-        <link rel="next" href="../add-a-database/">
+        <link rel="next" href="../database/">
       
       
         
@@ -616,15 +616,65 @@
   
   
   
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shared PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shared PostgreSQL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="../add-a-database/" class="md-nav__link">
+      <a href="../database/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Add a database
+    Shared PostgreSQL
   
 
     
@@ -645,14 +695,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../connect-your-app/" class="md-nav__link">
+      <a href="../database/provision/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Connect your app
+    Provision a database
   
 
     
@@ -673,7 +723,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../data-and-backups/" class="md-nav__link">
+      <a href="../database/connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connect your app to the database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../database/data-and-backups/" class="md-nav__link">
         
   
   
@@ -689,6 +767,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1663,7 +1749,7 @@ _admins/paws-data-pipeline.yaml                ← namespace + a deployment-admi
 <p><code>.holo/sources/paws-data-pipeline.toml</code> names a git ref in your repo. <strong>Make it a tag.</strong> Tracking <code>refs/heads/master</code> means a merge in your repo can change what&rsquo;s deployed, or break the cluster build, with no PR here to review it. Cut a release, bump the pin, open the PR: that&rsquo;s a deploy.</p>
 <h2 id="your-namespace">Your namespace<a class="headerlink" href="#your-namespace" title="Permanent link"> ¶</a></h2>
 <p>Your app runs in a namespace with its name. <code>_admins/&lt;app&gt;.yaml</code> gives your team a <code>deployment-admin</code> ServiceAccount there, enough to see pods, read logs, <code>exec</code> and port-forward. It does not reach other namespaces, which matters for the database pages: your Postgres lives in <code>cloudnative-pg</code>, and you reach it from inside your own namespace.</p>
-<p>Next: <a href="../add-a-database/">Add a database</a>.</p>
+<p>Next: <a href="database/">Shared PostgreSQL</a>, starting with <a href="../database/provision/">Provision a database</a>.</p>
 
 
 

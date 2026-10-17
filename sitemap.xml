@@ -53,18 +53,6 @@
          <lastmod>2026-10-17</lastmod>
     </url>
     <url>
-         <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/guides/add-a-database/</loc>
-         <lastmod>2026-10-17</lastmod>
-    </url>
-    <url>
-         <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/guides/connect-your-app/</loc>
-         <lastmod>2026-10-17</lastmod>
-    </url>
-    <url>
-         <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/guides/data-and-backups/</loc>
-         <lastmod>2026-10-17</lastmod>
-    </url>
-    <url>
          <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/guides/how-deploys-work/</loc>
          <lastmod>2026-10-17</lastmod>
     </url>
@@ -74,6 +62,22 @@
     </url>
     <url>
          <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/guides/your-project-in-the-repo/</loc>
+         <lastmod>2026-10-17</lastmod>
+    </url>
+    <url>
+         <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/guides/database/</loc>
+         <lastmod>2026-10-17</lastmod>
+    </url>
+    <url>
+         <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/guides/database/connect/</loc>
+         <lastmod>2026-10-17</lastmod>
+    </url>
+    <url>
+         <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/guides/database/data-and-backups/</loc>
+         <lastmod>2026-10-17</lastmod>
+    </url>
+    <url>
+         <loc>https://codeforphilly.github.io/cfp-sandbox-cluster/guides/database/provision/</loc>
          <lastmod>2026-10-17</lastmod>
     </url>
     <url>

@@ -535,15 +535,65 @@
   
   
   
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Shared PostgreSQL
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Shared PostgreSQL
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
-      <a href="add-a-database/" class="md-nav__link">
+      <a href="database/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Add a database
+    Shared PostgreSQL
   
 
     
@@ -564,14 +614,14 @@
   
   
     <li class="md-nav__item">
-      <a href="connect-your-app/" class="md-nav__link">
+      <a href="database/provision/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Connect your app
+    Provision a database
   
 
     
@@ -592,7 +642,35 @@
   
   
     <li class="md-nav__item">
-      <a href="data-and-backups/" class="md-nav__link">
+      <a href="database/connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connect your app to the database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="database/data-and-backups/" class="md-nav__link">
         
   
   
@@ -608,6 +686,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1515,9 +1601,12 @@
 <ol>
 <li><strong><a href="how-deploys-work/">How deploys work</a></strong>: nothing is applied by hand. You change files, a pipeline turns them into manifests, and a second pull request shows you exactly what will change before it does.</li>
 <li><strong><a href="your-project-in-the-repo/">Your project in the repo</a></strong>: the handful of files that make up a project here, which ones you own, and the one rule about where raw manifests can go.</li>
-<li><strong><a href="add-a-database/">Add a database</a></strong>: a PostgreSQL user and database on the shared cluster, in four files, none of them shared infrastructure.</li>
-<li><strong><a href="connect-your-app/">Connect your app</a></strong>: reading the connection settings and password, for helm and for kustomize apps, and the order to land things in.</li>
-<li><strong><a href="data-and-backups/">Data and backups</a></strong>: getting a <code>psql</code> shell, loading existing data, and what the backups do and don&rsquo;t give you.</li>
+<li><strong><a href="database/">Shared PostgreSQL</a></strong>: what the shared database cluster gives you, then three pages in order:<ul>
+<li><a href="database/provision/">Provision a database</a>: a user and an empty database, in four files, none of them shared infrastructure.</li>
+<li><a href="database/connect/">Connect your app</a>: reading the connection settings and password, for helm and for kustomize apps, and the order to land things in.</li>
+<li><a href="database/data-and-backups/">Data and backups</a>: getting a <code>psql</code> shell, loading existing data, and what the backups do and don&rsquo;t give you.</li>
+</ul>
+</li>
 <li><strong><a href="reference/">Reference</a></strong>: the directory map and the gotchas, for when you already know the shape.</li>
 </ol>
 <p>The running example is <strong>paws-data-pipeline</strong>, which is moving from a Postgres container inside its own pod to the shared cluster. Substitute your app&rsquo;s name.</p>
