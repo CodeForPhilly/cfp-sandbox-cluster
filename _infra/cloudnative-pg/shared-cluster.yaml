@@ -5,7 +5,9 @@ metadata:
   namespace: cloudnative-pg
 spec:
   instances: 2
-  imageName: ghcr.io/cloudnative-pg/postgis:18-3-system-trixie
+  # Pinned by digest: the tag floats, which left sandbox and live on different
+  # Postgres patch releases. Bump the digest deliberately, both clusters at once.
+  imageName: ghcr.io/cloudnative-pg/postgis:18-3-system-trixie@sha256:a2b2fc7941fe97a27728ecb285df0b35f0341b63bef98a8e4328723a0417f828
   storage:
     size: 20Gi
 
