@@ -14,6 +14,7 @@ password  Secret paws-db-credentials, key "password"
 
 Make the chart read these from values, with the password from a Secret. In `templates/deployment.yaml`:
 
+{% raw %}
 ```yaml
 env:
   - name: PGHOST
@@ -28,6 +29,7 @@ env:
         name: {{ .Values.database.passwordSecret }}
         key: password
 ```
+{% endraw %}
 
 If the chart currently runs its own Postgres container (PAWS did, as a sidecar in the app pod), remove it, or keep it behind a `database.embedded: true` default so local dev is unchanged. Cut a release and bump `.holo/sources/<app>.toml` to the new tag.
 
