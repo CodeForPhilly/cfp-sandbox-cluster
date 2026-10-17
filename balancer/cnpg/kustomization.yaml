@@ -5,4 +5,5 @@ kind: Kustomization
 # requires the Database CR to live in the same namespace as the Cluster
 # it targets, so we keep it out of the balancer-app rewrite.
 resources:
+  - role.yaml
   - database.yaml

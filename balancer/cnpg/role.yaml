@@ -1,0 +1,22 @@
+# The app's Postgres user. cnpg creates/alters the role on shared-cluster to
+# match this; the password comes from the basic-auth Secret named here, which
+# must live in cloudnative-pg (sealed from cloudnative-pg.secrets/) and exist
+# before this is applied. The same password is merged into balancer-config
+# (balancer.secrets/) as SQL_PASSWORD for the app itself.
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: balancer
+  namespace: cloudnative-pg
+spec:
+  cluster:
+    name: shared-cluster
+  name: balancer
+  login: true
+  # shared-cluster allows 100 connections total; cap each tenant so one
+  # can't starve the others. Django runserver holds one per request.
+  connectionLimit: 20
+  passwordSecret:
+    name: balancer-db-credentials
+  # Deleting this object leaves the role in Postgres.
+  databaseRoleReclaimPolicy: retain

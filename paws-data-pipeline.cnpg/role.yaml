@@ -1,0 +1,18 @@
+# Pre-provisioned 2026-10-17 for paws-data-pipeline's move onto shared-cluster
+# (#civic-cloud, 2026-10-04). The password is sealed twice from one value:
+# cloudnative-pg.secrets/paws-db-credentials.yaml for cnpg (this role), and
+# paws-data-pipeline.secrets/paws-db-credentials.yaml for the app to read.
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: paws
+  namespace: cloudnative-pg
+spec:
+  cluster:
+    name: shared-cluster
+  name: paws
+  login: true
+  connectionLimit: 20
+  passwordSecret:
+    name: paws-db-credentials
+  databaseRoleReclaimPolicy: retain
