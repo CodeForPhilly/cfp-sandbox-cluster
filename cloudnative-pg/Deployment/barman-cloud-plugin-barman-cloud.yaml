@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: barman-cloud
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: plugin-barman-cloud
-    app.kubernetes.io/version: v0.15.0
-    helm.sh/chart: plugin-barman-cloud-0.8.0
+    app.kubernetes.io/version: v0.15.1
+    helm.sh/chart: plugin-barman-cloud-0.8.1
   name: barman-cloud-plugin-barman-cloud
   namespace: cloudnative-pg
 spec:
@@ -38,7 +38,7 @@ spec:
                 configMapKeyRef:
                   key: SIDECAR_IMAGE
                   name: plugin-barman-cloud-config
-          image: ghcr.io/cloudnative-pg/plugin-barman-cloud:v0.15.0
+          image: ghcr.io/cloudnative-pg/plugin-barman-cloud:v0.15.1
           livenessProbe:
             initialDelaySeconds: 10
             periodSeconds: 10

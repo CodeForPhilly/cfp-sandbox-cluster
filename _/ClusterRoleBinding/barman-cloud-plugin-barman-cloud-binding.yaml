@@ -5,8 +5,8 @@ metadata:
     app.kubernetes.io/instance: barman-cloud
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/name: plugin-barman-cloud
-    app.kubernetes.io/version: v0.15.0
-    helm.sh/chart: plugin-barman-cloud-0.8.0
+    app.kubernetes.io/version: v0.15.1
+    helm.sh/chart: plugin-barman-cloud-0.8.1
   name: barman-cloud-plugin-barman-cloud-binding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
