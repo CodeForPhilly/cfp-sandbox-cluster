@@ -25,7 +25,7 @@
     
     
       
-        <title>Macro Syntax Error - Philly (sandbox) Civic Cloud</title>
+        <title>Connect your app - Philly (sandbox) Civic Cloud</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#macro-syntax-error" class="md-skip">
+        <a href="#connect-your-app" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Macro Syntax Error
+              Connect your app
             
           </span>
         </div>
@@ -563,6 +563,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Connect your app
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -570,7 +588,7 @@
   <span class="md-ellipsis">
     
   
-    Macro Syntax Error
+    Connect your app
   
 
     
@@ -579,6 +597,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#helm-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Helm apps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kustomize-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kustomize apps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#order-of-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Order of operations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1490,6 +1560,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#helm-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Helm apps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kustomize-apps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kustomize apps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#order-of-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Order of operations
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1508,11 +1619,53 @@
   
 
 
-<h1 id="macro-syntax-error"><em>Macro Syntax Error</em><a class="headerlink" href="#macro-syntax-error" title="Permanent link"> ¶</a></h1>
-<p><em>File</em>: <code>guides/connect-your-app.md</code></p>
-<p><em>Line 20 in Markdown file:</em> <strong>unexpected &lsquo;.&rsquo;</strong>
-<div class="highlight"><pre><span></span><code>    value: {{ .Values.database.host }}
-</code></pre></div></p>
+<h1 id="connect-your-app">Connect your app<a class="headerlink" href="#connect-your-app" title="Permanent link"> ¶</a></h1>
+<p>Your app needs five things: host, port, database, user, password. Four are plain configuration; the password comes from the Secret you sealed into your namespace.</p>
+<div class="highlight"><pre><span></span><code>host      shared-cluster-rw.cloudnative-pg.svc.cluster.local   (-ro for a read replica)
+port      5432
+database  paws
+user      paws
+password  Secret paws-db-credentials, key "password"
+</code></pre></div>
+<h2 id="helm-apps">Helm apps<a class="headerlink" href="#helm-apps" title="Permanent link"> ¶</a></h2>
+<p>Make the chart read these from values, with the password from a Secret. In <code>templates/deployment.yaml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">env</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PGHOST</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Values.database.host</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PGDATABASE</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Values.database.name</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PGUSER</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Values.database.user</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PGPASSWORD</span>
+<span class="w">    </span><span class="nt">valueFrom</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">secretKeyRef</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{{</span><span class="w"> </span><span class="nv">.Values.database.passwordSecret</span><span class="w"> </span><span class="p p-Indicator">}}</span>
+<span class="w">        </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">password</span>
+</code></pre></div>
+<p>If the chart currently runs its own Postgres container (PAWS did, as a sidecar in the app pod), remove it, or keep it behind a <code>database.embedded: true</code> default so local dev is unchanged. Cut a release and bump <code>.holo/sources/&lt;app&gt;.toml</code> to the new tag.</p>
+<p>Then set the values in the cluster repo, <code>paws-data-pipeline/release-values.yaml</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">database</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">embedded</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">shared-cluster-rw.cloudnative-pg.svc.cluster.local</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paws</span>
+<span class="w">  </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paws</span>
+<span class="w">  </span><span class="nt">passwordSecret</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">paws-db-credentials</span>
+</code></pre></div>
+<h2 id="kustomize-apps">Kustomize apps<a class="headerlink" href="#kustomize-apps" title="Permanent link"> ¶</a></h2>
+<p>See <code>balancer/</code> for a worked example: a <code>balancer.env</code> file rendered into a ConfigMap for the non-secret settings, the password merged into the app&rsquo;s existing SealedSecret with <code>kubeseal --merge-into</code>, and the <code>cnpg/</code> files included from the kustomization. One thing to know: a ConfigMap generated with a stable name does not restart your pod when it changes, so balancer carries a pod-template annotation it bumps on purpose.</p>
+<h2 id="order-of-operations">Order of operations<a class="headerlink" href="#order-of-operations" title="Permanent link"> ¶</a></h2>
+<ol>
+<li>Database PR (previous page). Empty database exists.</li>
+<li>App change in your repo, tagged; pin bump here.</li>
+<li><a href="../data-and-backups/#loading-existing-data">Load your data</a> if you have any.</li>
+<li>Values PR. The app rolls onto the shared cluster.</li>
+</ol>
+<p>Steps 1 and 4 are small PRs in the cluster repo; step 2 is in yours. Doing it on sandbox first means step 4 on live is a copy.</p>
+<div class="admonition note">
+<p class="admonition-title">Expect one restart if you change a sealed password</p>
+<p>The deploy applies your SealedSecret and your Deployment within the same second, and the sealed-secrets controller takes about a second to write the Secret. A pod that starts in that gap reads the old value and restarts once. Harmless, and not a sign something is wrong.</p>
+</div>
+<p>Next: <a href="../data-and-backups/">Data and backups</a>.</p>
 
 
 
