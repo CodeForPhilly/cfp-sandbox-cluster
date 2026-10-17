@@ -15,4 +15,4 @@ Both clusters run one PostgreSQL cluster for everyone, `shared-cluster` in the `
 2. **[Connect your app](connect.md)**: read host, database, user and password from configuration, for helm and for kustomize apps, and land the change in the right order.
 3. **[Data and backups](data-and-backups.md)**: get a `psql` shell, load existing data, and know what the shared backups do and don't cover.
 
-The running example is `paws-data-pipeline`, moving from a Postgres container inside its own pod to the shared cluster. Substitute your app's name.
+The running example is a made-up `example-app` with a Postgres user and database both named `example`. Substitute your app's name.

@@ -5,13 +5,13 @@
 Your team's access covers your namespace, not `cloudnative-pg`, so the way in is a throwaway pod in your namespace with the credentials loaded:
 
 ```bash
-kubectl -n paws-data-pipeline run psql --rm -it --restart=Never --image=postgres:18 \
+kubectl -n example-app run psql --rm -it --restart=Never --image=postgres:18 \
   --overrides='{"spec":{"containers":[{"name":"psql","image":"postgres:18","stdin":true,"tty":true,
     "command":["psql"],
     "env":[{"name":"PGHOST","value":"shared-cluster-rw.cloudnative-pg.svc.cluster.local"},
-           {"name":"PGDATABASE","value":"paws"},
-           {"name":"PGUSER","valueFrom":{"secretKeyRef":{"name":"paws-db-credentials","key":"username"}}},
-           {"name":"PGPASSWORD","valueFrom":{"secretKeyRef":{"name":"paws-db-credentials","key":"password"}}}]}]}}'
+           {"name":"PGDATABASE","value":"example"},
+           {"name":"PGUSER","valueFrom":{"secretKeyRef":{"name":"example-db-credentials","key":"username"}}},
+           {"name":"PGPASSWORD","valueFrom":{"secretKeyRef":{"name":"example-db-credentials","key":"password"}}}]}]}}'
 ```
 
 The same pod with `["sleep","3600"]` as the command is a workbench for `pg_dump` and `pg_restore`; `kubectl cp` files in and out.
@@ -24,9 +24,9 @@ Dump the old database in custom format, then restore **as your own user**, so yo
 # from wherever can reach the old database
 pg_dump -Fc --no-owner --no-privileges -h OLDHOST -U OLDUSER -d OLDDB -f app.dump
 
-# from the workbench pod, connected as paws
+# from the workbench pod, connected as example
 pg_restore -l app.dump | grep -vE " (EXTENSION|COMMENT - EXTENSION) " > list
-pg_restore --no-owner --no-privileges -L list -d paws app.dump
+pg_restore --no-owner --no-privileges -L list -d example app.dump
 ```
 
 The `grep -v EXTENSION` matters: the dump wants to `CREATE EXTENSION`, your user can't, and the extension already exists from `database.yaml`. For a 50 MB database this takes seconds.
