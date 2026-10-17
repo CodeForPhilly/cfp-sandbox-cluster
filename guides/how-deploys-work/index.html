@@ -8,31 +8,31 @@
       
       
       
-        <link rel="canonical" href="https://codeforphilly.github.io/cfp-sandbox-cluster/echo-service/">
+        <link rel="canonical" href="https://codeforphilly.github.io/cfp-sandbox-cluster/guides/how-deploys-work/">
       
       
-        <link rel="prev" href="../development/features/sealed-secrets/">
+        <link rel="prev" href="../">
       
       
-        <link rel="next" href="../data-warehouse/">
+        <link rel="next" href="../your-project-in-the-repo/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Echo service - Philly (sandbox) Civic Cloud</title>
+        <title>How deploys work - Philly (sandbox) Civic Cloud</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -51,7 +51,7 @@
       
     
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#echo-service" class="md-skip">
+        <a href="#how-deploys-work" class="md-skip">
           Skip to content
         </a>
       
@@ -88,7 +88,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="Philly (sandbox) Civic Cloud" class="md-header__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
+    <a href="../.." title="Philly (sandbox) Civic Cloud" class="md-header__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Echo service
+              How deploys work
             
           </span>
         </div>
@@ -193,16 +193,38 @@
   
   
     <li class="md-tabs__item">
-      <a href=".." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
     
   
-  Cluster Documentation
+  Philly Civic Cloud
 
       </a>
     </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Guides
+
+        </a>
+      </li>
+    
   
 
       
@@ -214,7 +236,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../getting-started/" class="md-tabs__link">
+        <a href="../../getting-started/" class="md-tabs__link">
           
   
   
@@ -234,7 +256,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../development/" class="md-tabs__link">
+        <a href="../../development/" class="md-tabs__link">
           
   
   
@@ -250,36 +272,15 @@
   
   
   
-    
-  
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
-        
-  
-  
-    
-  
-  Echo service
-
-      </a>
-    </li>
-  
-
-      
-        
-  
-  
-  
   
     
     
       <li class="md-tabs__item">
-        <a href="../data-warehouse/" class="md-tabs__link">
+        <a href="../../operations/" class="md-tabs__link">
           
   
   
-  Data warehouse
+  Operations
 
         </a>
       </li>
@@ -295,11 +296,11 @@
     
     
       <li class="md-tabs__item">
-        <a href="../operations/" class="md-tabs__link">
+        <a href="../../data-warehouse/" class="md-tabs__link">
           
   
   
-  Operations
+  Data warehouse
 
         </a>
       </li>
@@ -329,7 +330,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="Philly (sandbox) Civic Cloud" class="md-nav__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
+    <a href="../.." title="Philly (sandbox) Civic Cloud" class="md-nav__button md-logo" aria-label="Philly (sandbox) Civic Cloud" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -359,14 +360,14 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Cluster Documentation
+    Philly Civic Cloud
   
 
     
@@ -383,31 +384,36 @@
       
   
   
+    
   
   
+  
     
     
     
     
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
     
   
-    Getting started
+    Guides
   
 
     
@@ -418,12 +424,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             
   
-    Getting started
+    Guides
   
 
           </label>
@@ -436,14 +442,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../getting-started/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Getting Started
+    Deploying your project on the Civic Cloud
   
 
     
@@ -461,31 +467,26 @@
                 
   
   
+    
   
   
-    
-    
-    
-    
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
+        
       
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
-        
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
           
-          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
-            
   
   
   <span class="md-ellipsis">
     
   
-    Service setup
+    How deploys work
   
 
     
@@ -493,107 +494,218 @@
   
   
 
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Service setup
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../getting-started/service-setup/grafana-smtp/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Grafana SMTP &amp; certificate alerting
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../getting-started/service-setup/grafana/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Grafana
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../getting-started/service-setup/sealed-secrets/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Sealed Secrets
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How deploys work
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#workspace-projection-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workspace, projection, deploy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seeing-the-projection-yourself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seeing the projection yourself
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sandbox-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sandbox first
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../your-project-in-the-repo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Your project in the repo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../add-a-database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Add a database
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connect-your-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Macro Syntax Error
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-and-backups/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data and backups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -634,7 +746,7 @@
   <span class="md-ellipsis">
     
   
-    Development
+    Getting started
   
 
     
@@ -650,7 +762,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Development
+    Getting started
   
 
           </label>
@@ -663,14 +775,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../development/" class="md-nav__link">
+      <a href="../../getting-started/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Development
+    Getting Started
   
 
     
@@ -712,7 +824,7 @@
   <span class="md-ellipsis">
     
   
-    Features
+    Service setup
   
 
     
@@ -728,7 +840,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Features
+    Service setup
   
 
           </label>
@@ -741,14 +853,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../development/features/gateway/" class="md-nav__link">
+      <a href="../../getting-started/service-setup/grafana-smtp/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Exposing services (Gateway API)
+    Grafana SMTP &amp; certificate alerting
   
 
     
@@ -769,14 +881,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../development/features/ingress/" class="md-nav__link">
+      <a href="../../getting-started/service-setup/grafana/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Ingress (legacy)
+    Grafana
   
 
     
@@ -797,7 +909,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../development/features/sealed-secrets/" class="md-nav__link">
+      <a href="../../getting-started/service-setup/sealed-secrets/" class="md-nav__link">
         
   
   
@@ -837,26 +949,67 @@
       
   
   
+  
+  
     
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
+    
+    
+    
       
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
       
         
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Development
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Development
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Echo service
+    Development
   
 
     
@@ -865,6 +1018,155 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/features/gateway/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exposing services (Gateway API)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/features/ingress/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ingress (legacy)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/features/sealed-secrets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sealed Secrets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -898,7 +1200,7 @@
   <span class="md-ellipsis">
     
   
-    Data warehouse
+    Operations
   
 
     
@@ -914,7 +1216,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Data warehouse
+    Operations
   
 
           </label>
@@ -927,14 +1229,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../data-warehouse/" class="md-nav__link">
+      <a href="../../operations/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Data Warehouse
+    Operations
   
 
     
@@ -955,14 +1257,92 @@
   
   
     <li class="md-nav__item">
-      <a href="../data-warehouse/add-user/" class="md-nav__link">
+      <a href="../../operations/echo-service/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Add a user
+    Echo service
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrades
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Upgrades
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/upgrades/to-0.20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    To 0.20.x
   
 
     
@@ -983,14 +1363,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../data-warehouse/initial-setup/" class="md-nav__link">
+      <a href="../../operations/upgrades/to-1.0/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Initial setup
+    To 1.0.x
   
 
     
@@ -999,6 +1379,14 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -1039,7 +1427,7 @@
   <span class="md-ellipsis">
     
   
-    Operations
+    Data warehouse
   
 
     
@@ -1055,7 +1443,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    Operations
+    Data warehouse
   
 
           </label>
@@ -1068,92 +1456,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../operations/" class="md-nav__link">
+      <a href="../../data-warehouse/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    Operations
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Upgrades
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_2">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Upgrades
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../operations/upgrades/to-0.20/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    To 0.20.x
+    Data Warehouse
   
 
     
@@ -1174,14 +1484,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../operations/upgrades/to-1.0/" class="md-nav__link">
+      <a href="../../data-warehouse/add-user/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    To 1.0.x
+    Add a user
   
 
     
@@ -1195,9 +1505,29 @@
 
               
             
-          </ul>
-        </nav>
-      
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data-warehouse/initial-setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Initial setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -1230,6 +1560,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#workspace-projection-deploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workspace, projection, deploy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#seeing-the-projection-yourself" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Seeing the projection yourself
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sandbox-first" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sandbox first
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1248,8 +1619,37 @@
   
 
 
-<h1 id="echo-service">Echo service<a class="headerlink" href="#echo-service" title="Permanent link"> ¶</a></h1>
-<p>Open <a href="https://echo-http.sandbox.k8s.phl.io/">https://echo-http.sandbox.k8s.phl.io/</a> to verify cluster connectivity and ingress.</p>
+<h1 id="how-deploys-work">How deploys work<a class="headerlink" href="#how-deploys-work" title="Permanent link"> ¶</a></h1>
+<p>The short version: <strong>you edit files on <code>main</code>, and a pipeline applies them to the cluster.</strong> Nobody runs <code>kubectl apply</code> by hand, and nothing is in the cluster that isn&rsquo;t in the repo.</p>
+<h2 id="workspace-projection-deploy">Workspace, projection, deploy<a class="headerlink" href="#workspace-projection-deploy" title="Permanent link"> ¶</a></h2>
+<p>The files on <code>main</code> are the <strong>workspace</strong>. They aren&rsquo;t Kubernetes manifests yet; they&rsquo;re the inputs: a pin to your app&rsquo;s repo and tag, your helm values or kustomization, your sealed secrets.</p>
+<p>A tool called <a href="https://github.com/JarvusInnovations/hologit">hologit</a> <strong>projects</strong> the workspace into plain manifests. It fetches your app&rsquo;s chart or kustomization from the pinned tag, renders it with your values, and files every resource into a predictable path: <code>&lt;namespace&gt;/&lt;Kind&gt;/&lt;name&gt;.yaml</code>. That rendered tree is what gets applied.</p>
+<div class="highlight"><pre><span></span><code>you push to main
+  → Build workflow projects the tree          → branch  releases/k8s-manifests
+  → a "Deploy releases/k8s-manifests …" PR opens by itself, with a kubectl diff in its body
+  → someone merges it                          → branch  deploys/k8s-manifests
+  → Deploy workflow runs kubectl apply
+</code></pre></div>
+<p>Two things follow from this that are worth internalising on day one:</p>
+<div class="admonition note">
+<p class="admonition-title">The deploy PR is your preview</p>
+<p>Its body is <code>kubectl diff</code> against the real cluster: every line that will change. Read it even when your change is one value. Lenses and admission webhooks add things you didn&rsquo;t type, and this is where you see them.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Deleting a file deletes the resource</p>
+<p>The deploy&rsquo;s last step removes anything that disappeared from the projected tree. Delete your app&rsquo;s directory and the app is gone on the next deploy. This is a feature, but it means &ldquo;clean up this old file&rdquo; is a production change.</p>
+</div>
+<h2 id="seeing-the-projection-yourself">Seeing the projection yourself<a class="headerlink" href="#seeing-the-projection-yourself" title="Permanent link"> ¶</a></h2>
+<p>You don&rsquo;t have to wait for the pipeline. From a clone with <code>git holo</code> installed:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>fetch<span class="w"> </span>origin
+<span class="nv">SHA</span><span class="o">=</span><span class="k">$(</span>git<span class="w"> </span>holo<span class="w"> </span>project<span class="w"> </span>k8s-manifests-github<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1<span class="k">)</span>
+git<span class="w"> </span>diff<span class="w"> </span>--name-status<span class="w"> </span>origin/deploys/k8s-manifests<span class="w"> </span><span class="s2">"</span><span class="nv">$SHA</span><span class="s2">"</span><span class="w">   </span><span class="c1"># which resources change</span>
+git<span class="w"> </span>show<span class="w"> </span><span class="s2">"</span><span class="nv">$SHA</span><span class="s2">"</span>:balancer/Deployment/balancer.yaml<span class="w">           </span><span class="c1"># look at any one of them</span>
+</code></pre></div>
+<p>Every PR to these repos includes that diff in its description. It&rsquo;s the one review step that catches a values typo before it becomes a deploy.</p>
+<h2 id="sandbox-first">Sandbox first<a class="headerlink" href="#sandbox-first" title="Permanent link"> ¶</a></h2>
+<p>Both clusters have the same layout on purpose. The habit is: land the change on sandbox, look at it running, then open the same change on live. Most live PRs are a sandbox PR with a hostname changed.</p>
+<p>Next: <a href="../your-project-in-the-repo/">Your project in the repo</a>.</p>
 
 
 
@@ -1299,10 +1699,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
         <script src="https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js"></script>
       
