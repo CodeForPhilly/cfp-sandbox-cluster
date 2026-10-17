@@ -1,0 +1,14 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: DatabaseRole
+metadata:
+  name: balancer
+  namespace: cloudnative-pg
+spec:
+  cluster:
+    name: shared-cluster
+  connectionLimit: 20
+  databaseRoleReclaimPolicy: retain
+  login: true
+  name: balancer
+  passwordSecret:
+    name: balancer-db-credentials
