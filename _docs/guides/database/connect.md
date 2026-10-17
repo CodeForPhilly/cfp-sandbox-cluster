@@ -1,6 +1,6 @@
-# Connect your app
+# Connect your app to the database
 
-Your app needs five things: host, port, database, user, password. Four are plain configuration; the password comes from the Secret you sealed into your namespace.
+Once [provisioned](provision.md), your app needs five things: host, port, database, user, password. Four are plain configuration; the password comes from the Secret you sealed into your namespace.
 
 ```
 host      shared-cluster-rw.cloudnative-pg.svc.cluster.local   (-ro for a read replica)
@@ -50,7 +50,7 @@ See `balancer/` for a worked example: a `balancer.env` file rendered into a Conf
 
 ## Order of operations
 
-1. Database PR (previous page). Empty database exists.
+1. [Provision](provision.md) PR. Empty database exists.
 2. App change in your repo, tagged; pin bump here.
 3. [Load your data](data-and-backups.md#loading-existing-data) if you have any.
 4. Values PR. The app rolls onto the shared cluster.

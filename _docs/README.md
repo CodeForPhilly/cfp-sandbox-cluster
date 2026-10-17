@@ -14,7 +14,7 @@ CodeForPhilly runs two Kubernetes clusters on Linode, **sandbox** and **live**, 
 Start with the [Guides](guides/): how deploys work, where your project lives in the repo, and how to add and use a database. About twenty minutes, in order.
 
 **My app is already here and I need a database.**
-Skip to [Add a database](guides/add-a-database.md) and [Connect your app](guides/connect-your-app.md). Four files, no shared infrastructure touched.
+Go straight to [Shared PostgreSQL](guides/database/): [provision](guides/database/provision.md) it in four files, then [connect your app](guides/database/connect.md). No shared infrastructure touched.
 
 **I need to change a value, bump a version, or rotate a secret.**
 [Your project in the repo](guides/your-project-in-the-repo.md) shows which files are yours, and [How deploys work](guides/how-deploys-work.md) shows how to preview the change before it lands.

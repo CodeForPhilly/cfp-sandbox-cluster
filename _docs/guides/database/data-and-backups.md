@@ -53,4 +53,4 @@ Backups are **per cluster**, not per database. Every database on `shared-cluster
 
 If you want your own logical dumps too, the workbench pod above plus a `CronJob` in your namespace is all it takes, and `pg_dump` output is the portable form if your project ever leaves.
 
-That's the end of the path. [Reference](reference.md) has the directory map and gotchas in one place.
+That's the end of the database section. [Reference](../reference.md) has the directory map and gotchas in one place.
