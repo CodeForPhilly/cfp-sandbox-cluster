@@ -1,10 +1,6 @@
-# Add a database
+# Provision a database
 
-Both clusters run one PostgreSQL cluster for everyone, `shared-cluster` in the `cloudnative-pg` namespace, managed by [CloudNativePG](https://cloudnative-pg.io). You get a user and a database on it; you don't run Postgres yourself.
-
-**What you get:** PostgreSQL 18 with PostGIS and pgvector available, two instances with automatic failover, nightly backups plus continuous archiving stored off-Linode in Google Cloud Storage, and upgrades handled centrally.
-
-Adding your database is four files in the cluster repo. None of them is in `_infra/`.
+A user and an empty database on `shared-cluster`, in four files in the cluster repo. None of them is in `_infra/`. (New here? Start with the [overview](README.md).)
 
 ## 1. One password, sealed twice
 
@@ -72,7 +68,7 @@ spec:
 
 ## 4. Open the PR
 
-Commit the four files, run the projection diff ([how](how-deploys-work.md#seeing-the-projection-yourself)), and open the PR. You should see exactly four additions, all under `cloudnative-pg/`: a `SealedSecret`, a `DatabaseRole`, a `Database`, and a second `SealedSecret` under your namespace. Merge it and its deploy PR.
+Commit the four files, run the projection diff ([how](../how-deploys-work.md#seeing-the-projection-yourself)), and open the PR. You should see exactly four additions, all under `cloudnative-pg/`: a `SealedSecret`, a `DatabaseRole`, a `Database`, and a second `SealedSecret` under your namespace. Merge it and its deploy PR.
 
 Then check it took:
 
@@ -86,4 +82,4 @@ You now have an empty database named `paws`, owned by a user named `paws`, reach
 !!! warning "Secret before role"
     If cnpg reconciles the `DatabaseRole` before its Secret exists, it marks the role failed and does not retry on its own. Landing both in one PR is enough. If it happens anyway: `kubectl annotate cluster -n cloudnative-pg shared-cluster cnpg.io/reconciliationLoop="$(date +%s)" --overwrite`, and check `.status` again.
 
-Next: [Connect your app](connect-your-app.md).
+Next: [Connect your app](connect.md).

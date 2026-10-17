@@ -3,7 +3,5 @@ nav:
   - README.md
   - how-deploys-work.md
   - your-project-in-the-repo.md
-  - add-a-database.md
-  - connect-your-app.md
-  - data-and-backups.md
+  - database
   - reference.md

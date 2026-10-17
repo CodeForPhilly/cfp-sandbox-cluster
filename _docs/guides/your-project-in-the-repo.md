@@ -35,4 +35,4 @@ That's why things that belong to your app but aren't part of the chart live in *
 
 Your app runs in a namespace with its name. `_admins/<app>.yaml` gives your team a `deployment-admin` ServiceAccount there, enough to see pods, read logs, `exec` and port-forward. It does not reach other namespaces, which matters for the database pages: your Postgres lives in `cloudnative-pg`, and you reach it from inside your own namespace.
 
-Next: [Add a database](add-a-database.md).
+Next: [Shared PostgreSQL](database/), starting with [Provision a database](database/provision.md).
