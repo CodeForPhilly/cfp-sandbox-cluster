@@ -8,8 +8,10 @@ images:
   #   src: quay.io/prometheuscommunity/postgres-exporter:latest
 
 workloads:
-  # metabase:
-  #   replicas: 1
+  metabase:
+    # Scaled to 0 on 2026-10-21: instance is empty (0 cards) and v0.45.2.1 is unpatchable for CVE-2023-38646.
+    # Delete this app entirely once confirmed unneeded (JarvusInnovations/infra-ops#33).
+    replicas: 0
   database:
     useExporter: false
 
